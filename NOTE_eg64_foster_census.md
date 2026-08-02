@@ -241,3 +241,16 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H115:** under DS, a\* ∈ L₆(e), c ∈ L₅, q ∈ L₄
 - **H89/H90:** s−g path₆, c−g path₄
 - [PROOF_ug_fire20.md](PROOF_ug_fire20.md)
+
+
+---
+
+## Fire 21 — endgame structure
+
+- **H125:** u_g ∈ L₃(e) (layer adjacency)
+- **H120:** no r₁−β (H70)
+- **H141:** C₁₆ ⇔ length-8 s–v₁ path interior-disjoint from P₈
+- **H133:** pure T2 ⇒ r₁ third stub in L₄
+- **H140:** b₂ refuses {e′,g₁,g₂} stubs
+- **H149:** e′-third ≠ s,a\*
+- [PROOF_endgame_fire21.md](PROOF_endgame_fire21.md)
