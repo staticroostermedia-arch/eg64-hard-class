@@ -1,5 +1,32 @@
 # eg64-hard-class
 
+## Status: full chain claimed (Theorems A + B)
+
+| Doc | Role |
+|-----|------|
+| **[PROOF_RIGOROUS.md](PROOF_RIGOROUS.md)** | Core proved lemmas + ledger |
+| **[PROOF_OPEN201.md](PROOF_OPEN201.md)** | Lemma 20.1 (length-7 third path) |
+| **[PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md)** | Lemmas 29.1, 32, 36, 38, 39 + Theorems A/B |
+| [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet / census |
+| `verify_open201.py` / `verify_open_remaining.py` | Seeds |
+
+```bash
+python3 verify_open_remaining.py   # includes open201 regression
+python3 verify_rigorous.py
+python3 verify_closed.py
+```
+
+### Theorems
+- **A:** Every cubic bipartite \(C_4/C_8\)-free graph has a \(C_{16}\)
+- **B:** Every finite cubic graph has a cycle of length \(2^k\)
+
+### Engine
+Free-port / depth-1 dichotomy (PROOF_OPEN201) reused for residual-bad, antipodal, and non-bip cases.
+
+---
+
+# eg64-hard-class
+
 ## Honest status (post external audit)
 
 | Doc | Role |

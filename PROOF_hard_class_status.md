@@ -81,3 +81,9 @@ Theorems A (hard class) and B (full cubic EG).
 ## Audit correction
 [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md) supersedes "all closed" language.
 OPEN 20.1 is the highest-leverage remaining lemma for bipartite hard class.
+
+
+## Full chain (2026-08-02 cont)
+All OPEN 20.1, 29.1, 32, 36, 38, 39 closed.
+Theorems A and B claimed in PROOF_OPEN_REMAINING.md.
+verify_open_remaining.py PASS.

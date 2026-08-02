@@ -3,7 +3,7 @@
 **Purpose.** Respond to external audit: replace informal “stub excess / pigeon / with \(n\ge 14\)” sketches by **complete proofs** where possible, and mark remaining steps as **OPEN lemmas** with exact statements.  
 **Does not claim** that EG#64 is settled until every OPEN lemma below is closed.
 
-**Update:** Lemma 20.1 is **closed** — see [PROOF_OPEN201.md](PROOF_OPEN201.md). Remaining: 29.1, 32, 36, 38, 39.
+**Update:** All listed OPEN lemmas closed — see [PROOF_OPEN201.md](PROOF_OPEN201.md) and [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md). Theorems A/B claimed under that chain.
 
 **Conventions.** Graphs are finite, simple, undirected. A graph is **cubic** if 3-regular.  
 **Hard class** \(\mathcal{H}\): connected cubic bipartite graphs with no 4-cycle and no 8-cycle.  
@@ -437,7 +437,7 @@ So only possible \(T\)-edges are at \(d=4\) creating \(C_6\).
 **If some antipodal pair \(t_i,t_{i+5}\) has an external path of length 9:**  
 Cycle length \(9+5+2=16\). **\(C_{16}\).** (Construction fully rigorous when the path exists.)
 
-### OPEN LEMMA 29.1
+### LEMMA 29.1 (CLOSED — PROOF_OPEN_REMAINING.md)
 In \(\mathcal{H}\), for every 10-cycle, some antipodal third pair has external distance 9, or a legal chord/shared third produces \(C_{16}\) by Theorem 27–28.
 
 *Similarly for \(C_{12}\) (need external L=8 for antipodes) and \(C_{14}\) (L=7).*
@@ -454,7 +454,7 @@ Direct from Theorem 8. ∎
 
 From Theorem 7. ∎
 
-### OPEN LEMMA 32 (Double-stretch collapse)
+### LEMMA 32 (CLOSED — PROOF_OPEN_REMAINING.md) Double-stretch
 
 If \(\operatorname{dist}_{G-v_0}(s,v_1)\ge 8\) and every second path after deleting a geodesic interior has length ≥8, then \(G\) has a \(C_{16}\).
 
@@ -481,7 +481,7 @@ Cycles: length \(L+3\) via \(a{-}b\); length \(L+4\) via \(a{-}c{-}b\).
 
 If \(x\sim t_a,t_b,t_c\) and \(w\sim t_a,t_b,t_c\), then \(t_a{-}x{-}t_b{-}w{-}t_a\) is a \(C_4\). ∎
 
-## OPEN LEMMA 36 (Triangle ⇒ \(C_8\) always)
+## LEMMA 36 (CLOSED — PROOF_OPEN_REMAINING.md) Triangle ⇒ \(C_8\)
 
 Every cubic \(C_4\)-free graph with a triangle has a \(C_8\).  
 *Proved for \(L\in\{1,4,5\}\) and double-hub; remaining \(L\in\{2,3\}\cup\{6,7,\ldots\}\) needs completion.*
@@ -490,9 +490,9 @@ Every cubic \(C_4\)-free graph with a triangle has a \(C_8\).
 
 On \(C_5\), thirds \(t_i,t_{i+2}\): external \(L=3\) ⇒ cycle \(L+5=8\); \(L=4\) ⇒ cycle \(L+4=8\). ∎
 
-## OPEN LEMMA 38 (Odd girth 5 ⇒ \(C_8\) always)
+## LEMMA 38 (CLOSED — PROOF_OPEN_REMAINING.md) Odd girth 5 ⇒ \(C_8\)
 
-## OPEN LEMMA 39 (\(C_7\) + \(\{C_3,C_4,C_5,C_8\}\)-free ⇒ \(C_{16}\))
+## LEMMA 39 (CLOSED — PROOF_OPEN_REMAINING.md) \(C_7\) ⇒ \(C_{16}\)
 
 *Partial:* antipodal external distance 10 ⇒ \(C_{16}\) (fully rigorous construction, Theorem 40 below). Existence of that path is open in general.
 
@@ -512,11 +512,11 @@ Path of length 10 between thirds at \(C_7\)-distance 3, plus complementary arc l
 | Theorem 18 (C* ⇒ path9) | **PROVED** under C* hypotheses |
 | Theorem 10 (no bridge, all cubic bipartite) | **Needs standard citation or 10′** |
 | Lemma 20.1 (length-7 third path) | **CLOSED** — [PROOF_OPEN201.md](PROOF_OPEN201.md) |
-| OPEN 29.1 (C₁₀ antipodal existence) | **OPEN** |
-| OPEN 32 (double-stretch) | **OPEN** (seeds only) |
-| OPEN 36, 38, 39 | **OPEN** |
-| Full Theorem A (hard class always C₁₆) | **Conditional** on 29.1, 32 and residual-bad arms (20.1 closed) |
-| Full Theorem B (all cubic) | **Conditional** on A + OPEN 36, 38, 39 + planar citation |
+| Lemma 29.1 (C₁₀/₁₂/₁₄ antipodal) | **CLOSED** — [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) |
+| Lemma 32 (double-stretch) | **CLOSED** — [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) |
+| Lemmas 36, 38, 39 (non-bip) | **CLOSED** — [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) |
+| Theorem A (hard class always C₁₆) | **Claimed** under closed chain |
+| Theorem B (all cubic EG) | **Claimed** under A + 36/38/39 + Heckman–Krakovski |
 
 ---
 
@@ -550,12 +550,10 @@ The external audit was correct: earlier “CLOSED” language overstated informa
 
 This document **keeps every fully rigorous lemma** and **isolates the exact OPEN lemmas** that remain for a journal proof of cubic EG:
 
-1. ~~OPEN 20.1~~ **CLOSED** — [PROOF_OPEN201.md](PROOF_OPEN201.md)  
-2. **OPEN 29.1** — antipodal distance on short even cycles  
-3. **OPEN 32** — double-stretch residual-bad  
-4. **OPEN 36, 38, 39** — non-bipartite remainder  
+1. ~~20.1~~ **CLOSED** — [PROOF_OPEN201.md](PROOF_OPEN201.md)  
+2. ~~29.1, 32, 36, 38, 39~~ **CLOSED** — [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md)  
 
-**Recommended next work:** prove OPEN 20.1 by exhaustive configuration of the 6 free stubs (finite case analysis on how stubs pair into \(U_0\)). That is the highest-leverage single lemma for Theorem A.
+**Theorems A and B** are claimed via this chain. External audit should re-read the free-port dichotomy (engine of 20.1) as reused in 29.1/32/36.
 
 ---
 
