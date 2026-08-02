@@ -1,6 +1,6 @@
 # Free-port engine — complete branch closure
 
-> **Pure-new expansion closed:** [PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md) (cut-return + height-2 + stub bound r≤14).
+> **Pure-new expansion closed:** [PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md) (connectivity + component types P/T/U + induction on μ).
 
 **Closes the incomplete upgrades in Theorem 4.5 / Lemma 20.1** identified by external audit.  
 Every branch below ends in an **explicit** \(s\)–\(t\) path of length 9 (Lemma 2.3 ⇒ \(C_{16}\)), a forbidden \(C_4/C_8\), or a banned length-5 path.
@@ -394,7 +394,7 @@ If \(f\) new: free edges of \(f\) hit \(\{x_4,b_2,b_1,x_2,\ldots\}\) within 1–
 
 ## Theorem 4.5′ (free-port engine, complete)
 
-Pure-new cases: Theorem 8.1 of PROOF_PURENEW_CLOSED.
+Pure-new cases: Theorem 7.1 of PROOF_PURENEW_CLOSED (structural rewrite).
 
 Under the residual-good H-bridge setup, any third \(s\)–\(t\) path of length 7 forces a \(C_{16}\).
 

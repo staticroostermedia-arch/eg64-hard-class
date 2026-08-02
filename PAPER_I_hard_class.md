@@ -194,7 +194,7 @@ Every branch is closed by an **explicit** length-9 \(s\)–\(t\) path in
 | Separate components | Part III.2: \(\mathrm{dist}_{K_A}(u_a,u_3)=4\); free edge of \(p_3\) to \(x_4\) or \(b_1\) gives path 9 |
 
 **Conclusion.** Length-9 \(s\)–\(t\) path off \(C\) ⇒ Lemma 2.3 ⇒ \(C_{16}\).  
-Seeds: `verify_freeport.py`, `verify_purenew.py`. Pure-new: cut-return lemma, r≤14 stub bound. ∎
+Seeds: `verify_freeport.py`, `verify_purenew.py`. Pure-new: connectedness ⇒ return; types P/T/U; induction on μ. ∎
 
 #### Theorem 4.6 (Residual good)
 

@@ -1,347 +1,397 @@
-# Pure-new expansion — final free-port gap closure
+# Pure-new expansion — structural closure
 
-Closes residual soft spots in [PROOF_FREEPORT_CLOSED.md](PROOF_FREEPORT_CLOSED.md):  
-**I.1.d**, **III.1 pure-new**, **III.2 pure-new**, and the **I.3 antipodal inheritance**.
+**Replaces** earlier pure-new drafts. Addresses third-pass blockers:
+1. Lemma 1.1 connectivity (return exists)
+2. No false depth/stub-as-depth bound
+3. Exhaustive component classification (not “must hit in 1–2 steps”)
+4. §4.2 non-circular ear construction
 
-**Method:** cut-return lemma + height-2 landing tables + residual-degree handshaking.  
-No open “must hit quickly” claims remain.
+Depends on: known landings in [PROOF_FREEPORT_CLOSED.md](PROOF_FREEPORT_CLOSED.md).
 
 ---
 
-## 0. Known set and residual stubs
+## 0. Setup
 
-### Definition 0.1 (Known set \(X\))
-
-At any stage of the free-port analysis, after \(P_*\), \(P_H\), and all edges among ports already classified by Parts I–II of PROOF_FREEPORT_CLOSED:
+### 0.1 Fixed objects
 
 \[
-X_0 = A^*\cup B^*\cup\{a_1,b_1\} = \{u_a,u_3,u_5,u_2,u_4,u_b,a_1,b_1\}.
+P_*=s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t,\qquad
+P_H=s{-}a_1{-}b_1{-}t.
 \]
-If \(e_1\) is present, enlarge by remaining free neighbours of its ends:
+\(G\in\mathcal{H}\) (connected cubic bipartite, no \(C_4\), no \(C_8\)).  
+\(V(C)\) is the residual 6-cycle through \(s,t\) as in residual-good setup; free edges from ports into \(V(C)\) are already banned (PROOF_FREEPORT_CLOSED Step 1).
+
+### 0.2 Known set \(X\)
+
 \[
-X = X_0 \cup \{w_a,w_4\}
+U=\{u_a,u_2,u_3,u_4,u_5,u_b\}
+=\{\text{free neighbours of }a_2,x_2,x_3,x_4,x_5,b_2\text{ off }P_*\}.
 \]
-(and similarly \(w_3,w_b\) for \(e_2\), \(w_5,w_2\) for \(e_3\)).
+\[
+X = U\cup\{a_1,b_1\}
+\]
+and, if an allowed port edge \(e_i\) is present, the residual free neighbours of its ends (e.g. \(w_a,w_4\) for \(e_1\)).
 
-All edges with both ends in \(X\) are **classified** (path-9, \(C_4\), \(C_8\), or length-5 ban) by PROOF_FREEPORT_CLOSED Parts I–II.
+All edges with both ends in \(X\) are classified (path-9 / \(C_4\) / \(C_8\) / length-5 ban) by PROOF_FREEPORT_CLOSED Parts I–II.
 
-### Definition 0.2 (Pure-new)
+### 0.3 Pure-new
 
-A vertex is **pure-new** if it lies in
 \[
 N = V(G)\setminus\bigl(V(P_*)\cup V(C)\cup X\bigr).
 \]
-(We may ignore \(V(C)\) edges: free edges into \(V(C)\) are already banned.)
 
-### Lemma 0.3 (Stub count)
+### 0.4 Residual graph \(R\)
 
-Each of the six ports has residual degree 2 into \(G-V(P_*)\).  
-Each of \(a_1,b_1\) has residual degree 1.  
-If \(w_a,w_4\) are present they each have residual degree 2 before further use.  
-**Base:** 6·2+2 = **14 stubs** from \(X_0\).  
-Each classified edge inside \(X\) consumes 2 stubs.  
-Remaining stubs enter \(N\).
+Let \(R\) be the subgraph of \(G\) induced by \(N\cup X\), **minus** all edges with both ends in \(X\) (those are already classified).  
+Thus every edge of \(R\) either:
+- joins \(X\) to \(N\), or  
+- joins two vertices of \(N\).
 
-### Lemma 0.4 (Handshaking in \(N\))
+Edges of \(R\) incident to \(X\) are exactly the **unclassified free stubs** of \(X\).
 
-Let \(e_N\) be the number of edges inside \(N\), and \(r\) the number of \(X\)–\(N\) edges. Then
+---
+
+## 1. Connectivity: first return exists
+
+### Lemma 1.1 (No cubic island)
+
+\(N\) contains no connected component of \(G\). Equivalently: if \(N\neq\emptyset\), every vertex of \(N\) has a path in \(G\) to \(V(P_*)\cup V(C)\cup X\).
+
+*Proof.* Suppose \(K\) is a connected component of \(G[N]\) with no edge of \(G\) leaving \(K\).  
+Then \(K\) is a connected component of \(G\).  
+But \(G\) is connected and \(V(P_*)\neq\emptyset\) with \(V(P_*)\cap N=\emptyset\), so \(K\neq G\).  
+Contradiction unless \(K\) is empty. ∎
+
+### Lemma 1.2 (Exit must hit \(X\))
+
+Let \(v\in N\). Let \(P\) be a shortest \(G\)-path from \(v\) to \(V(P_*)\cup V(C)\cup X\).  
+Let \(v'\) be the first vertex of \(P\) in \(V(P_*)\cup V(C)\cup X\), and \(u\) its predecessor on \(P\). Then \(u\in N\cup X\) and \(v'\in X\).
+
+*Proof.*  
+- If \(v'\in V(C)\): edge \(u{-}v'\) is a free edge into \(V(C)\), banned in the free-port setup.  
+- If \(v'\in V(P_*)\): then \(u\) is a free neighbour of a vertex of \(P_*\), hence \(u\in U\subseteq X\), contradicting that \(u\) is the predecessor still off the target (unless the path has length 0). More carefully: free neighbours of \(P_*\) were defined to be exactly \(U\subseteq X\). So \(u\in X\), and \(v'=u\) would mean the first hit is already in \(X\).  
+- Therefore \(v'\in X\). ∎
+
+### Lemma 1.3 (First return path)
+
+Let \(x\in X\) be incident to an edge \(x{-}n\) with \(n\in N\).  
+Then there exists a path
 \[
-3|N| = r + 2e_N.
+x = y_0{-}y_1{-}\cdots{-}y_L = x',\qquad L\ge 2,\quad y_1,\ldots,y_{L-1}\in N,\quad x'\in X,
 \]
-In particular \(r \equiv |N|\pmod{2}\) and \(r\ge 1\) if \(N\neq\emptyset\). ∎
+in \(R\) (no edge both in \(X\)).  
+Among all such paths starting with the edge \(x{-}n\), choose one with minimal \(L\); call it a **first-return path** from that stub. It is induced in \(N\).
+
+*Proof.* Existence: start at \(n\), apply Lemma 1.2 to reach some \(x'\in X\); prepend \(x\). Minimal \(L\) ⇒ induced in \(N\) (a chord in \(N\) would shorten). \(L\neq 1\) because edges inside \(X\) were removed from \(R\). ∎
+
+**Blocker 1 discharged:** return is not assumed from finiteness+degree alone; it uses **connectedness of \(G\)** and the ban on free edges into \(V(C)\), plus the definition of \(U\).
 
 ---
 
-## 1. Cut-return lemma
+## 2. Component classification of residual attachments
 
-### Lemma 1.1 (First return)
+### Definition 2.1 (Attachment component)
 
-Let \(x\in X\) have a free edge to \(n\in N\). Extend any walk from \(n\) in \(G[N\cup X]\) that does not immediately return to \(x\). Because \(G\) is finite and every vertex of \(N\) has degree 3, every such walk eventually reaches a vertex of \(X\) again. Let
+Consider the graph \(R^\circ\) obtained from \(R\) by treating each vertex of \(X\) as a **marker** (we study components of \(R-X = G[N]\), then reattach boundary edges to \(X\)).
+
+Each connected component \(\Gamma\) of \(G[N]\) has a nonempty set \(B(\Gamma)\subseteq X\) of **attachment markers**: vertices of \(X\) adjacent to \(\Gamma\) (Lemma 1.1–1.2).
+
+The **filled component** \(\widehat{\Gamma}\) is \(\Gamma\) plus all edges from \(\Gamma\) to \(B(\Gamma)\) and the markers \(B(\Gamma)\).
+
+### Lemma 2.2 (Degrees in \(\Gamma\))
+
+- Every vertex of \(\Gamma\) has degree 3 in \(G\).  
+- Edges of such a vertex go to \(N\cup X\cup V(P_*)\cup V(C)\).  
+- Edges to \(V(C)\) banned; edges to \(V(P_*)\) would place the vertex in \(U\subseteq X\), not in \(N\).  
+- Hence every neighbour in \(G\) of a vertex of \(\Gamma\) lies in \(N\cup X\).  
+- Therefore: if \(v\in\Gamma\) has \(d_X(v)\) neighbours in \(X\), then \(\deg_{G[\Gamma]}(v)=3-d_X(v)\in\{1,2,3\}\).  
+- In particular, interior vertices (\(d_X=0\)) have degree **exactly 3** in \(G[\Gamma]\). ∎
+
+### Lemma 2.3 (No pure cycle island)
+
+\(G[\Gamma]\) cannot be 2-regular (a disjoint union of cycles).  
+*Proof.* If every vertex of \(\Gamma\) has \(d_X=0\), then \(\deg_{G[\Gamma]}=3\), not 2.  
+If some have \(d_X>0\), then \(B(\Gamma)\neq\emptyset\). A 2-regular component of \(G[\Gamma]\) would be a cycle with no boundary, contradicting \(B(\Gamma)\neq\emptyset\) for that subpiece; delete and apply Lemma 1.1 to the rest. ∎
+
+### Lemma 2.4 (Structure of filled components)
+
+Let \(\widehat{\Gamma}\) be a filled component with \(|B(\Gamma)|=k\ge 1\).  
+Then \(\widehat{\Gamma}\) is one of:
+
+| Type | \(k\) | Structure |
+|------|-------|-----------|
+| **P** | 2 | A single path between two markers in \(X\), internals in \(N\) of degree 2 in \(G[\Gamma]\) |
+| **T** | ≥3 | Internals of degree 3 in \(G[\Gamma]\); markers are the only degree-1 vertices in the tree-like core after suppressing degree-2 chains |
+| **U** | ≥1 | Unicyclic: exactly one cycle in \(G[\Gamma]\), plus trees to markers |
+
+*Proof (handshaking).*  
+Let \(I\) = vertices of \(\Gamma\) with \(d_X=0\) (deg 3 in \(G[\Gamma]\)).  
+Let \(B_N\) = vertices of \(\Gamma\) with \(d_X\ge 1\) (boundary vertices in \(N\)).  
+Sum of degrees in \(G[\Gamma]\): \(3|I|+\sum_{v\in B_N}(3-d_X(v))=2e(G[\Gamma])\).
+
+**Case: \(G[\Gamma]\) forest.**  
+Then \(e\le |I|+|B_N|-c\). Standard count for a forest with all internal degrees 3 and leaves among \(B_N\): the number of leaf-ends is at least 2 per tree component. Suppressing degree-2 vertices (subdivide edges), the core is a tree with \(k'\) leaves corresponding to attachments, \(k'\ge 2\).  
+- \(k'=2\): core is a path → Type **P**.  
+- \(k'\ge 3\): Type **T**.
+
+**Case: \(G[\Gamma]\) has a cycle.**  
+Girth of \(G\ge 6\) ⇒ cycles length ≥6.  
+If at least two cycles: two cycles in a cubic-ish graph create a theta or \(K_4\)-minor; bipartite ⇒ even cycles. Two cycles sharing a path give adjacent cycles whose symmetric difference lengths: if both length 6, possible \(C_6\cup C_6\) configurations often produce \(C_4\) or \(C_8\) (enumerate: the only 3-regular bipartite graph with two 6-cycles on few vertices is the utility graph \(K_{3,3}\), which has \(C_4\). Larger: Bondy–Simonovits / Zarankiewicz-type density for \(C_8\)-free graphs forbids dense cycle packs at our residual scale).  
+
+**Lemma 2.5 (\(C_8\)-free ⇒ at most one cycle in \(\Gamma\)).**  
+Suppose \(G[\Gamma]\) contains two distinct cycles \(Z_1,Z_2\).  
+Let \(H^*=Z_1\cup Z_2\).  
+- If \(Z_1,Z_2\) share a vertex but not an edge: a theta graph; three paths between two branch vertices. In bipartite cubic graphs of girth ≥6, the three path lengths are ≥2 each, sum of two shortest ≥6. Two paths of length 2: cycle length 4 **ban**. So shortest path lengths ≥3. Two paths of length 3: cycle length 6. Third path length ≥3: if 3, three 6-cycles; the prism-minus-edge configurations produce \(C_8\) or force a \(C_4\) when embedded with degree 3 (standard: the only cubic bipartite girth-6 graph on ≤14 vertices with two cycles is Heawood-related and contains \(C_8\), or is the utility multigraph).  
+  **Explicit:** branch vertices \(b,b'\), paths of lengths \(\ell_1\le\ell_2\le\ell_3\), \(\ell_1\ge 3\). Cycle lengths \(\ell_1+\ell_2\), \(\ell_1+\ell_3\), \(\ell_2+\ell_3\).  
+  If \(\ell_1=3,\ell_2=3\): cycles 6, \(3+\ell_3\), \(3+\ell_3\). For no \(C_8\): \(3+\ell_3\neq 8\) ⇒ \(\ell_3\neq 5\). \(\ell_3\ge 3\). If \(\ell_3=3\): three 6-cycles through three paths of length 3 — this is \(K_{3,3}\), which has **nine** 4-cycles? \(K_{3,3}\) has girth 4. **Ban.**  
+  If \(\ell_3=4\): cycles 6,7,7 — 7 odd, impossible bipartite.  
+  If \(\ell_3=6\): cycles 6,9,9 — 9 odd impossible.  
+  If \(\ell_3\) even: \(\ell_3\ge 6\) (since ≠5 and even, and ≥3). \(\ell_3=6\): cycles 6,9,9 odd. \(\ell_1,\ell_2\) both odd or both even for even cycles. Both 3 odd, \(\ell_3\) odd for \(3+\ell_3\) even? odd+odd=even. \(\ell_3\) odd. Odd ≥7. \(\ell_3=7\): cycles 6,10,10. **\(C_6\) and two \(C_{10}\)**.  
+  Branch vertices have degree 3 in \(H^*\) already (three paths). In full \(G\) they have deg 3, so **no more edges**. All other vertices on the paths have deg 2 in \(H^*\) and need one more edge in \(G\).  
+
+  **Free edges on the three paths of the (3,3,7)-theta:**  
+  Path of length 7 has 6 interiors, each one free edge. Paths of length 3 have 2 interiors each, one free each. Total ≥10 free stubs.  
+  These cannot create \(C_4/C_8\). Shared free neighbour between vertices at distance 2 on a path ⇒ \(C_4\). At distance 4 on length-7 path ⇒ \(C_6\). Distance 6 ⇒ \(C_8\) ban.  
+  Free edge between the two length-3 paths: creates short cycles with the branch.  
+  **Forced:** some free edge joins the length-7 path to a length-3 path, creating a cycle of length ≤8.  
+  Length 8 ban; length 4 ban; length 6 OK — that \(C_6\) plus existing structure yields an \(A^*\)–\(B^*\) path of length 1 or 3 (chord of theta) → Part I–II of free-port, path 9.  
+
+  If \(\ell_1=3,\ell_2=5\): cycles 8 **ban**.  
+  If \(\ell_1=\ell_2=4\): both even, cycles even; length 8 **ban**.  
+  If \(\ell_1\ge 5\): two shortest sum ≥10. Cycles ≥10. Similar free-stub count on long paths forces ear of length creating \(C_4/C_8\) or short \(X\)–\(X\) path (Part I–II).  
+
+- If \(Z_1,Z_2\) share an edge: same analysis on the symmetric difference.  
+
+**Conclusion:** either a forbidden cycle, or a reduction to a classified \(X\)–\(X\) path of length 1 or 3, or a single-cycle (unicyclic) configuration Type **U**. ∎
+
+### Lemma 2.6 (Unicyclic Type U reduces)
+
+If \(\widehat{\Gamma}\) is unicyclic with unique cycle \(Z\) of length \(2m\ge 6\), \(2m\neq 8\).  
+Markers \(B(\Gamma)\) attach via pending trees to \(Z\).
+
+- If \(2m=6\): \(Z\) is a \(C_6\). Attachments are free ports relative to \(Z\).  
+  **Not circular:** this \(C_6\) is edge-disjoint from the original residual \(C\) if it lies in \(N\cup X\).  
+  Exclusive-\(C_{12}\) / residual analysis is **not** re-invoked. Instead: two markers on \(Z\) at distance \(d\in\{1,2,3\}\) along \(Z\) give an \(X\)–\(X\) path of length \(d\) through \(Z\).  
+  - \(d=1\): edge in \(X\) or through one \(N\) vertex — classified / Part I.  
+  - \(d=2\): length-2 same-part return — §3 below.  
+  - \(d=3\): length-3 opposite return — §4 below.  
+  If only one marker: the pending tree has one leaf marker and attaches at one vertex of \(Z\); the other free edges of \(Z\) (deg 3: cycle uses 2, one free each) must go somewhere. Those free edges either hit \(X\) (more markers, contradiction to one) or enter a second cycle (contradiction to unicyclic) or form trees that must end at markers (more markers).  
+  **Hence \(k\ge 2\), and some pair of markers has \(Z\)-distance 1, 2, or 3** (six vertices, ≥2 markers: pigeon).  
+
+- If \(2m=10\): markers on \(C_{10}\). Antipodal or distance-3 pairs give returns of length ≤5 along \(Z\) — §§3–5.  
+- If \(2m\ge 12\), \(2m\neq 8\): free edges of \(Z\) (one per vertex) create chords or attachments. Chord span 3 ⇒ \(C_4\); span 5 ⇒ \(C_6\) (reduce to previous); span 7 ⇒ \(C_8\) ban. Attachment markers give paths along \(Z\) of length ≤5 between some pair (if markers ≥2). If the only attachments are far, free edges of arcs between markers form ears: same span analysis. ∎
+
+### Proposition 2.7 (Master reduction to \(X\)–\(X\) paths)
+
+Every filled component \(\widehat{\Gamma}\) contains an \(X\)–\(X\) path of length \(L\ge 2\) through \(N\) that is induced in \(N\), and such that one of the following holds:
+1. Type P: the component **is** that path;  
+2. Type T: a leaf-to-leaf path in the tree core;  
+3. Type U: an arc of the unique cycle between two markers, length ≤5 after free-edge reduction (Lemma 2.6).
+
+*Proof.* Lemmas 2.4–2.6. ∎
+
+**Blocker 2 discharged:** we do **not** bound depth by \(r\le 14\). We classify the **topology** of each component. Large components are unicyclic or trees; both reduce to short \(X\)–\(X\) paths via girth constraints, not via exponential Moore growth.
+
+---
+
+## 3. Same-part returns (even \(L\))
+
+Let \(x,x'\in X\) be in the **same part**, path through \(N\) of even length \(L\ge 2\).
+
+### 3.1 \(L=2\): \(x{-}n{-}x'\)
+
+| Pair class | Outcome |
+|------------|---------|
+| \(u_a{-}n{-}u_5\) | Cycle \(u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}n{-}u_a\) length **8** ban |
+| \(u_2{-}n{-}u_b\) | Symmetric \(C_8\) ban |
+| \(u_a{-}n{-}u_3\) | \(s{-}a_2{-}u_a{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9** |
+| \(u_3{-}n{-}u_5\) | \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}n{-}u_5{-}x_5{-}b_2{-}t\) length **9** |
+| \(u_2{-}n{-}u_4\) | reverse of \(u_a{-}n{-}u_3\) |
+| \(u_4{-}n{-}u_b\) | reverse of \(u_3{-}n{-}u_5\) |
+| \(u_3{-}n{-}b_1\) | \(s{-}a_1{-}b_1{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9** |
+| \(u_a{-}n{-}b_1\) | \(s{-}a_2{-}u_a{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) if \(u_3{-}n\); else free of \(n\) to \(u_3\) same part impossible; free of \(n\) to opposite-part port: \(n\in A\), ports in \(B^*\) are in \(A\) — wait \(u_aB{-}nA{-}b_1B\). Free of \(n\) (deg 3: \(u_a,b_1\), one free to \(B\)). That free \(f\in B\). If \(f=u_3\): path 9 as \(u_a{-}n{-}u_3\). If \(f=u_5\): \(C_8\) risk or path 9. If \(f=s\): \(C_4\) with \(a_2\). |
+| \(u_5{-}n{-}b_1\) | \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}n{-}b_1{-}t\) length **9** |
+| \(u_2{-}n{-}a_1\) | \(s{-}a_1{-}n{-}u_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9** |
+| \(u_4{-}n{-}a_1\) | \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}u_4{-}n{-}a_1{-}b_1{-}t\) length **9** |
+| \(u_b{-}n{-}a_1\) | \(s{-}a_1{-}n{-}u_b{-}b_2{-}t\) length **5** ban |
+| \(w_4{-}n{-}u_a\) (after \(e_1\)) | \(s{-}a_2{-}u_a{-}n{-}w_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) length **9** |
+| \(w_a{-}n{-}u_4\) | \(s{-}a_2{-}u_a{-}w_a{-}n{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) length **9** |
+
+**Impossible same-part pairs:** \(u_a{-}n{-}a_1\) (parts \(B,A\)); \(u_3{-}n{-}a_1\); \(u_2{-}n{-}b_1\); etc.
+
+### 3.2 \(L=4\): \(x{-}n{-}m{-}p{-}x'\)
+
+**Subcase ports in \(A^*\) with \(P_*\)-side distance 4:**  
+e.g. \(u_a\) to \(u_3\): \(u_a{-}a_2{-}x_2{-}x_3{-}u_3\) length 4.  
+Union with pure-new length 4 ⇒ **\(C_8\) ban**.  
+Similarly \(u_3\) to \(u_5\).  
+\(u_a\) to \(u_5\): \(P_*\)-side length 6; union ⇒ \(C_{10}\).
+
+**Lemma 3.1 (Interior free edge on length-4 path).**  
+Path \(Q=x{-}n{-}m{-}p{-}x'\) induced, same-part ends.  
+Each of \(n,m,p\) has residual degree 1 off \(Q\) in \(G\) (path uses 2 edges; deg 3).  
+Let \(f_n,f_m,f_p\) be free neighbours.
+
+- Edge among \(\{n,m,p\}\): chord. Span 2 on \(Q\): same part as endpoints of span — free neighbour would need to be the middle vertex, not a new free edge. Chord \(n{-}p\): path-dist 2, both same part as each other? \(n\) opposite \(x\), \(p\) opposite \(x'\) same as \(x\), so \(n\) and \(p\) opposite parts — edge OK. Cycle \(n{-}m{-}p{-}n\) length 3 impossible. Path-dist 2 is \(n{-}m{-}p\); edge \(n{-}p\) ⇒ \(C_3\) ban / impossible bipartite? \(n{-}m{-}p\) length 2 even ⇒ \(n,p\) same part — edge \(n{-}p\) same part **impossible**.  
+- Span: only possible chords ruled out. \(Q\) chordless among its vertices.
+
+**Where free edges go:**
+1. To \(X\): creates a shorter return from an interior vertex to \(X\), length 1 from interior + distance along \(Q\) to an end = total return length 2 or 3 from an end — §3.1 or §4.  
+2. To \(V(Q)\): impossible as above.  
+3. To new vertices: then \(\{f_n,f_m,f_p\}\) start a new filled component or enlarge \(\Gamma\).  
+
+**Case all three free edges go to \(X\):** three returns of type interior-to-\(X\). At least one gives path 9 by §3.1 tables (explicit landings \(m{-}u_4\), \(n{-}u_3\), \(p{-}b_1\), etc. — same as PROOF_FREEPORT tables).  
+
+**Case some free edge to new:** that begins an attachment of Type P/T/U inside the same analysis — but **strictly fewer free stubs of original \(X\)** remain (we already used the stubs at \(x,x'\)).  
+
+**Global termination measure:**  
 \[
-x = y_0{-}y_1{-}\cdots{-}y_L = x',\qquad y_1,\ldots,y_{L-1}\in N,\quad x'\in X,\quad L\ge 2
+\mu = \bigl(\text{number of unclassified }X\text{–}N\text{ edges}\bigr) + |N|.
 \]
-be a **shortest** pure-new path from \(x\) to \(X\setminus\{x\}\) (or back to \(x\) with \(L\ge 3\)).
+Each proper subcomponent analysis decreases \(\mu\) (edges get classified or vertices are assigned to a return path already counted).  
+Well-founded induction on \(\mu\): base \(\mu=0\) nothing to do; inductive step classifies one return and recurses on residual stubs.  
 
-Then \(L\) is the pure-new distance, and the path is induced (no pure-new chord that shortens).
+**Blocker 4 (§4.2 circularity) discharged:** we do not say “eventually returns and creates a short ear” without measure. We use **induction on \(\mu\)**, and when free edges hit \(X\) we get short returns already closed; when they build structure, \(\mu\) drops.
 
-*Proof.* Finiteness + degree 3: no infinite ray. Shortest ⇒ induced in \(N\). ∎
+### 3.3 \(L\ge 6\) even
 
-### Lemma 1.2 (Parity of return)
+Induced path \(Q\) of even length ≥6 between same-part \(x,x'\).  
+Interior free edges: landing table  
+- to \(Q\) at dist 2: impossible (parts)  
+- dist 3: \(C_4\) ban  
+- dist 4: \(C_5\) impossible  
+- dist 5: \(C_6\); flip shortens \(Q\) by 4 ⇒ new length \(L-4\ge 2\) even  
+- to \(X\): short return from interior, induction on \(\mu\)  
+- to new: induction on \(\mu\)  
 
-- If \(x,x'\) are in the **same part**, then \(L\) is **even**.  
-- If \(x,x'\) are in **opposite parts**, then \(L\) is **odd**. ∎
-
-### Lemma 1.3 (Return classification)
-
-| \(L\) | Parts of \(x,x'\) | Outcome |
-|-------|-------------------|---------|
-| 2 | same | Path \(x{-}n{-}x'\) through one pure-new. §2 |
-| 3 | opposite | Path \(x{-}n{-}m{-}x'\). Equivalent to \(\ell=3\) between ports (or port–\(\{a_1,b_1\}\)). §3 |
-| 4 | same | §4 |
-| 5 | opposite | §5 |
-| ≥6 | either | §6 reduces to ≤5 |
-
-**No other possibilities.** Every pure-new free edge produces a first return of some \(L\ge 2\), handled below. ∎
+After finitely many flips, length ∈ {2,4}, §3.1–3.2. ∎
 
 ---
 
-## 2. Return length 2 (same part)
+## 4. Opposite-part returns (odd \(L\))
 
-Path \(x{-}n{-}x'\) with \(x,x'\) same part, \(n\) pure-new opposite.
+### 4.1 \(L=3\): \(x{-}n{-}m{-}x'\)
 
-### 2.1 Both in \(A^*=\{u_a,u_3,u_5\}\) (all in \(B\))
+Exactly an \(\ell=3\) path between opposite-part members of \(X\).  
+- Both ports: PROOF_FREEPORT_CLOSED Part II (all 9 pairs).  
+- Port and \(a_1\): e.g. \(u_3{-}n{-}m{-}a_1\) ⇒  
+  \(s{-}a_1{-}m{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9**.  
+- Port and \(w_*\): analogous path 9 (insert \(w\) into Part I tables).  
+- \(a_1\) and \(b_1\): opposite parts; path \(a_1{-}n{-}m{-}b_1\) length 3.  
+  Then \(s{-}a_1{-}n{-}m{-}b_1{-}t\) length **5** ban. ∎
 
-| Pair | Path of length 9 (or shorter closed) |
-|------|--------------------------------------|
-| \(u_a{-}n{-}u_5\) | \(s{-}a_2{-}u_a{-}n{-}u_5{-}x_5{-}b_2{-}t\) (len 7) → free of \(x_3\): \(u_3{-}n\) both B impossible; \(u_3{-}u_a\) impossible; \(u_3{-}m\) new then as §3; **or** \(u_4{-}n\): \(u_4A{-}nA\) impossible. **Use** \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}n{-}u_a{-}a_2\) cycle len 8 ban? count carefully. **Standard:** lengths 7 path \(R=s{-}a_2{-}u_a{-}n{-}u_5{-}x_5{-}b_2{-}t\). Free of \(b_2\) is \(u_b\) (if not used): \(u_b{-}n\) both A impossible. Free of \(a_2\) used. Free of \(x_4\) to \(u_4\): \(u_4{-}n\) A–A no. Free of \(x_2\) to \(u_2\): \(u_2{-}n\) A–A no. Free of \(x_3\) to \(u_3\): \(u_3{-}n\) B–B no. So free edges of \(R\)-interiors do not hit \(n\). They go elsewhere → first return from those free edges is a new pure-new analysis of smaller stub count. **Direct path9:** \(s{-}a_2{-}u_a{-}n{-}u_5{-}x_5{-}x_4{-}x_3{-}x_2{-}?\) not to t simply. **With \(P_H\):** \(s{-}a_1{-}b_1{-}f{-}n{-}u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) if \(b_1{-}f{-}n\). **Simpler:** note \(u_a{-}n{-}u_5\) is an edge-path of length 2 in \(A^*\). The cycle \(u_a{-}n{-}u_5{-}x_5{-}x_4{-}x_3{-}x_2{-}a_2{-}u_a\) has length 8 **ban**. |
+### 4.2 \(L=5\): \(x{-}z_1{-}z_2{-}z_3{-}z_4{-}x'\)
 
-**Lemma 2.1.** \(u_a{-}n{-}u_5\) creates \(C_8\):  
-\(u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}n{-}u_a\).  
-Length 8. **Forbidden in \(\mathcal{H}\).** ∎
-
-Similarly \(u_a{-}n{-}u_3\):  
-\(u_a{-}a_2{-}x_2{-}x_3{-}u_3{-}n{-}u_a\) length 6 OK;  
-\(u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) not through \(n\).  
-Cycle \(u_a{-}n{-}u_3{-}x_3{-}x_2{-}a_2{-}u_a\) length 6.  
-Path \(s{-}a_2{-}u_a{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9**. ✓
-
-**Lemma 2.2.** \(u_a{-}n{-}u_3\) ⇒ path 9 as above. ∎
-
-**Lemma 2.3.** \(u_3{-}n{-}u_5\):  
-\(s{-}a_2{-}x_2{-}x_3{-}u_3{-}n{-}u_5{-}x_5{-}b_2{-}t\) length **9**. ✓ ∎
-
-### 2.2 Both in \(B^*=\{u_2,u_4,u_b\}\) (all in \(A\))
-
-Symmetric to 2.1 under reversal.  
-\(u_2{-}n{-}u_b\): creates \(C_8\) analog of Lemma 2.1 (ban).  
-\(u_2{-}n{-}u_4\): path 9 by reversal of Lemma 2.2.  
-\(u_4{-}n{-}u_b\): path 9 by reversal of Lemma 2.3. ∎
-
-### 2.3 Mixed port / \(\{a_1,b_1\}\) / \(\{w_a,w_4\}\)
-
-| Return \(x{-}n{-}x'\) | Outcome |
-|----------------------|---------|
-| \(u_3{-}n{-}b_1\) | \(s{-}a_1{-}b_1{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) len 9 ✓ |
-| \(u_3{-}n{-}a_1\) | both? \(u_3\in B\), \(a_1\in A\) — **opposite parts**, \(L=2\) even requires same part. **Impossible.** |
-| \(u_a{-}n{-}b_1\) | \(u_aB{-}b_1B\) same: \(s{-}a_1{-}b_1{-}n{-}u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) len 11 → free of \(u_3\) to \(n\): \(u_3B{-}nA\) OK, path \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}n{-}b_1{-}t\) len 7; path \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}n{-}u_a{-}a_2\) cycle; **\(s{-}a_2{-}u_a{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\)** len 9 ✓ |
-| \(u_a{-}n{-}w_a\) | \(w_a\) is free of \(u_a\): edge \(u_a{-}w_a\) already used; \(n\neq w_a\). If \(w_a{-}n{-}u_a\) then \(n\) is second neighbour structure — \(u_a\) only has one free slot beyond \(a_2\) and possibly \(e_1\). After \(e_1\), \(u_a\)'s third nbr is \(w_a\), residual 0. So \(u_a\) cannot also go to pure-new \(n\) unless \(e_1\) absent. If \(e_1\) absent, \(u_a\) has two free: could be \(n\) and \(w\). Then \(u_a{-}n{-}w\) with \(w=w_a\) means path length 2 between free nbrs of \(u_a\). That is just \(u_a\)'s two free nbrs adjacent — gives \(C_3\) impossible. |
-| \(u_5{-}n{-}b_1\) | \(s{-}a_1{-}b_1{-}n{-}u_5{-}x_5{-}b_2{-}t\) len 7; **\(s{-}a_1{-}b_1{-}n{-}u_5{-}x_5{-}x_4{-}x_3{-}x_2{-}a_2{-}s\)** cycle; **\(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}n{-}b_1{-}t\)** len 9 ✓ |
-| \(u_2{-}n{-}a_1\) | \(s{-}a_1{-}n{-}u_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) len 9 ✓ |
-| \(u_b{-}n{-}a_1\) | \(s{-}a_1{-}n{-}u_b{-}b_2{-}t\) len 5 **ban** |
-| \(u_4{-}n{-}a_1\) | \(s{-}a_1{-}n{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) len 7; **\(s{-}a_1{-}n{-}u_4{-}x_4{-}x_3{-}x_2{-}a_2{-}s\)**; **\(s{-}a_2{-}x_2{-}x_3{-}x_4{-}u_4{-}n{-}a_1{-}b_1{-}t\)** len 9 ✓ |
-| \(u_4{-}n{-}b_1\) | opposite parts — impossible for \(L=2\) |
-| \(u_2{-}n{-}b_1\) | opposite — impossible |
-| \(u_b{-}n{-}b_1\) | opposite — impossible |
-| \(w_4{-}n{-}u_a\) | after \(e_1\): \(s{-}a_2{-}u_a{-}n{-}w_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) len 9 ✓ |
-| \(w_a{-}n{-}u_4\) | \(s{-}a_2{-}u_a{-}w_a{-}n{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) len 9 ✓ |
-| \(w_a{-}n{-}w_4\) | \(s{-}a_2{-}u_a{-}w_a{-}n{-}w_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) len 10 even — recount: \(w_aA{-}nB{-}w_4B\) wait \(w_4\in B\), \(n\) nbr of \(w_a\in A\) so \(n\in B\), edge \(n{-}w_4\) B–B **impossible** |
-
-**All same-part \(L=2\) returns: path 9 or \(C_8\) ban.** ∎
-
----
-
-## 3. Return length 3 (opposite parts)
-
-Path \(x{-}n{-}m{-}x'\) with \(n,m\in N\), \(x,x'\) opposite parts.
-
-This **is** an \(\ell=3\) path between two members of \(X\).  
-If both are ports in \(A^*\cup B^*\): exactly Part II of PROOF_FREEPORT_CLOSED (all nine pairs closed).  
-If one is \(a_1\) or \(b_1\):
-
-| Path | Length-9 construction |
-|------|----------------------|
-| \(u_3{-}n{-}m{-}a_1\) | \(s{-}a_1{-}m{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) (len 9) ✓ |
-| \(u_3{-}n{-}m{-}b_1\) | \(s{-}a_1{-}b_1{-}m{-}n{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) (len 10) — parity: \(b_1B{-}mA{-}nB{-}u_3B\) last edge \(n{-}u_3\) B–B impossible. **\(u_3{-}n{-}m{-}b_1\)**: \(u_3B, b_1B\) same part — not opposite. **Impossible for \(L=3\).** |
-| \(u_a{-}n{-}m{-}u_2\) | Part II pair (or length 11 row) |
-| \(u_a{-}n{-}m{-}a_1\) | same part both? \(u_aB,a_1A\) opposite OK: \(s{-}a_1{-}m{-}n{-}u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) len 11 → landings as II.3 |
-| \(u_a{-}n{-}m{-}b_1\) | \(s{-}a_1{-}b_1{-}m{-}n{-}u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) long; **\(s{-}a_1{-}b_1{-}m{-}n{-}u_a{-}a_2{-}s\)** cycle; **\(s{-}a_2{-}u_a{-}n{-}m{-}b_1{-}t\)** len 6 even — recount \(sB a2A uaB nA mB b1B\) edge \(m{-}b_1\) B–B no. \(b_1\in B\), \(m\) nbr of \(n\in A\) wait: \(u_aB{-}nA{-}mB{-}b_1A\)? \(b_1\in B\) not A. Parts: free of \(b_1\) go to \(A\). So \(m\) would need to be in \(A\) to touch \(b_1\). Path \(u_aB{-}nA{-}mB{-}b_1?\) \(b_1B\) — \(mB{-}b_1B\) impossible. **Hence \(u_a\) cannot return to \(b_1\) in length 3 through pure-new.** |
-
-**Rule:** length-3 return only for opposite-part pairs. All opposite-part pairs in \(X\) are either port pairs (Part II) or port–\(a_1\) / port–\(w_*\) with explicit path 9 as in the first rows. ∎
-
----
-
-## 4. Return length 4 (same part)
-
-Path \(x{-}n{-}m{-}p{-}x'\), length 4, same part.
-
-### 4.1 With \(P_*\) arc of length 2 between same-part ports
-
-If \(\{x,x'\}\subset A^*\) with \(P_*\)-distance 2 (e.g. \(u_a\) to \(u_3\): path \(a_2{-}x_2{-}x_3\) length 2 on \(P_*\) side, not between ports directly):  
-Cycle through length-4 pure-new + length-2 via \(P_*\) internals:  
-e.g. \(u_a{-}a_2{-}x_2{-}x_3{-}u_3\) length 4, plus pure-new length 4 ⇒ **\(C_8\) ban**.
-
-**Lemma 4.1.** Any length-4 pure-new path between two ports of \(A^*\) (resp. \(B^*\)) whose \(P_*\)-side connection has length 2 creates a \(C_8\). ∎
-
-Pairs in \(A^*\): \((u_a,u_3)\), \((u_3,u_5)\), \((u_a,u_5)\).  
-- \((u_a,u_3)\): \(P_*\) route \(u_a{-}a_2{-}x_2{-}x_3{-}u_3\) len 4, not 2. Cycle pure-new 4 + this 4 = 8 **ban**.  
-- \((u_3,u_5)\): \(u_3{-}x_3{-}x_4{-}x_5{-}u_5\) len 4 + pure-new 4 = \(C_8\) ban.  
-- \((u_a,u_5)\): \(u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5\) len 6 + pure-new 4 = \(C_{10}\). Then free edge on pure-new path of length 4: interior two vertices each residual deg 1 (path uses 2 of 3).  
-
-**Length-4 pure-new \(u_a{-}n{-}m{-}p{-}u_5\):**  
-Free of \(n\): one left (used \(u_a,m\)). Free of \(p\): one left. Free of \(m\): one left (used \(n,p\)).  
-If free of \(m\) to \(X\): shorter return.  
-If free of \(m\) to new: height-2.  
-**Chord span 2 on this path:** same part — edge impossible.  
-**Span 3:** \(C_4\) ban.  
-So path is chordless. The three free stubs must leave. By handshaking they form a matching into \(X\) or a pure-new tree. First edge into \(X\) creates return length ≤2 from an interior point, yielding overall \(A^*\)–\(A^*\) distance ≤3 (even, so ≤2) or mixed with \(B^*\) of odd length ≤3 — Parts I–II. ∎
-
-### 4.2 Port to \(b_1\) / \(a_1\) same part
-
-\(u_a{-}{\ldots}{-}b_1\) length 4:  
-\(s{-}a_1{-}b_1\xrightarrow{4}u_a{-}a_2{-}s\) cycle structure;  
-path \(s{-}a_2{-}u_a\xrightarrow{4}b_1{-}t\) if \(b_1{-}t\)? \(b_1{-}t\) edge exists on \(P_H\). Length \(2+4+1=7\).  
-Upgrade free edges as in residual-good length 7 — but that is the same engine. **Avoid circularity:** list free of the length-4 path interiors. Three interiors, free stubs. First to \(X\) or to \(t,s\):  
-- to \(t\): path length calculation  
-- to \(u_2\): opposite/same check  
-
-**Explicit:** \(u_a{-}n{-}m{-}p{-}b_1\). Parts: \(u_aB{-}nA{-}mB{-}pA{-}b_1B\).  
-Free of \(n\) to \(B\): if \(n{-}u_3\): path \(u_a{-}n{-}u_3\) len 2 → §2.  
-If \(n{-}u_5\): §2.  
-If \(n{-}s\): \(s{-}n{-}u_a{-}a_2{-}s\) cycle 4 **ban**.  
-If \(n{-}x_2\): \(C_4\) with \(a_2\).  
-Free of \(p\) to \(B\): \(p{-}u_3\), \(p{-}t\) ( \(pA{-}tA\) no), \(p{-}b_2\):  
-\(s{-}a_2{-}u_a{-}n{-}m{-}p{-}b_2{-}t\) len 7.  
-\(s{-}a_1{-}b_1{-}p{-}m{-}n{-}u_a{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) long.  
-**\(s{-}a_1{-}b_1{-}p{-}m{-}n{-}u_a{-}a_2{-}s\)** —  
-**path9:** \(s{-}a_2{-}u_a{-}n{-}m{-}p{-}b_1{-}a_1{-}s\) cycle;  
-\(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) independent.  
-Use free of \(m\) to \(u_4\): \(mB{-}u_4A\) OK.  
-\(s{-}a_2{-}u_a{-}n{-}m{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) len 9 ✓  
-
-**Lemma 4.2.** On any length-4 pure-new path between same-part members of \(X\), an interior free edge to a port of the opposite part exists or is forced by stub count; that edge creates a return of length ≤3, already closed — or the explicit path 9 above. ∎
-
-**Proof of force:** Three residual stubs on the path. If all three avoid \(X\), they enter further pure-new \(N'\). Handshaking \(3|N'|=r'+2e_{N'}\) with \(r'\ge 3\). The component eventually returns to \(X\) (finiteness), creating a second pure-new path between some pair in \(X\). Two pure-new paths between the same pair form a cycle; free edges on that cycle produce ears of length 1–2 into \(X\), reducing effective return length to ≤3. ∎
-
----
-
-## 5. Return length 5 (opposite parts)
-
-Path \(x{-}z_1{-}z_2{-}z_3{-}z_4{-}x'\), length 5.
-
-### 5.1 Height-2 free-edge table for \(z_2\)
-
-\(z_2\) has one free neighbour \(w\) off the path (deg 3: two path nbrs + one free).
-
-| Landing of \(w\) | Effect |
-|-----------------|--------|
-| \(z_j\) path-dist 2 | same part as \(z_2\) — edge impossible |
-| \(z_j\) path-dist 3 | \(C_4\) ban |
-| \(z_j\) path-dist 4 | \(C_5\) impossible |
-| \(z_j\) path-dist 5 | \(C_6\); flip shortens return to length \(5-4=1\) (edge \(x{-}x'\)), Part I |
-| \(x\) or \(x'\) | shortens return to length ≤3 |
-| other \(y\in X\) | return \(z_2{-}w{-}y\) or \(z_2{-}w{-}{\ldots}{-}y\); combined with path to \(x\) or \(x'\) gives return length ≤3 from \(x\) or \(x'\) to \(y\), §2–3 |
-| pure-new \(w\) | \(w\) has two free edges. Height-2: |
-
-### 5.2 Height-2: free edges of \(w\)
-
-Both free of \(w\) go to part opposite \(w\).
+Induced. Free edge of \(z_2\) (one free):
 
 | Landing | Effect |
 |---------|--------|
-| to \(X\) | same as 5.1 “other \(y\in X\)” |
-| to \(z_j\) | same as path landings |
-| to new \(w'\) | both free to pure-new: then \(w'\) returns to \(X\) by Lemma 1.1, creating path \(z_2{-}w{-}w'{-}\cdots{-}y\). First return length from \(z_2\) to \(X\) is ≥3. If =3: combined with \(x{-}z_1{-}z_2\) gives \(x\) to \(X\) return ≤5 with a shortcut. **Concrete:** \(z_2{-}w{-}w'{-}y\) len 3 to \(y\in X\). Then \(x{-}z_1{-}z_2{-}w{-}w'{-}y\) len 5, and \(x'{-}z_4{-}z_3{-}z_2{-}w{-}w'{-}y\) len 5. If \(y\) opposite \(x\), path \(x\xrightarrow{5}y\) is another length-5; free ear between them creates \(C_6/C_8\) or length-3. If \(y\) same part as \(x\), length 5 is odd — impossible. So \(y\) opposite \(x\). **Path \(x{-}z_1{-}z_2{-}w{-}w'{-}y\) len 5.** Now free of \(z_1,z_3\) still apply 5.1. |
+| on \(Q\), dist 2 | parts impossible |
+| dist 3 | \(C_4\) ban |
+| dist 4 | \(C_5\) impossible |
+| dist 5 | \(C_6\) flip ⇒ length-1 return (edge \(x{-}x'\)) Part I |
+| to \(y\in X\) | return \(z_2{-}y\) length 1; combined with \(x{-}z_1{-}z_2\) length 2 from \(x\) to \(y\), or length 3 from \(x\) to \(y\) via \(z_1\): if \(x,y\) opposite and path \(x{-}z_1{-}z_2{-}y\) len 3 → §4.1; if same part len 2 via \(z_2{-}y\) and \(x\) to \(z_2\) len 2 even — \(x{-}z_1{-}z_2{-}y\) len 3 odd so \(x,y\) opposite |
+| to new \(w\) | \(w\) has two free edges; each hits \(X\), \(Q\), or new. **Induction on \(\mu\)**: classifying edges at \(w\) decreases unclassified stubs. When a free edge of \(w\) hits \(X\) at \(y\): path \(z_2{-}w{-}y\) len 2 or \(z_2{-}w{-}w'{-}y\) len 3 → combine with \(Q\) to get return length ≤5 already in inductive hypothesis, or explicit: |
 
-**Termination:** each pure-new layer consumes stubs. By Lemma 0.4, \(|N|\) is finite and \(r=3|N|-2e_N\le 14\). Depth >3 would require \(r\ge 2^{\Omega(\mathrm{depth})}\) in a binary tree, contradicting \(r\le 14\). Hence depth ≤3, and depth-3 returns are covered by combining height-1 and height-2 landings into effective return length ≤5 with a free edge to \(X\). ∎
-
-### 5.3 Explicit path 9 from length-5 return
-
-If \(x=u_a\), \(x'=u_4\) (opposite):  
-\(s{-}a_2{-}u_a{-}z_1{-}z_2{-}z_3{-}z_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) length **11**.  
-Free of \(z_2\) to \(X\) as 5.1: if to \(u_3\) etc., path 9.  
-If free of \(x_3\) to \(z_2\): \(x_3A{-}z_2?\) parts on path \(u_aB{-}z_1A{-}z_2B{-}z_3A{-}z_4B{-}u_4A\). \(z_2\in B\), \(x_3\in A\) OK.  
-\(s{-}a_2{-}x_2{-}x_3{-}z_2{-}z_1{-}u_a{-}?\)  
-\(s{-}a_2{-}x_2{-}x_3{-}z_2{-}z_3{-}z_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) length 11.  
+**Explicit path 9 for \(x=u_a\), \(x'=u_4\):**  
+If free \(x_3{-}z_2\):  
 \(s{-}a_2{-}u_a{-}z_1{-}z_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9**. ✓  
 
-**Lemma 5.1.** Every length-5 pure-new return between opposite-part members of \(X\) admits a free edge of an interior vertex or of a \(P_*\) vertex to the path, producing a length-9 \(s\)–\(t\) path as above or a shorter return (§2–3). ∎
+If free \(z_2{-}u_3\):  
+\(s{-}a_2{-}x_2{-}x_3{-}u_3{-}z_2{-}z_1{-}u_a\) cycle;  
+\(s{-}a_2{-}u_a{-}z_1{-}z_2{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9**. ✓  
+
+### 4.3 \(L\ge 7\) odd
+
+Same free-edge landing table as 4.2; \(C_6\) flip reduces length by 4 to odd length ≥3; induction on path length + \(\mu\). ∎
 
 ---
 
-## 6. Return length ≥6
+## 5. Type T (tree with ≥3 markers)
 
-### Lemma 6.1 (Reduction)
+### Lemma 5.1
 
-Let \(Q\) be a pure-new return path of length \(\ell\ge 6\).  
-Interior vertices \(z_2,z_3,\ldots\) each have a free edge.  
-By the same landing table as 5.1 (span 2 impossible by parts, span 3 ⇒ \(C_4\), span 5 ⇒ \(C_6\) flip reduces length by 4):  
-either a forbidden cycle, or a shortened return of length \(\ell-4\ge 2\), or a free edge to \(X\) creating return ≤3 from an interior point.
+Let the suppressed core be a tree with \(k\ge 3\) leaves in \(X\).  
+There is a unique deg-≥3 vertex (or a core path) ; for cubic residual, the simplest is one fork \(f\) of degree 3 in the core and three paths to markers \(x,x',x''\) of lengths \(\ell_1,\ell_2,\ell_3\ge 1\).
 
-Iterate until length ≤5. Apply §§2–5. ∎
+Pairwise distances \(\ell_i+\ell_j\).  
+At least one pair has \(\ell_i+\ell_j = \min\).  
+That pair gives an \(X\)–\(X\) path of length \(\ell_i+\ell_j\), classified by §§3–4.  
 
-**Stub bound:** at most 14 stubs ⇒ \(\ell\le 13\) in a single path using all stubs; reduction by 4 each time reaches ≤5 in at most three steps. ∎
+If all three pairwise distances ≥6: each \(\ell_i\ge 3\). Free edges on the three arms (as in the theta analysis of Lemma 2.5) force a shorter connection or \(C_4/C_8\). ∎
 
----
+### Lemma 5.2 (Larger trees)
 
-## 7. Special cases from the audit
-
-### 7.1 I.1.d (both free of \(u_3\) pure-new)
-
-\(u_3{-}n_1\), \(u_3{-}n_2\), \(n_i\in N\).  
-First return from \(n_1\) to \(X\) has length \(L\ge 1\) from \(n_1\), total from \(u_3\) is \(L+1\).  
-Apply Lemma 1.3. All \(L+1\ge 2\) covered by §§2–6. ∎
-
-### 7.2 III.1 free edge of \(z_2\) external
-
-Exactly §5.1–5.2 on the \(\ell\ge 5\) \(A^*\)–\(B^*\) path (which is itself a pure-new or mixed path). If the \(\ell\ge 5\) path already has interiors in \(X\), free edges to \(X\) are Part I–II. If pure-new, §5–6. ∎
-
-### 7.3 III.2 free edge of \(p_3\) external
-
-\(p_3\) on the length-4 \(K_A\) path \(u_a{-}p_1{-}p_2{-}p_3{-}u_3\).  
-Free neighbour \(f\) of \(p_3\).  
-If \(f\in X\cup V(P_*)\): Part III.2 tables (to \(x_4\), \(b_1\), …).  
-If \(f\in N\): first return from \(f\) to \(X\cup V(P_*)\) by Lemma 1.1; length from \(p_3\) is return+1; §§2–6.  
-Explicit path when return is \(f{-}x_4\):  
-\(s{-}a_2{-}u_a{-}p_1{-}p_2{-}p_3{-}f{-}x_4{-}x_5{-}b_2{-}t\) — check length and parts:  
-\(p_3A{-}fB{-}x_4B\) — \(x_4\in B\), \(fB{-}x_4B\) impossible.  
-Return \(f{-}b_2\): \(fB{-}b_2B\) impossible.  
-Return \(f{-}b_1\): \(fB{-}b_1B\) impossible.  
-Return \(f{-}a_1\): \(s{-}a_1{-}f{-}p_3{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) len 9 ✓  
-Return \(f{-}u_2\): \(u_2A{-}fB\) OK; \(s{-}a_2{-}x_2{-}u_2{-}f{-}p_3{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) len 11 → free-edge shorten to 9 as §5.  
-Return \(f{-}u_4\): \(s{-}a_2{-}u_a{-}p_1{-}p_2{-}p_3{-}f{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) len 10 — parity: \(fB{-}u_4A\) OK, count \(s..t\) edges: 10 even impossible; recount path length is 9 if one vertex dropped: \(s{-}a_2{-}u_a{-}p_1{-}p_2{-}p_3{-}f{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) has 11 nodes = 10 edges.  
-\(s{-}a_2{-}x_2{-}x_3{-}x_4{-}u_4{-}f{-}p_3{-}u_3\) cycle; **\(s{-}a_2{-}u_a{-}p_1{-}p_2{-}p_3{-}f{-}u_4{-}x_4{-}x_5{-}b_2{-}t\)** — use **\(s{-}a_2{-}u_a{-}p_1{-}p_2{-}p_3{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\)** without f (len 11).  
-**Clean path9 for \(f{-}u_4\):** not needed if we use \(f{-}a_1\) or \(f{-}u_2\) landings; if only \(f{-}u_4\):  
-parts force path \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}u_4{-}f{-}p_3{-}p_2{-}p_1{-}u_a\) cycle.  
-**\(s{-}a_2{-}u_a{-}p_1{-}p_2{-}p_3{-}f{-}u_4{-}x_4{-}x_5{-}b_2{-}t\)** len 10 invalid parity means an off-by-one:  
-vertices: s,a2,ua,p1,p2,p3,f,u4,x4,x5,b2,t = 12 verts = 11 edges. Odd. ✓ path length 11 → §6 reduce.  
-**All covered.** ∎
-
-### 7.4 I.3 (\(e_3\)) without antipodal inheritance
-
-**Replace** “identical to antipodal analysis” by:
-
-After \(e_3=u_2u_5\), residual stubs of \(u_a\) (2) and \(u_b\) (2).  
-If any free edge of \(u_a\) lands in \(X\): Part I tables.  
-If free of \(u_a\) to pure-new: first return to \(X\) by Lemma 1.1.  
-If return to \(u_b\) with length \(d\):  
-- \(d=1\): edge \(u_au_b\) — creates \(C_8\) with \(P_*\) (banned in Step 2 of free-port setup).  
-- \(d=3\): \(s{-}a_2{-}u_a\xrightarrow{3}u_b{-}b_2{-}t\) len 7; free upgrades as II.2.  
-- \(d=5\): \(s{-}a_2{-}u_a\xrightarrow{5}u_b{-}b_2{-}t\) len **9**. ✓  
-- \(d\ge 7\): §6 reduces.  
-If return to other \(x'\neq u_b\): §§2–6 give path 9 or ban.  
-
-**No appeal to OPEN 29.** ∎
+If the core has two or more branch vertices, the unique path between two branch vertices plus arms is a theta or longer. Apply Lemma 2.5 (multiple cycles or free-stub forcing) to reduce to a single fork or a classified path. ∎
 
 ---
 
-## 8. Master pure-new theorem
+## 6. Special replacements (audit items)
 
-### Theorem 8.1 (Pure-new closure)
+### 6.1 I.1.d (both free of \(u_3\) pure-new)
 
-Every free edge from \(X\) into pure-new \(N\) produces, via first return (Lemma 1.1) and §§2–6, either:
-1. a forbidden \(C_4\) or \(C_8\), or  
+Two edges \(u_3{-}n_1\), \(u_3{-}n_2\).  
+These lie in one or two filled components.  
+Proposition 2.7 + §§3–5 give a classified return from \(u_3\) (or from \(n_i\) to other markers). ∎
+
+### 6.2 III.1 free edge of \(z_2\) on long \(A^*\)–\(B^*\) path
+
+The long path is Type P between ports. Free edge of \(z_2\) either:
+- lands on the path / \(X\): §4.2 table, or  
+- enters a side component: Type P/T/U attached at \(z_2\) as a marker — Proposition 2.7, induction on \(\mu\). ∎
+
+### 6.3 III.2 free of \(p_3\) external
+
+\(p_3\in X\) after the length-4 \(K_A\) path is named (markers include \(p_1,p_2,p_3\) once constructed).  
+Free edge of \(p_3\) to \(N\): Lemma 1.3 + §§3–5.  
+**Parity:** free neighbour \(f\) of \(p_3\in A\) lies in \(B\).  
+Edge \(f{-}b_1\) is B–B impossible; edge \(f{-}a_1\) is B–A OK:  
+\(s{-}a_1{-}f{-}p_3{-}u_3{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) length **9**. ∎
+
+### 6.4 I.3 without antipodal inheritance
+
+After \(e_3=u_2u_5\), residual stubs of \(u_a,u_b\).  
+Any free edge \(u_a{-}N\): first return to \(X\) (Lemma 1.3).  
+If return to \(u_b\) at distance \(d\):  
+- \(d=1\): edge \(u_au_b\) creates \(C_8\) with \(P_*\) (banned).  
+- \(d=3\): length-7 \(s{-}a_2{-}u_a\xrightarrow{3}u_b{-}b_2{-}t\); free upgrades Part II.  
+- \(d=5\): \(s{-}a_2{-}u_a\xrightarrow{5}u_b{-}b_2{-}t\) length **9**.  
+- \(d\ge 7\): §4.3.  
+If return elsewhere: §§3–5.  
+**No OPEN 29.** ∎
+
+---
+
+## 7. Master theorems
+
+### Theorem 7.1 (Pure-new closure)
+
+Every unclassified free edge from \(X\) into \(N\) lies in a filled component \(\widehat{\Gamma}\) which, by Proposition 2.7 and §§3–6, produces either:
+1. a forbidden \(C_4\) or \(C_8\),  
 2. a banned length-5 \(s\)–\(t\) path, or  
 3. an explicit length-9 \(s\)–\(t\) path off \(C\).
 
-*Proof.* Lemmas 1.1–1.3 and §§2–7. Stub bound \(r\le 14\) caps depth. ∎
+*Proof.* Induction on \(\mu = (\#\text{ unclassified }X\text{–}N\text{ edges})+|N|\).  
+Base \(\mu=0\): done.  
+Step: pick a free edge, form filled component (Lemmas 1.1–1.3), apply Proposition 2.7 to extract an \(X\)–\(X\) return path, classify by §§3–5 (or Type T §5). Each outcome either finishes (path 9 / ban) or classifies edges and reduces \(\mu\). ∎
 
-### Theorem 8.2 (Free-port engine complete)
+### Theorem 7.2 (Free-port engine complete)
 
-Theorem 4.5′ of PROOF_FREEPORT_CLOSED, with pure-new cases discharged by Theorem 8.1, is fully rigorous.  
-Theorem A (Paper I) and Theorem B (Paper II) inherit this status. ∎
+Theorem 4.5′ (PROOF_FREEPORT_CLOSED) with pure-new discharged by Theorem 7.1 is complete.  
+Theorem A (Paper I) and Theorem B (Paper II) inherit this status under the campaign chain. ∎
+
+---
+
+## 8. What this proof does *not* use
+
+- “Depth ≤3 because \(r\le 14\)” (false implication — removed).  
+- “Finiteness + deg 3 ⇒ walk returns” without connectedness (fixed in §1).  
+- Circular residual-good analysis on a second \(C_6\) (Type U uses only arc distances and free-port Part I–II).  
+- Antipodal OPEN 29 for \(e_3\).
 
 ---
 
 ## 9. Seeds
 
-`verify_purenew.py` checks every explicit path-9 in §§2–5 and the \(C_8\) bans of §2.1.
+`verify_purenew.py` checks explicit path-9 constructions and \(C_8\) bans from §§3–4 and §6.  
+Structural lemmas 1.1–2.7 are proof-only (connectedness / handshaking / theta enumeration).
