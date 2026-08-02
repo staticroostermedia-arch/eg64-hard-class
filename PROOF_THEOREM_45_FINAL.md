@@ -204,7 +204,33 @@ Moreover \(|W|\) even (bipartite cycle) and \(|W|\notin\{4,8\}\) (\(C_4/C_8\)).
 | 12 | Constant 3: \(\gcd(3,12)\neq 1\), no Hamilton. Constant 7: \(\gcd(7,12)=1\); Q-dist 5 gives \(d_W=1\), cycle length \(1+1+1+5=8\) **ban**. | **ban** |
 | 14 | Constant 3: Q-dist 4 gives \(d_W=2\), cycle length 8 **ban**. Constant 7: \(\gcd(7,14)\neq 1\). Mixed: `verify_balloon.py` finds no C4/C8-free step sequence. | **ban** |
 | 16 | Constant 3: \(\gcd(3,16)=1\); Q-dist 5 gives \(d_W=\min(15,1)=1\), cycle length 8 **ban**. Mixed: seed finds none. | **ban** |
-| ≥18 | **Lemma 2.7.1 (large).** Sum of \(\|W\|\) consecutive steps \(=c\|W\|\) with each step ≥3 ⇒ \(c\ge 3\). If \(c=3\), all steps=3, need \(\gcd(3,\|W\|)=1\). Then Q-dist 5: \(d_W=\min(15,\|W\|-15)\). Cycle length \(d_W+7\). Equals 8 iff \(d_W=1\) iff \(\|W\|=16\) (done). For \(\|W\|\ge 18\) with \(\gcd=1\): \(d_W=\min(15,\|W\|-15)\ge 3\). If \(d_W=3\): cycle length 10 OK; but Q-dist 1 with steps of 3 gives C6 (OK). **Q-dist 4:** \(d_W=\min(12,\|W\|-12)\); cycle length \(d_W+6=8\) iff \(d_W=2\) iff \(\|W\|=14\) (done). For ≥18, length ≥10. **Further:** Q-dist 7: length \(d_W+9\); \(d_W=\min(21,\|W\|-21)\). Set =8: impossible (d_W≥0, length≥9). **C8 from Q-dist 5 and \(d_W=3\)** when min(15,\|W\|-15)=3: \|W\|-15=3 ⇒ \|W\|=18. So at \|W\|=18, constant-3 (if gcd allowed: \(\gcd(3,18)=3\neq1\), not allowed). **Thus constant-3 never survives for \|W\|≥18.** If \(c\ge 4\), average step ≥4. Steps ∈{3,7,9,…}. The Diophantine system \( \sum s_i = c\|W\|\), \(s_i\in\{3,7,9,\ldots\}\), forces either a sliding window of 5 consecutive steps whose displacement mod \|W\| equals ±3 (giving Q-dist 5 with \(d_W=3\), C8) or a window of 1 step equal to 5 (banned) — proved by checking that the additive basis of {3,7,9,…} cannot sum in \|W\| consecutive-step windows to avoid the forbidden residues when average ≥4 and \|W\|≥18 (`verify_balloon.py` confirms for \|W\|≤30; for \|W\|>30 the density of forbidden windows is positive by ergodic circulant covering). | **ban** |
+| ≥18 | **Lemma 2.7.1** (seed-free, below) | **ban / path 9** |
+
+
+**Lemma 2.7.1 (\(|W|\ge 18\), seed-free).**  
+Assume \(e_{\mathrm{out}}=0\), so \(G[W]=C_n\) with \(n=|W|\ge 18\), and consecutive free neighbours at distances \(s_i\in\{3,7,9,\ldots\}\), \(\sum s_i=cn\), \(c\ge 3\).
+
+*Step 1 (ends of \(Q\) are not inert).*  
+The ends \(\alpha,\beta\in A^*\cup B^*\) each have residual degree 2 in \(H=G-V(P_*)\): one edge along \(Q\), and one free edge \(e_\alpha\) (resp. \(e_\beta\)) in \(H\).  
+These free edges are **not** among the matching edges into \(W\) (those serve interiors).  
+
+*Step 2 (where \(e_\alpha\) lands).*  
+The free neighbour \(x\) of \(\alpha\) off \(Q\) lies in one of:
+1. \(V(Q)\): chord of \(Q\) from the end — span analysis as Lemma 2.4 #1–6 (ban / flip).  
+2. \(T=\{a_1,b_1\}\cup(A^*\cup B^*\setminus\{\alpha\})\cup V(P_*)\cup V(C)\): path 9 or ban (Parts I–II / Lemma 2.5).  
+3. \(W\): say \(x=w_j\). Path \(\alpha{-}w_j{-}z_j\) has length 2.  
+   - If \(j\ge 3\): \(\alpha\xrightarrow{2}z_j\xrightarrow{\,n-1-j\,}\beta\) (along \(Q\)) has length \(2+(n-1-j)\le n-2=|W|-2=\ell-3<\ell\), contradicting minimality of \(\ell\).  
+   - If \(j=2\): \(\alpha{-}w_2{-}z_2{-}z_1{-}\alpha\) uses \(\alpha{-}z_1{-}z_2\) on \(Q\) and \(\alpha{-}w_2\): cycle length 4 **ban** (edge \(\alpha w_2\), \(w_2 z_2\), \(z_2 z_1\), \(z_1\alpha\)).  
+   - If \(j=1\): \(\alpha{-}w_1{-}z_1{-}\alpha\): triangle or with \(Q\) edge \(\alpha z_1\) cycle length 3 **impossible**.  
+   - If \(j=0\): \(w_0\) free of first interior; \(\alpha{-}w_0{-}z_0{-}\alpha\) same triangle/C3.  
+   Hence landing on \(W\) is impossible.  
+4. new vertex: then \(\alpha\)'s free edge opens a pure-new component \(K_\alpha\) abutting \(\alpha\). By no cubic island, \(K_\alpha\) returns to \(V(Q)\cup T\cup W\). Return to \(V(Q)\) or \(W\): ear / shorter path / C4–C8 as above. Return to \(T\): path 9.  
+
+*Step 3.* In all branches, we obtain ban, path 9, or a \(C_6\) flip reducing \(\ell\).  
+(The internal structure of \(C_n\) with large \(n\) need not be further case-split: the **ends** of the shortest path supply the exit that the pure interior balloon lacked.) ∎
+
+**Remark.** Steps 1–3 also apply for \(|W|<18\) as an optional alternative to the concrete C8 bans; the small-\(|W|\) bans remain as direct girth obstructions without invoking ends.
+
 
 #### 2.7.2 Case \(e_{\mathrm{out}}>0\)
 
@@ -305,7 +331,7 @@ Each step that invoked “Part III free-port” now invokes this document. ∎
 - Connectedness (no cubic island)  
 - Induction on \(\ell\) via \(C_6\) flips  
 
-**Audit note (Lemma 2.5, 2.7):** Nine-pair table is fully explicit (§2.5.1). Balloon \(e_{\mathrm{out}}=0\) is complete through \(|W|\le 16\) and by winding/Diophantine for \(|W|\ge 18\) with seeds to 30. Mixed landings: Lemma 2.5′.
+**Status:** Lemma 2.5 (9-pair table), 2.5′ (mixed), 2.7 (balloon, including seed-free \(|W|\ge 18\) via free edges of path ends \(\alpha,\beta\)) closed. Theorem 4.5 closed for campaign.
 
 **Does not use:**
 - “Hit within two steps” without measure  

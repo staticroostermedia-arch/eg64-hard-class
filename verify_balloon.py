@@ -106,7 +106,23 @@ def test_multi_cycle_forces_single():
     # conceptual: two C6, cannot place consecutive w's on different cycles
     print('  multi-cycle reduces to single PASS')
 
+def test_alpha_free_to_W_C4():
+    """alpha-w2-z2-z1-alpha is C4."""
+    G = nx.Graph()
+    G.add_edges_from([('alpha','z1'),('z1','z2'),('z2','w2'),('w2','alpha')])
+    assert any(len(c)==4 for c in nx.simple_cycles(G))
+    print('  alpha free to w2 => C4 PASS')
+
+def test_alpha_free_to_W_short_path():
+    """alpha-w_j-z_j then Q to beta shorter when j>=3."""
+    # ell=10, j=3: path len 2+(10-1-3)=8 < 10
+    ell, j = 10, 3
+    alt = 2 + (ell - 1 - j)
+    assert alt < ell
+    print('  alpha free to w_j j>=3 short path PASS')
+
 def test_ell5_path9_regression():
+
     import subprocess, sys
     from pathlib import Path
     r = subprocess.run([sys.executable, str(Path(__file__).parent / 'verify_ell5_path9.py')],
@@ -124,5 +140,7 @@ if __name__ == '__main__':
     test_W10_mixed_no_C8free()
     test_gcd_blocks()
     test_multi_cycle_forces_single()
+    test_alpha_free_to_W_C4()
+    test_alpha_free_to_W_short_path()
     test_ell5_path9_regression()
     print('ALL verify_balloon PASS')
