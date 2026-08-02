@@ -1,0 +1,5 @@
+# large Foster archive (re-download from literature sources if needed)
+data/CubicETsparse6.zip
+__pycache__/
+*.pyc
+.DS_Store
