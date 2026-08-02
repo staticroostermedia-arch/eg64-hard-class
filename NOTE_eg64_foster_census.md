@@ -221,3 +221,13 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H59:** {c₁,c₂,s} outside B(e,3)
 - **H58/H60:** L1 full; L2 dumps 6–8 stubs to L3+
 - [PROOF_L2block_fire18.md](PROOF_L2block_fire18.md)
+
+---
+
+## Fire 19 — H70
+
+- **H65:** length-6 a\*–e geodesic has p₂∈L₄
+- **H70:** cannot end with b−e (swap to t ⇒ dist(a\*,t)≤6 ⇒ C₁₆)
+- Remaining: p₅∈{f,T₂} only
+- [PROOF_L3L4_fire19.md](PROOF_L3L4_fire19.md)
+- **GitHub:** https://github.com/staticroostermedia-arch/eg64-hard-class
