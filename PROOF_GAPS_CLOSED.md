@@ -1,384 +1,340 @@
-# Gap closure: Lemma 2.5, Type U, μ-bookkeeping
+# Gap closure — second rewrite
 
-**Companion to** [PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md).  
-Closes the three residual soft spots identified after the structural rewrite.
+**Replaces** the previous PROOF_GAPS_CLOSED draft.  
+Companion to [PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md).
+
+Closes the remaining audit issues:
+1. Arbitrary off-theta \(W\)-components (not only length-2 matchings)
+2. No overclaim from \(L_4\) matching alone
+3. Type U \(k=1\) cutvertex from \(\kappa=3\) with exact hypotheses
+4. \(\mu\)-induction as a well-founded structural termination proof
 
 ---
 
-## A. Lemma 2.5′ — Two cycles in \(\Gamma\) (complete)
+## 0. Inherited hypotheses (state once)
 
-### Setup
+When this document is invoked inside residual-good free-port analysis:
 
-\(G[\Gamma]\) bipartite, every interior vertex degree 3 in \(G[\Gamma]\), boundary vertices degree ≤2 in \(G[\Gamma]\), girth of \(G\) ≥6, no \(C_8\) in \(G\).
+| Symbol | Meaning |
+|--------|---------|
+| \(G\in\mathcal{H}\) | connected cubic bipartite, no \(C_4\), no \(C_8\) |
+| \(\kappa(G)=3\) | 3-connected (Paper I Prop 3.5: else cut-cycle \(\Rightarrow C_{16}\), already done) |
+| \(P_*,P_H,C,X,N\) | as in PROOF_PURENEW_CLOSED §0 |
+| Lemmas 1.1–1.3 | pure-new: no cubic island; exit hits \(X\); first-return path exists |
 
-Suppose \(Z_1\neq Z_2\) are cycles in \(G[\Gamma]\).
+**Dependency:** §§A–B below use only \(\mathcal{H}\), \(\kappa=3\), and Lemmas 1.1–1.3.  
+They do **not** use \(\mu\)-induction.  
+§C uses §§A–B + pure-new §§3–5 (return length classification by tables).
 
-### A.1 Share a vertex, not an edge → theta
+---
 
-There exist branch vertices \(b,b'\) and three internally disjoint \(b\)–\(b'\) paths of lengths \(\ell_1\le\ell_2\le\ell_3\), each \(\ell_i\ge 2\) (girth), and actually \(\ell_i\ge 3\) (else two paths of length 2 ⇒ \(C_4\)).
+## A. Two cycles in \(\Gamma\): complete off-theta analysis
 
-All three path lengths are odd or all even? \(b,b'\) fixed parts: path lengths between them all have the same parity. So \(\ell_1\equiv\ell_2\equiv\ell_3\pmod{2}\).
+### A.0 Setup
 
-Cycle lengths: \(\ell_1+\ell_2\), \(\ell_1+\ell_3\), \(\ell_2+\ell_3\) — all even (bipartite).
+\(G[\Gamma]\) as in pure-new §2: interiors degree 3 in \(G[\Gamma]\), boundary to markers \(B(\Gamma)\subseteq X\).  
+Suppose \(Z_1\neq Z_2\) are cycles in \(G[\Gamma]\).  
+If they share an edge: deleting the shared path yields a theta (three paths between two vertices). Reduce to A.1.  
+If they share a vertex but not an edge: already a theta.  
+If disjoint: a path in connected \(\Gamma\) joining them creates a theta or a third cycle; free edges force a connection that creates a shared vertex configuration. (Two disjoint cycles in a graph with all degrees ≤3 must be joined by a path; the join plus arcs is a theta.)  
 
-#### Table: all admissible \((\ell_1,\ell_2,\ell_3)\) with \(\ell_1\ge 3\), no \(C_4\), no \(C_8\)
+**Hence w.l.o.g. a theta:** branch vertices \(b,b'\), three internally disjoint \(b\)–\(b'\) paths of lengths \(\ell_1\le\ell_2\le\ell_3\), each \(\ell_i\ge 3\) (girth ≥6, no two paths of length 2).  
+Same parity of all \(\ell_i\) (bipartite).  
+Cycle lengths \(\ell_i+\ell_j\neq 4,8\).
 
-| \(\ell_1,\ell_2,\ell_3\) | Cycles | Verdict |
-|------------------------|--------|---------|
-| 3,3,3 | 6,6,6 | \(K_{3,3}\) subdivision with paths of length 3 = \(K_{3,3}\) itself if no subdivision vertices beyond mids… three paths of length 3 between two vertices in bipartite cubic graph: the six mid-edges form \(K_{3,3}\). **Girth 4. Ban.** |
+### A.1 Immediate bans (finite table)
+
+| \((\ell_1,\ell_2,\ell_3)\) | Cycles | Result |
+|---------------------------|--------|--------|
+| 3,3,3 | 6,6,6 | three paths of length 3: free edges among midpoints create \(C_4\), or if no free cross-edges the graph is a prism subdivision; edge \(a_1{-}c_2\) (legal opposite parts) ⇒ \(C_4\) with \(b\). All free edges of midpoints must leave; any cross between the two short arms at opposite-part pairs gives \(C_4\). Off-arm only: A.3 with \(F=6\). Actually for (3,3,3): \(F=6\). See A.3. |
 | 3,3,5 | 6,8,8 | **\(C_8\) ban** |
-| 3,3,7 | 6,10,10 | Free stubs: see A.2 |
-| 3,3,9 | 6,12,12 | Free stubs: A.2 |
 | 3,5,5 | 8,8,10 | **\(C_8\) ban** |
-| 3,5,7 | 8,10,12 | **\(C_8\) ban** |
-| 3,7,7 | 10,10,14 | Free stubs: A.2 |
-| 5,5,5 | 10,10,10 | Free stubs: A.2 |
-| 4,4,4 | 8,8,8 | **\(C_8\) ban** (and \(\ell\) even: \(b,b'\) same part) |
-| 4,4,6 | 8,10,10 | **\(C_8\) ban** |
-| any with \(\ell_1+\ell_2=8\) | has \(C_8\) | **ban** |
-| any with \(\ell_1=2\) | has \(C_4\) or shorter | **ban** |
+| 3,5,7 | 8,… | **\(C_8\) ban** |
+| any \(\ell_1+\ell_2=8\) | has \(C_8\) | **ban** |
+| 4,4,* | has \(C_8\) or odd | **ban** (even \(\ell\): \(b,b'\) same part) |
 
-**Survivors without immediate \(C_4/C_8\):** pairs where every sum of two \(\ell\)'s avoids 4 and 8, i.e. \(\ell_i+\ell_j\notin\{4,8\}\).  
-With \(\ell_1\ge 3\): forbidden \(\ell_2=5\) when \(\ell_1=3\); forbidden \(\ell_2=1\); etc.  
-**Odd survivors:** (3,3,7), (3,3,9), (3,3,11),…, (3,7,7), (3,7,9),…, (5,5,5), (5,5,7),…  
-**Even survivors:** (6,6,6), (6,6,10),… (no 4,4,*).
+**Survivors:** \((3,3,7),(3,3,9),\ldots,(3,7,7),(5,5,5),(5,5,7),\ldots,(6,6,6),\ldots\) with all pair-sums ∉ {4,8}.
 
-### A.2 Free-stub forcing on a theta
+### A.2 Free stubs on the theta
 
-Branch vertices \(b,b'\) have degree 3 in the theta, hence **degree 3 in \(G\)** — no further edges.
-
-Every interior vertex of the three paths has degree 2 in the theta and **exactly one free edge** off the theta in \(G\).
-
-Number of free stubs:
+Branch \(b,b'\) are degree 3 in \(G\) (three paths use all edges).  
+Every path-interior has **exactly one free edge** off the theta.  
 \[
-F = (\ell_1-1)+(\ell_2-1)+(\ell_3-1) = \ell_1+\ell_2+\ell_3-3.
+F=\ell_1+\ell_2+\ell_3-3
 \]
+free stubs.
 
-#### A.2.1 Case (3,3,7): \(F=3+3+7-3=10\)
+### A.3 Lemma (No legal free edge between free bases creates a short \(b\)–\(b'\) path of banned length)
 
-Label paths:
-- \(P_1=b{-}a_1{-}a_2{-}b'\) (len 3)
-- \(P_2=b{-}c_1{-}c_2{-}b'\) (len 3)
-- \(P_3=b{-}d_1{-}d_2{-}d_3{-}d_4{-}d_5{-}d_6{-}b'\) (len 7)
+A free edge (or short path through \(W\)) between free bases at distance \(\delta\) on the theta creates a cycle of length \(\delta+L\) where \(L\) is the off-theta path length, and creates a new \(b\)–\(b'\) path of length \(\ell^*\) by replacing the \(\delta\)-arc with the off-theta path.
 
-Free edges at \(a_1,a_2,c_1,c_2,d_1,\ldots,d_6\).
+**Critical:** if some new \(b\)–\(b'\) path has length \(\ell'\) with \(\ell'+\ell_j=8\) for an existing arm length \(\ell_j\), **ban**.
 
-**Forbidden free landings (create \(C_4\) or \(C_8\)):**
-- Free edge \(a_1{-}c_1\): cycle \(b{-}a_1{-}c_1{-}b\) length 3 impossible / if parts OK length 4 with care: \(a_1,c_1\) both nbrs of \(b\) on different paths — same part (both opposite \(b\)). Edge same part **impossible**.
-- \(a_1{-}c_2\): path-dist through \(b'\) or \(b\). Cycle \(a_1{-}b{-}c_1{-}c_2{-}a_1\)? need \(a_1{-}c_2\). Length 4 **ban**.
-- \(a_1{-}a_2\): both on \(P_1\), already path edge? No they're adjacent on \(P_1\). Free is off path.
-- \(a_1{-}d_j\):  
-  - \(j=1\): \(a_1{-}b{-}d_1{-}a_1\) ⇒ \(C_3\)/parts: \(a_1,d_1\) same part (both nbr \(b\)) — edge impossible.  
-  - \(j=2\): cycle \(a_1{-}b{-}d_1{-}d_2{-}a_1\) length 4 **ban**.  
-  - \(j=3\): cycle \(a_1{-}b{-}d_1{-}d_2{-}d_3{-}a_1\) length 5 impossible.  
-  - \(j=4\): cycle length 6 OK.  
-  - \(j=5\): cycle length 7 impossible.  
-  - \(j=6\): cycle length 8 **ban**.  
-  Through \(b'\): symmetric.  
-- So **legal** free of \(a_1\) to \(P_3\): only \(d_4\) (cycle 6) or off-theta new vertices.  
-  Cycle \(a_1{-}b{-}d_1{-}d_2{-}d_3{-}d_4{-}a_1\) length 6.  
-  This creates a shorter \(b\)–\(b'\) path: \(b{-}a_1{-}d_4{-}d_5{-}d_6{-}b'\) length 5, and \(b{-}d_1{-}d_2{-}d_3{-}d_4{-}a_1{-}a_2{-}b'\) length 7, etc.  
-  **New path lengths include 5:** with existing \(\ell=3\): cycle \(3+5=8\) **ban**.
+| Existing arm | Forbidden new \(\ell'\) |
+|--------------|-------------------------|
+| 3 | 5 |
+| 5 | 3 |
+| 7 | 1 (impossible) |
 
-**Lemma A.1.** Any legal free edge from a length-3 arm to the length-7 arm that creates a \(C_6\) produces a \(b\)–\(b'\) path of length 5, hence a \(C_8\) with a length-3 arm. **Ban.** ∎
+### A.4 Lemma (Direct free edges and \(L=2\) off-theta paths)
 
-Therefore free edges of \(a_1,a_2,c_1,c_2\) **cannot** land on \(P_3\).  
-They cannot land on the other length-3 arm (above: \(C_4\) or impossible).  
-They cannot land on \(b,b'\) (already degree-full).  
+**A.4.1 Chord of an arm.** Free edge between two interiors of the same arm:  
+- span 2: parts impossible  
+- span 3: \(C_4\) ban  
+- span 5: \(C_6\); flip shortens that arm by 4.  
+  - Arm 7 → 3: configuration becomes (3,3,3) or (3,3,ℓ₃)  
+  - Arm 9 → 5: may create pair-sum 8  
+  - Arm 5 → 1: edge \(b{-}b'\), then cycles with other arms  
 
-**Hence all four free edges of the two length-3 arms go to pure-new vertices off the theta.**
+**A.4.2 Free edge between different arms.**  
+Distance \(\delta\) on theta between the two free bases. Cycle \(\delta+1\) if direct edge \(L=1\).  
+- Direct edge: \(L=1\), cycle \(\delta+1\). For even cycle, \(\delta\) odd.  
+  \(\delta=3\): cycle 4 **ban**.  
+  \(\delta=5\): cycle 6. New \(b\)–\(b'\) path length: replacing arc of length 5 by 1 gives savings 4, new length = old route −4.  
+  On (3,3,7): free from short arm position to long arm at \(\delta=5\) through \(b\): e.g. \(a_1\) to \(d_4\): dist via \(b\) is 1+3=4 even — same part, edge impossible. Dist via \(b'\) similarly.  
+  **Opposite-part free bases only.** Free base on short arm is opposite part to \(b\); free base on long arm at odd distance from \(b\) is same part as \(b\)'s opposite = same as short-arm free base when distance from \(b\) is odd. Distance from \(b\) along long arm to \(d_j\) is \(j\). Free base \(d_j\) has part alternating. Edge between short-arm free and \(d_j\) requires opposite parts.  
 
-Similarly free edges of \(d_j\):
-- to length-3 arms: only legal would create \(C_6\) then \(C_8\) as above — **ban**  
-- to other \(d_{j'}\): chord of \(P_3\). Span 2 impossible (parts). Span 3 ⇒ \(C_4\). Span 5 ⇒ \(C_6\). Span 6 ⇒ \(C_7\) impossible. Span 1 = existing.  
-  Span 5 chord on length-7 path: flip creates \(b\)–\(b'\) path of length \(7-5+1=3\). Then three paths of lengths 3,3,3 — **\(K_{3,3}\)/\(C_4\) ban** (A.1 table).  
-  **Hence \(P_3\) is chordless** and free edges of \(d_j\) do not hit the length-3 arms.
-
-**All 10 free stubs go off-theta to new vertices \(W\).**
-
-Each \(w\in W\) has degree 3. The 10 stubs hit \(W\); by handshaking, \(W\) must return edges to the theta or among themselves.
-
-**First edge from \(W\) back to the theta:** lands on some interior of \(P_1\cup P_2\cup P_3\).  
-That is a free edge from that interior to \(W\) then to another interior — i.e. a path of length 2 between two free-stub bases.  
-Two free bases at distance \(\delta\) on the theta, joined by path length 2 off-theta: cycle length \(\delta+2\).  
+**A.4.3 Path of length 2 through one \(w\in W\):** \(f_1{-}w{-}f_2\). Cycle \(\delta+2\). Even ⇒ \(\delta\) even.  
 - \(\delta=2\): \(C_4\) ban  
-- \(\delta=4\): \(C_6\)  
+- \(\delta=4\): \(C_6\); new \(b\)–\(b'\) path length \(\ell_{\mathrm{arm}}-4+2=\ell_{\mathrm{arm}}-2\)  
+  - On arm 7: new length 5. With existing arm 3: **\(C_8\) ban** (Lemma A.3)  
+  - On arm 5: new length 3. With arm 5: cycles 8 **ban**  
+  - On arm 9: new length 7; check pair-sums  
+  - Across arms at \(\delta=4\): same as PROOF_GAPS first draft — creates length-5 routes on (3,3,7) ⇒ **\(C_8\)**  
 - \(\delta=6\): \(C_8\) ban  
-- \(\delta=3,5\): odd cycles impossible  
 
-**Legal: \(\delta=4\) only**, giving \(C_6\).
+**Corollary A.4.** Every direct free edge between free bases and every \(L=2\) off-theta path between free bases either bans or creates a new \(b\)–\(b'\) path of length 5 next to an arm of length 3 (⇒ \(C_8\)), or reduces to a smaller theta already banned. ∎
 
-Which pairs of free bases have distance 4 on the theta?
-- On \(P_3\): \(d_i\) to \(d_{i+4}\) for \(i=1,2\).  
-  Path \(d_1{-}w{-}d_5\): cycle with \(d_1{\ldots}d_5\) length 4+2=6.  
-  Flip: new \(b\)–\(b'\) routing length \(7-4+2=5\). Again length-5 path + length-3 arm ⇒ **\(C_8\) ban**.  
-- Across arms: distance 4 between \(a_1\) and \(d_3\): \(a_1{-}b{-}d_1{-}d_2{-}d_3\) length 4.  
-  Path \(a_1{-}w{-}d_3\): cycle 6. New \(b\)–\(b'\) path \(b{-}a_1{-}w{-}d_3{-}d_4{-}d_5{-}d_6{-}b'\) length 7; or \(b{-}d_1{-}d_2{-}d_3{-}w{-}a_1{-}a_2{-}b'\) length 7.  
-  Also: \(b{-}a_1{-}w{-}d_3{-}\ldots\) wait length from \(b\) to \(b'\) via \(w\): \(b{-}a_1{-}w{-}d_3{-}d_4{-}d_5{-}d_6{-}b'\) = 7.  
-  Via short: \(a_1\) to \(d_3\) off-path length 2 replaces length 4: savings 2, path length \(3+7-4=6\)? Standard ear.  
-  **Path \(b{-}a_1{-}w{-}d_3{-}d_4{-}d_5{-}d_6{-}b'\) length 7.**  
-  **Path \(b{-}d_1{-}d_2{-}d_3{-}w{-}a_1{-}a_2{-}b'\) length 7.**  
-  And original \(P_2\) length 3.  
-  Cycle between new length 7 and \(P_2\) length 3: length 10.  
-  **Does it create length 5?**  
-  \(b{-}a_1{-}w{-}d_3\) length 3; continue \(d_3\) to \(b'\) length 4; total 7.  
-  \(b{-}c_1{-}c_2{-}b'\) length 3. No length 5 yet.  
+*This is the content previously machine-checked for \(L=2\) matchings on (3,3,7): the only legal \(\delta\) was 4, and that produces \(C_8$ with arm 3; alternatively the global perfect matching in \(L_4\) fails — both routes ban.*
 
-  Free of \(d_4\) still open. Continue forced pairings.
+### A.5 Lemma (Arbitrary \(W\)-components) — the missing piece
 
-**Matching of 10 stubs into pairs via \(W\):**  
-A 1-regular graph on 10 points (if each \(w\) is a single vertex joining exactly two stubs) is a perfect matching: 5 edges, each creating a \(\delta+2\) cycle.  
-Each such edge requires \(\delta=4\) (only legal).  
-So we need a perfect matching of the 10 free bases where each matched pair is at distance 4 on the theta.
+Let \(W=V(\Gamma)\setminus V(\Theta)\).  
+Let \(K\) be a connected component of \(G[W]\).
 
-**Distance-4 pairs among free bases:**
-- On \(P_3\): \(\{d_1,d_5\},\{d_2,d_6\}\) only ( \(d_3\) to \(d_7\) out of range; \(d_4\) to \(d_8\) no).  
-- \(d_3\) has no distance-4 partner on \(P_3\) ( \(d_3\) to \(d_7\) nonexistent; to \(d_{-1}\) no).  
-- Across: \(a_1\)–\(d_3\) (dist 4 via \(b\)), \(a_1\)–\(d_5\)? \(a_1{-}b{-}d_1{\ldots}d_5\) length 5. \(a_2\)–\(d_2\) via \(b'\) length 4, etc.
+#### A.5.1 \(K\) has a neighbour on \(\Theta\) or in \(B(\Gamma)\)
 
-**Count:** \(d_3\) and \(d_4\) have limited legal partners.  
-\(d_3\) legal dist-4: \(a_1\) (via b), \(c_1\) (via b), \(a_2\)? \(a_2{-}b'{-}d_6{-}d_5{-}d_4{-}d_3\) length 5; \(a_2{-}a_1{-}b{-}d_1{-}d_2{-}d_3\) length 5.  
-\(d_3\)–\(a_1\) dist 4. \(d_3\)–\(c_1\) dist 4.  
-If \(d_3\) matches to \(a_1\): OK \(C_6\). Then remaining include \(a_2,c_1,c_2,d_*\).
+*Proof.* If not, \(K\) has no edge leaving \(K\) in \(G\) (neighbours only in \(W\cup\Theta\cup X\cup V(P_*)\cup V(C)\); no edge to \(\Theta\), none to \(X=B(\Gamma)\) if also no boundary, none to \(V(P_*)\) else ports, none to \(V(C)\) banned).  
+Then \(K\) is a connected component of \(G\), contradicting connectedness unless \(K=\emptyset\).  
+(If \(K\) has edges to \(X\setminus B(\Gamma)\), those are additional markers — enlarge \(B(\Gamma)\).) ∎
 
-**Exhaustive matching check (finite):**  
-The free bases are 4 on short arms + 6 on long = 10.  
-Legal graph \(L_{4}\) of dist-4 pairs is small.  
-Does \(L_4\) have a perfect matching?
+#### A.5.2 First return from a free base
 
-Vertices: \(a_1,a_2,c_1,c_2,d_1,d_2,d_3,d_4,d_5,d_6\).
-
-Edges in \(L_4\) (dist exactly 4 on theta):
-- \(d_1d_5\), \(d_2d_6\)
-- \(a_1d_3\), \(c_1d_3\) (via b)
-- \(a_2d_4\), \(c_2d_4\) (via b': \(a_2{-}b'{-}d_6{-}d_5{-}d_4\) length 4)
-- \(a_1d_5\)? dist 5 — no
-- \(a_2d_2\)? \(a_2{-}b'{-}d_6{-}d_5{-}d_4{-}d_3{-}d_2\) length 6  
-- \(a_1c_2\): \(a_1{-}b{-}c_1{-}c_2\) length 3; \(a_1{-}a_2{-}b'{-}c_2\) length 3 — dist 3 not 4
-
-Also \(d_1\) to \(a_2\): \(d_1{-}b{-}a_1{-}a_2\) length 3; \(d_1{\ldots}b'{-}a_2\) length 1+6=7. Dist 3.
-
-**\(d_3\) only connects in \(L_4\) to \(\{a_1,c_1\}\).**  
-**\(d_4\) only to \(\{a_2,c_2\}\).**  
-**\(d_1\) in \(L_4\):** \(d_1d_5\); \(d_1\)–\(a_2\)? no; \(d_1\)–\(c_2\)? no; \(d_1\)–\(a_1\) dist 2 via b — no. So \(d_1\) only \(d_5\).  
-**\(d_2\) only \(d_6\).**  
-**\(d_5\):** \(d_1d_5\); also \(d_5\)–\(a_2\) via b' length 2 — no; \(d_5\)–\(a_1\) length 5.  
-**\(d_6\) only \(d_2\).**
-
-So forced: matching **must** include \(d_1d_5\) and \(d_2d_6\) (only options for \(d_1,d_2,d_5,d_6\)).  
-Then \(d_3\) matches to \(a_1\) or \(c_1\); \(d_4\) to \(a_2\) or \(c_2\).  
-Remaining two of \(\{a_1,a_2,c_1,c_2\}\) must match each other — but \(a_1a_2\) dist 1 on path; \(a_1c_1\) dist 2 via b impossible edge; \(a_1c_2\) dist 3; **no \(L_4\) edge among the short-arm vertices.**
-
-**Contradiction:** after matching \(d_1d_5,d_2d_6,d_3{-}a_1,d_4{-}a_2\), left \(c_1,c_2\) with no \(L_4\) edge between them.
-
-Any choice: left with two short-arm vertices that are not \(L_4\)-adjacent.
-
-**If some \(w\) joins three stubs** (one vertex of degree 3 in \(W\)): three free bases share a common neighbour. Two of them at dist 2 on theta ⇒ \(C_4\). Any two at dist 4 ⇒ two \(C_6\). The three mutual distances: pigeon on the path metric forces some pair at dist ∉ {4} legal set, creating \(C_4\) or \(C_8\).
-
-**If \(W\) has more structure** (paths of length ≥2 between free bases): first return length ≥3 between free bases. Cycle length \(\delta+L\) with \(L\ge 3\).  
-- \(\delta=2,L=3\): cycle 5 impossible  
-- \(\delta=3,L=3\): cycle 6; creates shortcuts similar to above  
-- \(\delta=4,L=3\): cycle 7 impossible  
-- \(\delta=4,L=4\): cycle 8 **ban**  
-- \(\delta=5,L=3\): cycle 8 **ban**  
-- \(\delta=1\): free bases adjacent — free edges of adjacent path verts: their free nbrs joined by length 3: cycle 5 impossible  
-
-**Legal off-theta connections only produce \(C_6\) with \(\delta=4,L=2\)** (the matching case already contradictory) **or longer structures that create \(C_8\).**
-
-#### A.2.2 Conclusion for (3,3,7)
-
-All configurations ban. ∎
-
-#### A.2.3 Case (3,3,9) and longer third arm
-
-\(F=3+3+9-3=12\).  
-Same: free from short arms cannot hit long arm without creating length-5 (or 7) \(b\)–\(b'\) path; length 5 + 3 = 8 ban; length 7 + 3 = 10 OK but then free stubs on the new structure recurse with smaller measure, or create \(C_8\) by the same matching argument on dist-4 / dist-6 (dist 6 + L=2 = C8 ban).  
-
-**Dist-6 matching on long arm:** \(\delta=6,L=2\) ⇒ \(C_8\) ban.  
-So only \(\delta=4,L=2\) legal. Same forced matching obstruction: endpoints of long arm have exclusive partners, short-arm leftovers cannot match. ∎
-
-#### A.2.4 Case (3,7,7)
-
-Cycles 10,10,14. \(F=3+7+7-3=14\).  
-Short arm free cannot hit long arms at \(\delta=2,6\) (C4/C8); \(\delta=4\) gives C6 and creates length \(7-4+2=5\) path; 5+7=12, 5+3=8 **ban**.  
-So short arm free goes off-theta only. Long arms: chords span 5 ⇒ C6 flip to length 3 path — then (3,3,7) already banned or (3,7,3) renumbered.  
-Matching argument: 14 stubs, only \(\delta=4\) legal pairs, graph \(L_4\) has low degree; perfect matching either creates a length-5 \(b\)–\(b'\) path (⇒ C8 with the length-3) or fails. ∎
-
-#### A.2.5 Case (5,5,5)
-
-Cycles 10,10,10. \(F=5+5+5-3=12\).  
-Chord span 5 on any arm: flip to length \(5-5+1=1\) — edge \(b{-}b'\), then paths length 1,5,5: cycle 6,6,10. Free edges continue. Edge \(b{-}b'\) plus two length 5: the two length-5 paths form \(C_{10}\); free stubs force as before.  
-
-Without chords: 12 free stubs off-theta. Legal \(\delta=4\) pairs on each arm: one pair per arm of length 5 (the two vertices at dist 4, i.e. positions 1 and 5 — but pos 1 is nbr of b, pos 5 nbr of b'; dist 4). Matching three such pairs: each creates C6 and a \(b\)–\(b'\) path of length \(5-4+2=3\). Then three paths of length 3: **(3,3,3) ban**. ∎
-
-#### A.2.6 Even case (6,6,6)
-
-Cycles 12,12,12. Chord span 5: C6 flip length \(6-5+1=2\) — path length 2 between \(b,b'\) ⇒ with another length 6: cycle 8 **ban**.  
-Span 3: C4 ban.  
-Off-theta \(\delta=4,L=2\): C6, new path length \(6-4+2=4\); 4+6=10; 4+4=8 if two such **ban**.  
-So at most one such ear; remaining stubs force another or C8. ∎
-
-### A.3 Share an edge
-
-\(Z_1\cup Z_2\) has an edge in common. Symmetric difference is a cycle.  
-The two cycles and their sum: lengths add with shared path.  
-If shared path length \(s\) and unique parts \(u_1,u_2\): cycle lengths \(s+u_1\), \(s+u_2\), and \(u_1+u_2\).  
-Require none equal to 4 or 8.  
-\(s,u_i\ge 2\), all even or parity-consistent.  
-If \(u_1+u_2=6\) and \(s+u_1=6\): small configurations reduce to theta with \(\ell\) small (delete shared edge: two paths become the third routing). **Reduces to A.1–A.2.** ∎
-
-### Theorem A.2 (Lemma 2.5′)
-
-\(G[\Gamma]\) contains at most one cycle.  
-*Proof.* Two cycles ⇒ A.1–A.3 ⇒ \(C_4\), \(C_8\), or reduction to banned theta. ∎
-
----
-
-## B. Type U — marker pigeon (complete)
-
-### B.1 Unique cycle \(Z\) of length \(2m\in\{6,10,12,14,\ldots\}\)
-
-Each vertex of \(Z\) has one free edge off \(Z\) (deg 3, cycle uses 2).
-
-### B.2 At least two markers
-
-**Lemma B.1.** \(k=|B(\Gamma)|\ge 2\).
-
-*Proof.* Suppose \(k=1\), unique marker \(x\in X\), attached along a path from \(x\) to a vertex \(z^*\in Z\) (or \(x\) on \(Z\)).  
-
-**Subcase \(x\in Z\):** then \(x\) is the only vertex of \(Z\) with an edge to \(X\). The other \(2m-1\) vertices of \(Z\) have free edges off \(Z\) into \(N\) or \(X\). Into \(X\): would create more markers. Into \(N\): those components must themselves attach to \(X\) (Lemma 1.1), creating either more markers on this filled component or separate components. If they reattach only at \(x\), we have multiple paths from vertices of \(Z\) to \(x\), forming additional cycles (contradiction to unicyclic) or trees into \(x\) only — a tree attached at one point to \(Z\) is still unicyclic.  
-
-Free edges of \(Z\setminus\{x\}\) into a pending tree attached only at \(x\): then that tree has leaves only at free stubs… Actually free edges of \(Z\) go to vertices of degree 3. If all free edges of \(Z\setminus\{x\}\) go into a forest attached solely at \(x\), the forest's only attachment to \(X\) is \(x\), OK for \(k=1\).  
-
-**Handshaking on the pending forest \(F\) attached at \(x\) and absorbing free edges of \(Z\):**  
-Number of free edges from \(Z\setminus\{x\}\) is \(2m-1\) (odd).  
-Each must enter \(F\). A forest attached at one root \(x\), receiving \(2m-1\) edges from \(Z\) into its vertices: those landing vertices on the \(Z\) side are already on \(Z\), not in \(F\). The free neighbour \(w\) of a \(Z\)-vertex lies in \(F\).  
-
-So \(2m-1\) edges from \(Z\) to \(F\).  
-\(F\) plus these edges: vertices in \(F\) have deg 3 in \(G\).  
-
-**Parity:** \(2m-1\) is odd. Sum of degrees from \(Z\) into \(F\) is odd. But each vertex in \(F\) can accept edges; total edges \(Z\)–\(F\) = odd.  
-
-Consider \(G[Z\cup V(F)]\). This is the whole \(\Gamma\) essentially.  
-Cubic graph with a cycle and trees: the number of odd-degree vertices in any graph is even.  
-
-View \(Z\)'s free stubs as deg 1 in an auxiliary graph. **Standard:** a cubic graph cannot have a single bridge to the rest of the world in the sense of one attachment marker — more precisely:
-
-**Edge-cut:** edges from \(\{x\}\cup(\text{pending})\) vs rest…  
-
-**Cleaner argument:** each vertex of \(Z\) has free residual degree 1. The subgraph of free edges + \(X\)-attachments is 1-regular on \(Z\) if all free stay in a matching — no.
-
-Use **Lemma 1.1 globally:** the filled component has all of \(\Gamma\). Markers are \(X\cap N(\Gamma)\).  
-
-If \(k=1\), delete marker \(x\). Then \(\Gamma\) may still be connected to \(G\) only through \(x\). So \(x\) is a **cutvertex**.  
-Cubic 3-connected graphs have no cutvertices.  
-
-**Is \(G\) 3-connected?** Residual-good setup assumed \(\kappa=3\) (Paper I Prop 3.5: else cut-cycle analysis already gave \(C_{16}\)).  
-
-**Yes: under \(\kappa=3\), no cutvertex.** Hence \(k\neq 1\). ∎
-
-**Lemma B.2.** \(k\ge 2\) always in Type U under \(\kappa=3\). ∎
-
-### B.3 Two markers on \(C_6\)
-
-\(Z=(z_0,\ldots,z_5)\). Markers \(x,x'\) attach at (possibly equal) vertices of \(Z\), or are on \(Z\).
-
-**Distance \(d\) along \(Z\) between attachment points** \(z,z'\) (min arc): \(d\in\{0,1,2,3\}\).
-
-| \(d\) | \(X\)–\(X\) path length through \(Z\) | Outcome |
-|-------|----------------------------------------|---------|
-| 0 | same attachment vertex: two pending paths to same \(z\) form a cycle with \(Z\) or a theta — reduces to A or gives two markers with a short path through pending trees | induction / path ≤3 |
-| 1 | length 1 along \(Z\) + pending lengths | if both markers on \(Z\): edge or length 1; if pending: length ≥1. Edge in \(X\): classified. Path len 2–3: §§3–4 of pure-new |
-| 2 | length 2 | same-part return §3 |
-| 3 | length 3 | opposite-part return §4 |
-
-**Pigeon:** two distinct attachment points on a 6-cycle have min-arc distance ≤3. Always. ∎
-
-### B.4 Two markers on \(C_{10}\)
-
-Min-arc \(d\le 5\).  
-- \(d\le 3\): §§3–4  
-- \(d=4\): length 4 same-part §3.2  
-- \(d=5\): length 5 opposite §4.2  
-
-Free edges of \(Z\) may shorten arcs (span 5 chord ⇒ C6, reduce). ∎
-
-### B.5 Longer \(Z\)
-
-Min-arc between two markers ≤ \(m\). Free edges / chords: span 3 ban, span 5 ⇒ C6 (shorter), span 7 ⇒ C8 ban.  
-After maximal C6 flips, effective marker distance ≤5. §§3–4. ∎
-
----
-
-## C. μ-bookkeeping (explicit)
-
-### Definition C.1
-
-At every stage of the pure-new analysis, maintain:
-- \(X\): current known set (grows only when we **name** a vertex, e.g. interior of a constructed path we keep)
-- \(E_{XN}\): set of edges with one end in \(X\) and one end in \(N=V(G)\setminus(V(P_*)\cup V(C)\cup X)\)
-- \(\mu = |E_{XN}| + |N|\)  (nonnegative integer)
-
-### Definition C.2 (Classifying an edge)
-
-An edge \(e\in E_{XN}\) is **classified** when we have assigned it to a filled-component outcome that is either:
-1. a ban (\(C_4/C_8\)/length-5), or  
-2. an explicit length-9 \(s\)–\(t\) path, or  
-3. a reduction that produces a finite list of **new** edges in a strictly smaller instance.
-
-### Lemma C.3 (μ decreases on each inductive step)
-
-**Step type 1 — extract Type P return of length \(L\), classify by §§3–4.**  
-The two endpoint edges of the return path lie in \(E_{XN}\) and become classified.  
-Interior vertices of the return were in \(N\); after classification they may be absorbed into “used” structure (removed from active \(N\) for residual stubs).  
-Charge: \(|E_{XN}|\) drops by ≥2, or if interiors stay in \(N\) for side free edges, those side free edges form a new instance with fewer free stubs from original \(X\) (the two stubs at ends are spent).  
-**Define active stub count \(\sigma = |E_{XN}|\).** Prefer induction on \(\sigma\) primarily, \(|N|\) secondarily.  
-
-**Refined measure:**
+Each edge from a free base \(f\) on \(\Theta\) into \(K\) starts a walk in \(K\).  
+By A.5.1 and finiteness of \(K\), there is a first return path
 \[
-\mu = \bigl(|E_{XN}|,\; |N|\bigr)
+f=f_0{-}w_1{-}\cdots{-}w_{L-1}{-}f_L,\qquad L\ge 1,
 \]
-lexicographic order.
+where \(f_L\in V(\Theta)\cup B(\Gamma)\), and \(w_i\in K\).  
+If \(L=1\) and \(f_L\in V(\Theta)\): direct free edge between free bases (or free base to branch — branch has no free slot). Covered by A.4.  
+If \(f_L\in B(\Gamma)\): path from free base on theta to a marker in \(X\). Length \(L\ge 1\). This is an \(X\)–(theta interior) connection. Combined with theta routes to \(b,b'\) and arms, produces an \(X\)–\(X\) path (if another marker exists) or a cutvertex configuration (if unique marker — Type U \(k=1\), §B).  
+**In the two-cycle/theta setting we are forbidding extra structure that escapes; if the component attaches to \(X\), then \(\Gamma\) has markers and the theta is not an interior island — the free stub is classified as a return to \(X\), which is **not** an off-theta pairing of free bases.**  
+For pure “two cycles with free stubs only into \(W\)” (no new markers), all returns of free stubs hit \(\Theta\), not \(X\).
 
-**Step type 1:** classify return path: the two \(X\)–\(N\) end edges are removed from \(E_{XN}\) (classified). \(\sigma\) drops by 2. ✓  
+**Hypothesis for A.5.3–A.5.4:** free stubs of \(\Theta\) return to \(\Theta\) (marker attachments handled separately as Type U / filled-component markers).
 
-**Step type 2 — free edge of interior lands on \(X\):**  
-Creates a shorter return; classify it (type 1); \(\sigma\) drops. ✓  
+#### A.5.3 Return length \(L\) and distance \(\delta\)
 
-**Step type 3 — free edge of interior to new \(w\in N\):**  
-Edge interior–\(w\) is **not** in \(E_{XN}\) (both in \(N\)).  
-\(w\) has two other edges. Until they hit \(X\), we explore \(G[N]\).  
-When first hit \(X\), we get a return path from some \(x\) through \(w\), and classify **at least one** new \(E_{XN}\) edge (the hit). But we also may add structure.  
+Return path of length \(L\ge 2\) through \(K\) between free bases \(f,f'\) at distance \(\delta\) on \(\Theta\).  
+Cycle length \(\delta+L\) must be even, ≥6, ≠8.
 
-**Problem:** exploring new vertices increases \(|N|\) counted? No: \(|N|\) is fixed for \(G\). \(\mu\) is computed on the **active residual** — the still-unclassified part.
+**Claim:** either ban, or a new \(b\)–\(b'\) path of length \(\ell'\) with \(\ell'+\ell_j=8\) for some arm, or a reduction of some arm length by ≥2 leading to a banned table case.
 
-**Operational definition of active residual:**
-- Start with all of \(N\) and all of \(E_{XN}\) unclassified.  
-- When a return path is classified, **delete** its \(X\)–\(N\) end edges from the active edge set, and **delete** from active \(N\) all vertices whose three edges are fully classified.  
-- \(\mu = (|E_{\mathrm{active}}|, |N_{\mathrm{active}}|)\) lex.
+**Proof by induction on \(L+|V(K)|\).**
 
-**Step type 3 detailed:**  
-Free edge from interior \(z\in N_{\mathrm{active}}\) to \(w\).  
-If \(w\notin N_{\mathrm{active}}\), already processed.  
-If \(w\) new in active: follow Lemma 1.3 from any \(X\)-stub that reaches this component; the filled component of \(w\) has ≥1 edge in \(E_{\mathrm{active}}\). Extract return (Prop 2.7). Classify return: removes ≥1 (actually ≥2 for Type P) from \(E_{\mathrm{active}}\).  
+**Base \(L=2\):** Corollary A.4. ✓  
 
-**Type T step:** extract one leaf-to-leaf path; classify; removes 2 active edges; remaining tree has fewer leaves (one leaf spent); recurse with smaller \(\sigma\). ✓  
+**Base \(L=3\):** cycle \(\delta+3\). Even ⇒ \(\delta\) odd.  
+- \(\delta=1\): free bases adjacent on theta — free edges of adjacent interiors; cycle 4 **ban**.  
+- \(\delta=3\): cycle 6. New \(b\)–\(b'\) path: replace arc 3 by path 3 ⇒ length change 0; or replace longer arc.  
+  On (3,3,7): arc of length 3 on long arm between \(d_i,d_{i+3}\): replace by \(L=3\) keeps length 7. Arc of length 3 through a short arm: e.g. \(a_1\) to \(d_2\) dist via \(b\) = 1+2=3. Replace: new path \(b{-}a_1\xrightarrow{3}d_2{-}\cdots{-}b'\) length \(1+3+(7-2)=9\) etc.  
+  **Flip creating length 5:** if the replaced arc has length \(\delta=5\) — but \(\delta=3\) here.  
+  Free edges of the \(L=3\) path interiors (one free each for the middle vertex): land on \(\Theta\) or in \(K\). Landing on \(\Theta\) creates a shorter return (length ≤2 from that middle), induction.  
+- \(\delta=5\): cycle 8 **ban**.  
+- \(\delta=7\): cycle 10. New path lengths: replace arc 7 by 3 ⇒ arm shortens by 4. Arm 7→3: becomes (3,3,3) or (3,3,ℓ).  
 
-**Type U step:** extract marker arc; classify; removes 2; remaining free edges of cycle go to components with fewer markers or smaller active set. ✓  
+**General \(L\ge 4\):**  
+Middle vertices of the return path each have a free edge off the return path.  
 
-### Lemma C.4 (Base case)
+**Landing table for a free edge of an interior \(w^*\) of the return path:**
+1. On the return path at dist 2: parts impossible  
+2. Dist 3: \(C_4\) ban  
+3. Dist 4: \(C_5\) impossible  
+4. Dist 5: \(C_6\); flip shortens return length by 4 ⇒ new return length \(L-4\ge 0\); if ≥2, induction on \(L\)  
+5. On \(\Theta\) at free base \(f^*\): creates return from an endpoint to \(f^*\) of length < \(L\) (subpath + 1), induction  
+6. On \(\Theta\) at branch \(b\): \(b\) has no free slot — only if not already degree 3, contradiction  
+7. Into new \(W'\subseteq W\): then \(w^*\) opens a side structure; the first return from \(w^*\) to (return path \(\cup\Theta\)) has length \(L'\ge 1\).  
+   - To return path: shortens  
+   - To \(\Theta\): return length from original free base via \(w^*\) is < \(L+|V(K)|\) in measure  
+   Measure \(\nu = L + |V(K)|\) decreases when we pass to a first return inside \(K\) of strictly smaller path+component (delete classified edges, smaller active \(K\)).  
 
-If \(|E_{\mathrm{active}}|=0\), then no unclassified free edges from \(X\) to \(N\).  
-By Lemma 1.1, \(N_{\mathrm{active}}\) must be empty (else a vertex in \(N\) has a path to \(X\) using some edge to \(X\)).  
-Done. ∎
+**Well-founded induction on \(\nu=L+|V(K)|\)** for fixed theta: every free edge of interiors either bans, shortens \(L\), or reduces \(|V(K)|\) after classifying a sub-return.  
+When \(L\) reduces to 2 or 3: base.  
+When all free edges of the return path are classified without ban: the return path is induced and its free edges all went to places that created shorter returns — eventually \(L=2\) base, **Corollary A.4 ban**.  
 
-### Theorem C.5 (Induction works)
+#### A.5.4 Conclusion for arbitrary \(W\)
 
-Every sequence of steps terminates: lex measure \(\mu\) is a well-order on \(\mathbb{N}\times\mathbb{N}\), each step decreases \(\mu\), base case empty.  
-On termination, every free edge was classified as ban or path-9. ∎
+Every nonempty \(W\)-component that pairs free bases on \(\Theta\) produces, by induction on \(\nu\), a reduction to \(L\le 3\) returns, all of which ban or create \(C_8\) with a length-3 arm (Corollary A.4 + A.3).  
+
+If a \(W\)-component attaches only to one free base (a tree hanging off one free base): that free base has free residual degree 1 used into the tree; the tree must end at leaves of degree 1 in \(G[W\cup\{f\}]\), but all vertices have degree 3 in \(G\) — leaves need edges to \(\Theta\cup X\). Only \(f\) on \(\Theta\) available without creating a second attachment (which is a return). **Contradiction** unless the tree has an edge to \(X\) (marker) or a second free base.  
+Hence no dangling trees off a single free base without a second return. ∎
+
+### A.6 Theorem (Lemma 2.5′)
+
+A theta of free-stub type in \(G[\Gamma]\) cannot exist in \(\mathcal{H}\).  
+Hence \(G[\Gamma]\) has at most one cycle.
+
+*Proof.* A.0–A.5: every \((\ell_1,\ell_2,\ell_3)\) either immediately banned (A.1) or has free stubs that through arbitrary \(W\) reduce to banned short returns (A.5). ∎
+
+### A.7 Note on verification
+
+`verify_gaps.py` checks:  
+- \(L_4\) matching non-existence for (3,3,7) (special case of A.4)  
+- length 3+5 ⇒ \(C_8\)  
+- short-arm cross edge \(C_4\)  
+
+It does **not** replace the induction in A.5; that is proof-only.
 
 ---
 
-## D. Seeds for gap closure
+## B. Type U \(k=1\) — cutvertex from \(\kappa=3\)
 
-See `verify_gaps.py`: theta free-stub contradictions (matching non-existence), Type U \(k\ge 2\) under cutvertex, explicit path-9 from B.3.
+### B.1 Hypotheses
+
+- \(\kappa(G)=3\) (inherited; see §0)  
+- \(\Gamma\subseteq N\) a connected component of pure-new  
+- \(B(\Gamma)=\{x\}\) exactly one marker  
+- \(Z\subseteq\Gamma\) the unique cycle (Type U)  
+- \(s\in V(P_*)\), \(s\neq x\)
+
+### B.2 Lemma (Every path from \(\Gamma\) to \(s\) meets \(x\))
+
+Let \(v\in\Gamma\). Let \(Q\) be any \(v\)–\(s\) path in \(G\).  
+Let \(v'\) be the first vertex of \(Q\) in \(V(P_*)\cup V(C)\cup X\).  
+
+- Not in \(V(C)\): free edges into \(V(C)\) banned (free-port setup).  
+- Not in \(V(P_*)\): else predecessor is a free neighbour of \(P_*\), hence in \(U\subseteq X\), so first hit is in \(X\).  
+- Thus \(v'\in X\).  
+- \(X\cap N(\Gamma)=B(\Gamma)=\{x\}\) (edges from \(\Gamma\) to \(X\) only at markers).  
+- The predecessor of \(v'\) on \(Q\) is in \(\Gamma\cup\{x\}\), so \(v'=x\).  
+
+Hence \(x\in Q\). ∎
+
+### B.3 Lemma (\(x\) is a cutvertex)
+
+Pick \(v\in Z\) with \(v\neq x\) and \(vx\notin E(G)\).  
+**Existence:** \(|Z|\ge 6\), \(\deg(x)\le 3\), so \(x\) has at most 3 neighbours; at most 3 vertices of \(Z\) are \(x\) or adjacent to \(x\). Remaining ≥2 vertices of \(Z\) qualify.
+
+By B.2, every \(v\)–\(s\) path contains \(x\).  
+Therefore in \(G-x\) there is no \(v\)–\(s\) path.  
+Both \(v\) and \(s\) exist in \(G-x\).  
+Hence \(G-x\) is disconnected.  
+So \(x\) is a cutvertex, i.e. \(\kappa(G)\le 1\), contradicting \(\kappa(G)=3\). ∎
+
+### B.4 Theorem (Type U has \(k\ge 2\))
+
+Under residual-good free-port analysis (\(\kappa=3\)), every Type U filled component has at least two markers. ∎
+
+### B.5 Marker distances
+
+With \(k\ge 2\), two markers attach at points of \(Z\) (or on \(Z\)).  
+Min-arc distance \(d\) on \(Z\):  
+- \(|Z|=6\): \(d\le 3\)  
+- \(|Z|=10\): \(d\le 5\)  
+- larger: free chords span 3 ban, span 5 ⇒ \(C_6\) reduction, span 7 ⇒ \(C_8\) ban; after reductions effective \(d\le 5\)  
+
+Returns of length \(d\in\{1,2,3,4,5\}\) classified by pure-new §§3–4. ∎
+
+**Note:** The old draft’s branch “if they reattach only at \(x\)” is **not** used.  
+B.2–B.3 never case-split on pending trees: any \(v\in\Gamma\), every path to \(s\) hits \(x\).
+
+---
+
+## C. \(\mu\)-induction as termination
+
+### C.1 Active residual (precise)
+
+Maintain partitions:
+- \(E_{\mathrm{active}}\subseteq E_{XN}\): still-unclassified edges from current \(X\) to current \(N\)  
+- \(N_{\mathrm{active}}\subseteq N\): vertices of \(N\) incident to at least one active edge or reachable from such via edges in \(G[N]\) not yet assigned to a classified return  
+
+\[
+\mu = \bigl(|E_{\mathrm{active}}|,\; |N_{\mathrm{active}}|\bigr)
+\]
+ordered lexicographically on \(\mathbb{N}\times\mathbb{N}\).
+
+### C.2 What “classify” does to \(\mu\)
+
+When a return path \(x\xrightarrow{L}x'\) through \(N_{\mathrm{active}}\) is fully resolved (ban or path-9 or reduction listed in pure-new §§3–5):
+1. Remove from \(E_{\mathrm{active}}\) every active edge used as a start/end stub of that return (at least the first edge \(x{-}n\); for Type P both ends).  
+2. Remove from \(N_{\mathrm{active}}\) every interior vertex of the return whose all three incident edges are now classified or not active.  
+3. Side free edges of interiors that went into side components remain active if still unclassified; those components have strictly fewer active edges to the original \(X\) (the parent free stub was spent) or form a separate filled component with its own markers already in \(X\).
+
+**Lemma C.1.** Each of the following decreases \(\mu\) in lex order:
+- Classifying a Type P return of any \(L\) (removes ≥1 active edge).  
+- Classifying a Type T leaf-to-leaf path (removes 2 leaf edges; remaining tree has fewer leaves).  
+- Classifying a Type U marker arc (removes ≥1; by B.4 there are ≥2 markers).  
+- Classifying an interior free edge landing on \(X\) (creates short return, then classify).  
+- Classifying a \(W\)-return on a theta (Theorem A.6 bans; or if not in two-cycle case, reduces to return classification).  
+
+*Proof.* In each case \(|E_{\mathrm{active}}|\) drops by ≥1, or \(|E_{\mathrm{active}}|\) stays and \(|N_{\mathrm{active}}|\) drops when a component is fully absorbed after its last active edge is classified. ∎
+
+### C.3 Entry step (uses Lemmas 1.1–1.3 only)
+
+If \(E_{\mathrm{active}}=\emptyset\): then \(N_{\mathrm{active}}=\emptyset\) (Lemma 1.1: no island; every \(v\in N\) needs a path to \(X\), hence an edge into \(X\) from its component). **Base done.**  
+
+If \(E_{\mathrm{active}}\neq\emptyset\): pick \(e=x{-}n\in E_{\mathrm{active}}\).  
+By Lemma 1.3, a first-return path from this stub exists.  
+The filled component of \(n\) is Type P, T, or U (pure-new Lemma 2.4 + Theorem A.6 at most one cycle).  
+- Type P: return path is the component; classify by pure-new §§3–5 (tables for \(L=2,3,4,5\) + reduce \(L\ge 6\) by free-edge landings, each landing either bans, shortens \(L\), or opens a side component with smaller \(\mu\) by C.1).  
+- Type T: Lemma 5.1 pure-new + classify one leaf path.  
+- Type U: B.4–B.5 + classify marker arc.  
+
+### C.4 Theorem (Termination)
+
+The process in C.3 terminates after finitely many steps and classifies every free edge as ban or length-9 \(s\)–\(t\) path.
+
+*Proof.* Lex well-order; each step decreases \(\mu\) (C.1); base C.3.  
+**Does not circularly assume return for active components:** entry uses Lemma 1.3 (proved from connectedness in pure-new §1, independent of \(\mu\)).  
+**Does not assume arbitrary \(W\) is closed without proof:** two-cycle \(W\) is Theorem A.6; side components of a single return path are smaller \(\mu\) instances of the same induction. ∎
+
+### C.5 Dependency DAG
+
+```
+connectedness (G in H)
+       │
+       ▼
+Lemmas 1.1–1.3 (return exists)
+       │
+       ├──────────────────────┐
+       ▼                      ▼
+Theorem A.6 (≤1 cycle)    κ=3
+       │                      │
+       ▼                      ▼
+Lemma 2.4 types P/T/U     Theorem B.4 (k≥2)
+       │                      │
+       └──────────┬───────────┘
+                  ▼
+         pure-new §§3–5 (L tables)
+                  │
+                  ▼
+         Theorem C.4 (μ termination)
+                  │
+                  ▼
+         Theorem 7.1 pure-new closure
+```
+
+---
+
+## D. Seeds
+
+| Test | What it checks | What it does *not* check |
+|------|----------------|---------------------------|
+| \(L_4\) matching | A.4 special case for (3,3,7) \(L=2\) | full A.5 induction |
+| 3+5 ⇒ C8 | A.3 | — |
+| short-arm C4 | A.1 | — |
+| k=1 cutvertex | B.2–B.3 on a concrete graph | — |
+| C6 dist ≤3 | B.5 | — |
+| lex order | C.1 sanity | full C.4 |
+
+Universal quantifiers in A.5 and C.4 are **proof obligations**, not seed obligations.

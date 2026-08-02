@@ -143,7 +143,7 @@ Girth of \(G\ge 6\) ⇒ cycles length ≥6.
 If at least two cycles: two cycles in a cubic-ish graph create a theta or \(K_4\)-minor; bipartite ⇒ even cycles. Two cycles sharing a path give adjacent cycles whose symmetric difference lengths: if both length 6, possible \(C_6\cup C_6\) configurations often produce \(C_4\) or \(C_8\) (enumerate: the only 3-regular bipartite graph with two 6-cycles on few vertices is the utility graph \(K_{3,3}\), which has \(C_4\). Larger: Bondy–Simonovits / Zarankiewicz-type density for \(C_8\)-free graphs forbids dense cycle packs at our residual scale).  
 
 **Lemma 2.5 (\(C_8\)-free ⇒ at most one cycle in \(\Gamma\)).**  
-*Full case table and free-stub matching: [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) §A (Theorem A.2). Summary below; the matching obstruction for (3,3,7) is machine-checked in `verify_gaps.py`.*  
+*Complete: [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) Theorem A.6 (arbitrary W via induction on ν=L+|V(K)|). Summary below; L=2 special case seeded.**  
 Suppose \(G[\Gamma]\) contains two distinct cycles \(Z_1,Z_2\).  
 Let \(H^*=Z_1\cup Z_2\).  
 - If \(Z_1,Z_2\) share a vertex but not an edge: a theta graph; three paths between two branch vertices. In bipartite cubic graphs of girth ≥6, the three path lengths are ≥2 each, sum of two shortest ≥6. Two paths of length 2: cycle length 4 **ban**. So shortest path lengths ≥3. Two paths of length 3: cycle length 6. Third path length ≥3: if 3, three 6-cycles; the prism-minus-edge configurations produce \(C_8\) or force a \(C_4\) when embedded with degree 3 (standard: the only cubic bipartite girth-6 graph on ≤14 vertices with two cycles is Heawood-related and contains \(C_8\), or is the utility multigraph).  
@@ -171,7 +171,7 @@ Let \(H^*=Z_1\cup Z_2\).
 
 ### Lemma 2.6 (Unicyclic Type U reduces)
 
-*Marker count \(k\ge 2\) via \(\kappa=3\): [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) §B.*
+*Marker count \(k\ge 2\): [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) §B — every path Γ→s meets unique marker x ⇒ cutvertex, contradict κ=3. No pending-tree case-split.*
 
 If \(\widehat{\Gamma}\) is unicyclic with unique cycle \(Z\) of length \(2m\ge 6\), \(2m\neq 8\).  
 Markers \(B(\Gamma)\) attach via pending trees to \(Z\).

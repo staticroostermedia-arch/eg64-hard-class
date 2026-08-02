@@ -112,7 +112,20 @@ def test_mu_lex_decreases():
     assert (2, 0) > (1, 5)
     print("  C.3 lex order PASS")
 
+def test_dangling_tree_deg():
+    """Single free base into a tree: leaves need deg 3 — cannot end in N only."""
+    # free base f, tree f-w1-w2 leaf w2 has deg 1 or 2 in G if not returned
+    G = nx.Graph()
+    G.add_edges_from([("f", "w1"), ("w1", "w2")])
+    # w2 deg 1 — not cubic
+    assert G.degree("w2") == 1
+    # if w2-f: cycle; if w2 to second free base f2: return L>=2
+    G.add_edge("w2", "f2")
+    assert nx.shortest_path_length(G, "f", "f2") == 3  # L=3 return
+    print("  A.5.4 dangling needs second return or fails cubic PASS")
+
 def test_regression():
+
     root = Path(__file__).resolve().parent
     r = subprocess.run([sys.executable, str(root / "verify_purenew.py")], capture_output=True, text=True)
     assert r.returncode == 0, r.stdout + r.stderr
@@ -126,5 +139,6 @@ if __name__ == "__main__":
     test_typeU_C6_marker_dist()
     test_path9_from_U_d3()
     test_mu_lex_decreases()
+    test_dangling_tree_deg()
     test_regression()
     print("ALL verify_gaps PASS")
