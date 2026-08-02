@@ -230,3 +230,6 @@ See [PROOF_H614_fire36.md](PROOF_H614_fire36.md).
 Campaign claim **H800:** every cubic graph has a \(C_{2^k}\), via H590+H612+H613+H780+H791+planar.
 
 Open scars: S614-A (H* fork prose), S614-B (girth≥9 ear), S590 audit, S582 λ=2.
+
+## Fire 37
+S614-A/B closed via H810–H845. See PROOF_scars_fire37.md. H800′.

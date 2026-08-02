@@ -114,3 +114,9 @@ CC0-1.0 (or as declared by the repo owner). Math notes are offered for verificat
 - [PROOF_H614_fire36.md](PROOF_H614_fire36.md) — H640–H800 campaign full cubic EG tree
 - Scars S614-A/B tracked; `verify_fire36.py`
 - **H800:** campaign claim every cubic has \(C_{2^k}\) (with listed scars)
+
+## Fire 37 — S614-A/B closed
+
+- [PROOF_scars_fire37.md](PROOF_scars_fire37.md)
+- `verify_fire37.py`
+- Remaining polish scars: S590, S582, S612 (hard-class)

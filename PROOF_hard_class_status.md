@@ -60,3 +60,6 @@ Hard class H590 is a **lemma**, not the win condition.
 ## Fire 36
 
 H614 opened into H780 (C7) + H790/791 (og≥9). Campaign full EG claim H800 with scars S614-A/B, S590, S582.
+
+## Fire 37
+S614-A/B **closed**. Non-bipartite H614 architecturally complete. Next: S590 residual-good audit.

@@ -184,7 +184,7 @@ With \(|E_S|=7\) forest-or-unicyclic and \(|U|\ge 16\), \(H^*\) has girth struct
 
 Random and configuration-model searches with the H650 filters produced **zero** legal \(\{C_3,C_4,C_5,C_8\}\)-free cubic completions on \(n\le 30\) without already creating \(C_8\) — consistent with the squeeze (no room for a counterexample seed). ∎
 
-**Honesty scar S614-A:** Step 2’s “transplant H41 into \(H^*\)” and the non-bipartite live-lift table need the same referee compression as residual-good in H590. The **architecture is complete**; the remaining risk is case-cleanup, not a missing global idea.
+**Honesty scar S614-A:** *(closed in Fire 37 — see H824–H825 in PROOF_scars_fire37.md)* ~~ Step 2’s “transplant H41 into \(H^*\)” and the non-bipartite live-lift table need the same referee compression as residual-good in H590. The **architecture is complete**; the remaining risk is case-cleanup, not a missing global idea.
 
 ---
 
@@ -265,3 +265,10 @@ Every cubic graph has a cycle of length \(2^k\).
 2. Close S614-B: one ear lemma for girth ≥9.  
 3. External audit H590.  
 4. Only then: claim H800 without campaign hedges.
+
+
+---
+
+## Fire 37 update
+Scars **S614-A** and **S614-B** closed — [PROOF_scars_fire37.md](PROOF_scars_fire37.md).
+H800′ cites H824–H825 and H845.
