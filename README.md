@@ -1,4 +1,10 @@
-# EG#64 Hard Class — Engram Proof Campaign
+# eg64-hard-class
+
+**Start here for review:** [FOR_REVIEW.md](FOR_REVIEW.md)
+
+> Campaign proof tree for cubic Erdős–Gyárfás (power-of-2 cycles).  
+> **Not** an unconditional journal claim of full EG#64 — see confidence table in FOR_REVIEW.md.
+
 
 **Target:** [Erdős–Gyárfás conjecture](https://www.erdosproblems.com/64) restricted to **cubic bipartite** graphs that are **C₄-free and C₈-free** (“hard class”).
 
