@@ -4,7 +4,7 @@
 
 **Method:** computational census (Foster CAT, genbg n≤24) + structural H-theorems, with continuity stored in [Engram](https://github.com/staticroostermedia-arch/engram) (`.leg` cryptographic memory / MCP session handoff).
 
-**Status (Fire 31):** Hard EG for **n < 62** (H31). **Arm A dead (H470).** Arm B: B2 has C₁₆ criterion **H490** (dist(a\*,f₁)=5); pins dist∈{3,7}. B1 n>62, C₁₆ open.
+**Status (Fire 32):** Hard EG for **n < 62** (H31). **Arm A dead (H470). B2 dead (H555).** Unlimited *n* open hinge is **Arm B1 only** (local girth ≥10).
 
 ---
 

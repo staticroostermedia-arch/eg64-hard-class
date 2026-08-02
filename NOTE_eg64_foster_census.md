@@ -367,3 +367,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H491:** dist(a\*,f₁)∈{3,5,7}; open pins dist=3,7 exterior
 - B1: n>62; C₁₆ still open
 - [PROOF_ArmB_fire31.md](PROOF_ArmB_fire31.md) · [verify_fire31.py](verify_fire31.py)
+
+
+---
+
+## Fire 32 — ★ B2 DEAD (H555)
+
+- **H553:** 3-connected ⇒ three a\*–f₁ paths enter via e₁, T₃, y
+- **H547 / H541:** length-7 y-path or 7+9 disjoint ⇒ C₁₆
+- **H546:** dist=7 ⇒ C₁₆; **H550:** dist=3 ⇒ C₁₆
+- **H555: B2 empty.** Only **B1** remains in double-stretch.
+- [PROOF_B2dead_fire32.md](PROOF_B2dead_fire32.md) · [verify_fire32.py](verify_fire32.py)
