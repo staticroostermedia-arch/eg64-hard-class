@@ -355,3 +355,15 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 
 - [PROOF_ArmA_dead_fire30.md](PROOF_ArmA_dead_fire30.md)
 - [verify_fire30.py](verify_fire30.py)
+
+
+---
+
+## Fire 31 — Arm B locked; B2 C₁₆ criterion H490
+
+- Arm A empty (H470); focus Arm B
+- H475–H493: T₃/F forbids; T₃−c ⇒ C₈
+- **H490:** dist(a\*,f₁)=5 ⇒ **C₁₆** (B2)
+- **H491:** dist(a\*,f₁)∈{3,5,7}; open pins dist=3,7 exterior
+- B1: n>62; C₁₆ still open
+- [PROOF_ArmB_fire31.md](PROOF_ArmB_fire31.md) · [verify_fire31.py](verify_fire31.py)
