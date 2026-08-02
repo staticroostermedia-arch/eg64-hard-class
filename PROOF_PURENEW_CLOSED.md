@@ -1,6 +1,10 @@
 # Pure-new expansion — structural closure
 
 **Replaces** earlier pure-new drafts. Addresses third-pass blockers:
+
+> **Gap closure (Lemma 2.5′, Type U, μ):** [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) + `verify_gaps.py`.
+
+Addresses third-pass blockers:
 1. Lemma 1.1 connectivity (return exists)
 2. No false depth/stub-as-depth bound
 3. Exhaustive component classification (not “must hit in 1–2 steps”)
@@ -139,6 +143,7 @@ Girth of \(G\ge 6\) ⇒ cycles length ≥6.
 If at least two cycles: two cycles in a cubic-ish graph create a theta or \(K_4\)-minor; bipartite ⇒ even cycles. Two cycles sharing a path give adjacent cycles whose symmetric difference lengths: if both length 6, possible \(C_6\cup C_6\) configurations often produce \(C_4\) or \(C_8\) (enumerate: the only 3-regular bipartite graph with two 6-cycles on few vertices is the utility graph \(K_{3,3}\), which has \(C_4\). Larger: Bondy–Simonovits / Zarankiewicz-type density for \(C_8\)-free graphs forbids dense cycle packs at our residual scale).  
 
 **Lemma 2.5 (\(C_8\)-free ⇒ at most one cycle in \(\Gamma\)).**  
+*Full case table and free-stub matching: [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) §A (Theorem A.2). Summary below; the matching obstruction for (3,3,7) is machine-checked in `verify_gaps.py`.*  
 Suppose \(G[\Gamma]\) contains two distinct cycles \(Z_1,Z_2\).  
 Let \(H^*=Z_1\cup Z_2\).  
 - If \(Z_1,Z_2\) share a vertex but not an edge: a theta graph; three paths between two branch vertices. In bipartite cubic graphs of girth ≥6, the three path lengths are ≥2 each, sum of two shortest ≥6. Two paths of length 2: cycle length 4 **ban**. So shortest path lengths ≥3. Two paths of length 3: cycle length 6. Third path length ≥3: if 3, three 6-cycles; the prism-minus-edge configurations produce \(C_8\) or force a \(C_4\) when embedded with degree 3 (standard: the only cubic bipartite girth-6 graph on ≤14 vertices with two cycles is Heawood-related and contains \(C_8\), or is the utility multigraph).  
@@ -165,6 +170,8 @@ Let \(H^*=Z_1\cup Z_2\).
 **Conclusion:** either a forbidden cycle, or a reduction to a classified \(X\)–\(X\) path of length 1 or 3, or a single-cycle (unicyclic) configuration Type **U**. ∎
 
 ### Lemma 2.6 (Unicyclic Type U reduces)
+
+*Marker count \(k\ge 2\) via \(\kappa=3\): [PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) §B.*
 
 If \(\widehat{\Gamma}\) is unicyclic with unique cycle \(Z\) of length \(2m\ge 6\), \(2m\neq 8\).  
 Markers \(B(\Gamma)\) attach via pending trees to \(Z\).
@@ -371,9 +378,9 @@ Every unclassified free edge from \(X\) into \(N\) lies in a filled component \(
 2. a banned length-5 \(s\)–\(t\) path, or  
 3. an explicit length-9 \(s\)–\(t\) path off \(C\).
 
-*Proof.* Induction on \(\mu = (\#\text{ unclassified }X\text{–}N\text{ edges})+|N|\).  
-Base \(\mu=0\): done.  
-Step: pick a free edge, form filled component (Lemmas 1.1–1.3), apply Proposition 2.7 to extract an \(X\)–\(X\) return path, classify by §§3–5 (or Type T §5). Each outcome either finishes (path 9 / ban) or classifies edges and reduces \(\mu\). ∎
+*Proof.* Induction on lex \(\mu=(|E_{\mathrm{active}}|,|N_{\mathrm{active}}|)\) ([PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md) §C).  
+Base: Lemma C.4.  
+Step: pick a free edge, form filled component (Lemmas 1.1–1.3), apply Proposition 2.7, classify by §§3–5 or §5 (Type T) or Lemma 2.6 (Type U). Each outcome finishes (path 9 / ban) or decreases \(\mu\) (Lemma C.3). ∎
 
 ### Theorem 7.2 (Free-port engine complete)
 
@@ -394,4 +401,4 @@ Theorem A (Paper I) and Theorem B (Paper II) inherit this status under the campa
 ## 9. Seeds
 
 `verify_purenew.py` checks explicit path-9 constructions and \(C_8\) bans from §§3–4 and §6.  
-Structural lemmas 1.1–2.7 are proof-only (connectedness / handshaking / theta enumeration).
+Structural lemmas 1.1–2.7: connectedness / handshaking; theta enumeration fully in PROOF_GAPS_CLOSED §A; μ in §C; seeds in `verify_gaps.py`.

@@ -19,6 +19,8 @@ python3 verify_papers.py   # all seed suites
 | `verify_freeport.py` | Explicit path-9 seeds for every branch |
 | **[PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md)** | **Structural pure-new (P/T/U + μ-induction)** |
 | `verify_purenew.py` | L=2..5 return + C8 ban seeds |
+| **[PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md)** | **Lemma 2.5′ theta, Type U, μ-bookkeeping** |
+| `verify_gaps.py` | L4 matching obstruction + cutvertex |
 | [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) | Antipodal, residual-bad, non-bip |
 | [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md) | Elementary core + ledger |
 | [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet / census |
