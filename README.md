@@ -100,3 +100,10 @@ CC0-1.0 (or as declared by the repo owner). Math notes are offered for verificat
 
 - Problem: https://www.erdosproblems.com/64  
 - Engram substrate: https://github.com/staticroostermedia-arch/engram  
+
+
+## Fire 35 — Non-bipartite / full EG goal restored
+
+- [PROOF_nonbip_fire35.md](PROOF_nonbip_fire35.md) — H612/H613/H620
+- Remaining open bucket: **H614** (odd girth ≥7, C4/C8-free, n≥30)
+- `verify_fire35.py`

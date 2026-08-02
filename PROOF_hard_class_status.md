@@ -46,3 +46,12 @@ hard G
 ## Publish surface
 
 https://github.com/staticroostermedia-arch/eg64-hard-class
+
+
+---
+
+## Fire 35 update — full EG primary goal
+
+Hard class H590 is a **lemma**, not the win condition.
+
+**Open for full cubic EG:** H614 — non-bipartite, C4/C8-free, odd girth ≥7, n≥30.

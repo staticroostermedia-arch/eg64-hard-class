@@ -158,7 +158,20 @@ Run: `python3 verify_fire30.py && python3 verify_fire32.py && python3 verify_fir
 
 ---
 
-## 8. Full EG#64 — what is **not** proved
+## 8. Full EG#64 — progress (Fire 35)
+
+Primary goal **restored** to full cubic EG. See [PROOF_nonbip_fire35.md](PROOF_nonbip_fire35.md).
+
+| Case | Status |
+|------|--------|
+| C4 or C8 | Trivial |
+| Bipartite hard class | H590 |
+| Triangle + C4-free | H612 (campaign) |
+| Odd girth 5 + C4-free | H613 (campaign) |
+| 3-conn cubic planar | Heckman–Krakovski |
+| Odd girth ≥7, C4/C8-free, n≥30 | **OPEN (H614)** |
+
+## 8b. Full EG#64 — what is **not** proved
 
 **Conjecture (Erdős–Gyárfás #64).** Every cubic graph has a \(C_{2^k}\).
 
