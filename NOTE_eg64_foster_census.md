@@ -339,3 +339,19 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **PF4**: pure f k=4 with N(e′)={T₂,p_a,u_g}
 - H453–H455: PF4 forbids x−c₁ (C₄), y−c₂ (C₈), y−c₁+w−c₂ (C₈)
 - [PROOF_PF4_fire29.md](PROOF_PF4_fire29.md) · [verify_fire29.py](verify_fire29.py)
+
+
+---
+
+## Fire 30 — ★ BREAKTHROUGH: Arm A dead (H470)
+
+**What was stopping us:** dual analyzed without residual P₈.
+
+**H470:** residual bad + E–Bset + dist(a\*,e)=6 geodesic ⇒ **C₁₆**  
+(both f-ending and T₂-ending). Machine-checked; C₄=C₈=0 on core.
+
+**Corollaries:** dual, pure f, pure T2, H390 all die under Arm A.  
+**Arm A branch empty.** Remaining open: **Arm B only**.
+
+- [PROOF_ArmA_dead_fire30.md](PROOF_ArmA_dead_fire30.md)
+- [verify_fire30.py](verify_fire30.py)
