@@ -4,7 +4,7 @@
 
 **Method:** computational census (Foster CAT, genbg n≤24) + structural H-theorems, with continuity stored in [Engram](https://github.com/staticroostermedia-arch/engram) (`.leg` cryptographic memory / MCP session handoff).
 
-**Status (Fire 25):** Hard EG for **n < 62** proved (H31). Unlimited *n* reduced to residual-bad double-stretch arms with an **L2-block** on the a\*-star; open hinge is L3–L4 adjacency forcing dist(a\*,e)≤4 (⇒ C₁₆) or Arm B stub overflow.
+**Status (Fire 26):** Hard EG for **n < 62** proved (H31). Unlimited *n* reduced to residual-bad double-stretch arms with an **L2-block** on the a\*-star; open hinge is L3–L4 adjacency forcing dist(a\*,e)≤4 (⇒ C₁₆) or Arm B stub overflow.
 
 ---
 
@@ -42,6 +42,8 @@
 | H261 | U0a + c₁−s ⇒ C₈ | **Proved** |
 | H311 | U0 impossible on dual k=4 | **Proved** |
 | H338 | dual k=4 tight ⇒ U2 only | **Proved** |
+| H363 | dual + p_b−q ⇒ C₈ (U2a dead) | **Proved** |
+| H368 | pure f: e′ meets ≤1 of star(g′) | **Proved** |
 | — | Full hard EG all n (double-stretch empty) | **Open** |
 
 Decision tree (abbreviated):

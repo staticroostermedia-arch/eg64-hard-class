@@ -297,3 +297,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H338:** dual k=4 tight ⇒ **U2 only**
 - U2 forced into \|T\|≥5 exclusive L₅ regime
 - [PROOF_U0dead_fire25.md](PROOF_U0dead_fire25.md)
+
+
+---
+
+## Fire 26 — H247/U2a dead by C₈
+
+- **H363:** dual + p_b−q ⇒ C₈ e−T₂−e′−r₁−q−p_b−g′−f−e (**U2a dead**)
+- **H369:** dual k=4 U2 ⇒ U2b only
+- **H368:** pure f cannot set N(e′)⊇{p_a,p_b} (C₄)
+- Core-graph cycle search as property test
+- [PROOF_H247dead_fire26.md](PROOF_H247dead_fire26.md)
