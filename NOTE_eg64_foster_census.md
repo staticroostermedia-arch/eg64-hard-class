@@ -286,3 +286,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H261/H267:** U0a main c₁/c₂ branches dead
 - **H293/H297/H299:** L₅ exclusivity C₈s for U2
 - [PROOF_bridge_fire24.md](PROOF_bridge_fire24.md)
+
+
+---
+
+## Fire 25 — U0/U1 dead; U2 only on dual k=4
+
+- **H311:** U0 impossible (L₂ frees of u_g expand L₃\*)
+- **H337:** U1 impossible (same)
+- **H338:** dual k=4 tight ⇒ **U2 only**
+- U2 forced into \|T\|≥5 exclusive L₅ regime
+- [PROOF_U0dead_fire25.md](PROOF_U0dead_fire25.md)
