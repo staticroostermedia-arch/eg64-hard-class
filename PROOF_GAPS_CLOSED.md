@@ -163,11 +163,13 @@ Positions of the length-3 arc relative to a survivor \((\ell_1,\ell_2,\ell_3)\),
 | Location of \(\delta=3\) arc | Free bases | New \(b\)–\(b'\) path after replace arc by \(L=3\) | Outcome |
 |------------------------------|------------|-----------------------------------------------------|---------|
 | Entirely on long arm (positions \(d_i\)–\(d_{i+3}\)) | both on long arm | Long-arm length unchanged as a route through the ear (parallel \(C_6\)); **or** the complementary long-arc of length \(\ell_3-3\) plus \(L=3\) gives new length \(\ell_3\). Free edge of middle \(m\): if to \(\Theta\), shorter return (≤2) → A.4; if creates path of length 5 from \(b\) to \(b'\) via short arm, **\(C_8\)** with arm 3 | A.4 / \(C_8\) / free of \(m\) |
-| Spans branch \(b\): one base on arm \(i\), one on arm \(j\) | e.g. \(a_1\) and \(d_2\) (dist via \(b\) = 3) | Path \(b{-}a_1\xrightarrow{L=3}d_2{-}\cdots{-}b'\): length \(1+3+(\ell_3-2)= \ell_3+2\). Other routings: \(b{-}d_1{-}d_2\xrightarrow{3}a_1{-}a_2{-}b'\) length \(2+3+2=7\). Check pair-sums with remaining arm: if any new \(\ell'=5\) and an arm is 3 → **\(C_8\)** | compute; on (3,3,7) one routing gives length 5+… or 7; length 5+3=8 **ban** when present |
-| Spans branch \(b'\): symmetric | — | same | same |
+| Spans branch \(b\): one base on arm \(i\), one on arm \(j\) | e.g. on \((3,3,7)\): free bases \(a_1\) (short arm) and \(d_2\) (long arm); dist via \(b\): \(a_1{-}b{-}d_1{-}d_2\) length 3 | **Explicit lengths on \((3,3,7)\).** Return \(a_1{-}m_1{-}m_2{-}d_2\). Three \(b\)–\(b'\) routes after the ear: (i) short arm untouched: \(b{-}c_1{-}c_2{-}b'\) length **3**; (ii) \(b{-}a_1{-}m_1{-}m_2{-}d_2{-}d_3{-}d_4{-}d_5{-}d_6{-}b'\) length \(1+3+5=\) **9**; (iii) \(b{-}d_1{-}d_2{-}m_2{-}m_1{-}a_1{-}a_2{-}b'\) length \(2+3+2=\) **7**. New triple of path lengths \(\{3,7,9\}\). Pair-sums: \(3+7=10\), \(3+9=12\), \(7+9=16\) — no sum 8, so not an immediate \(C_8\). **Free edge of middle \(m_1\)** (and of \(m_2\)): each has one free edge. Landings: (α) on \(\Theta\) at free base \(\to\) return length \(\le 2\) \(\to\) Corollary A.4 (on (3,3,7), \(L=2\) at \(\delta=4\) creates length-5 \(b\)–\(b'\) path \(\Rightarrow C_8\) with arm 3); (β) on the long arm creating a path of length 5 from \(b\) to \(b'\) \(\Rightarrow C_8\); (γ) into \(K\) \(\to\) Case 7 with \(\|V\|\) primary drop. **No stable landing avoids A.4 / \(C_8\) / Case 7.** Generic: new lengths \(\{\ell_j,\;1+3+(\ell_i-2),\;(\mathrm{dist}_b\text{ to first base})+3+(\mathrm{rest})\}\); if any pair-sum is 8 ban; else free of \(m\) as above | A.4 / \(C_8\) / Case 7 |
+| Spans branch \(b'\): symmetric | e.g. \(a_2\) and \(d_5\) on \((3,3,7)\) | Same length arithmetic reflected through \(b'\): new triple \(\{3,7,9\}\) again; free of middles \(\to\) A.4 / \(C_8\) / Case 7 | same |
 | On a short arm of length 3 | both free bases on short arm | Short arm has only 2 interiors; dist 3 between free bases on arm of length 3 means the two interiors and the path goes through \(b\) or \(b'\) — dist along arm between the two interiors is 1, not 3. **Impossible** for \(\delta=3\) entirely on a length-3 arm | N/A |
 
 **Generic rule for L3-δ3:** after replacement, list the three new \(b\)–\(b'\) path lengths \((\ell_1',\ell_2',\ell_3')\). If any pair sums to 8 → ban. If all pair-sums avoid 4 and 8 → the new triple is a survivor with **strictly more edges used on free stubs** (the \(L=3\) return consumed 2 free stubs of \(\Theta\) and added a \(C_6\)); free edge of \(m\) must still land: landing on \(\Theta\) gives return length ≤2 (inductive base A.4); landing into \(K\) is Case 7 below with smaller active set. **No stable L3-δ3 configuration avoids A.4 and \(C_8\).**
+
+*(Referee note: the “spans branch \(b\)” row above is fully expanded on the survivor \((3,3,7)\); other survivors use the same length arithmetic.)*
 
 **General \(L\ge 4\):**  
 Middle vertices of the return path each have a free edge off the return path.
@@ -386,5 +388,7 @@ Lemma 2.4 types P/T/U     Theorem B.4 (k≥2)
 | lex order | C.1 sanity | full C.4 |
 
 Universal quantifiers in A.5 and C.4 are **proof obligations**, not seed obligations.
+
+**Third-pass status (external audit):** Case 7, L3-δ3, survivor coverage, and A.0 are closed. Pure-new / arbitrary-\(W\) soft spot resolved for practical purposes.
 
 **Second-pass fixes:** Case 7 measure is lex \((|V(K)|, L)\) with primary \(|V|\); L3-δ3 table explicit; A.1 survivors all under A.5; A.0 disjoint cycles → second join or markers.

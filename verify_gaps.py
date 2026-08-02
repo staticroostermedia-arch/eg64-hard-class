@@ -120,7 +120,25 @@ def test_nu_lex_primary_V():
     assert (10, 1) < (10, 2)
     print("  Case7 nu lex |V| primary PASS")
 
+def test_L3_delta3_337_lengths():
+    """Explicit b-bp path lengths {3,7,9} after L=3 return a1..d2 on (3,3,7)."""
+    G = nx.Graph()
+    G.add_edges_from([("b","a1"),("a1","a2"),("a2","bp")])
+    G.add_edges_from([("b","c1"),("c1","c2"),("c2","bp")])
+    G.add_edges_from([("b","d1"),("d1","d2"),("d2","d3"),("d3","d4"),("d4","d5"),("d5","d6"),("d6","bp")])
+    G.add_edges_from([("a1","m1"),("m1","m2"),("m2","d2")])
+    # path lengths via simple paths cutoff 9
+    lens = set()
+    for path in nx.all_simple_paths(G, "b", "bp", cutoff=9):
+        lens.add(len(path) - 1)
+    assert 3 in lens, lens
+    assert 7 in lens, lens
+    assert 9 in lens, lens
+    assert 8 not in lens  # no C8 from these routes alone
+    print(f"  L3-d3 (3,3,7) b-bp lengths {sorted(lens)} contain {{3,7,9}} PASS")
+
 def test_L3_delta3_creates_C8_on_337():
+
     """L=3 return spanning b from short arm to long arm can create length-5 b-b' path → C8 with arm 3."""
     G = nx.Graph()
     # arms: b-a1-a2-bp (3), b-c1-c2-bp (3), b-d1-d2-d3-d4-d5-d6-bp (7)
@@ -187,6 +205,7 @@ if __name__ == "__main__":
     test_path9_from_U_d3()
     test_mu_lex_decreases()
     test_nu_lex_primary_V()
+    test_L3_delta3_337_lengths()
     test_L3_delta3_creates_C8_on_337()
     test_dangling_tree_deg()
     test_regression()
