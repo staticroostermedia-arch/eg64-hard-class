@@ -6,6 +6,7 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent
 scripts = [
+    "verify_purenew.py",
     "verify_freeport.py",
     "verify_open201.py",
     "verify_open_remaining.py",

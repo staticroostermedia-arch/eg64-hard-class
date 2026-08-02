@@ -17,6 +17,8 @@ python3 verify_papers.py   # all seed suites
 | [PROOF_OPEN201.md](PROOF_OPEN201.md) | Free-port engine (Thm 4.5) |
 | **[PROOF_FREEPORT_CLOSED.md](PROOF_FREEPORT_CLOSED.md)** | **Complete upgrade branches** for Thm 4.5 |
 | `verify_freeport.py` | Explicit path-9 seeds for every branch |
+| **[PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md)** | **Cut-return pure-new closure** |
+| `verify_purenew.py` | L=2..5 return + C8 ban seeds |
 | [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) | Antipodal, residual-bad, non-bip |
 | [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md) | Elementary core + ledger |
 | [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet / census |
