@@ -120,3 +120,9 @@ CC0-1.0 (or as declared by the repo owner). Math notes are offered for verificat
 - [PROOF_scars_fire37.md](PROOF_scars_fire37.md)
 - `verify_fire37.py`
 - Remaining polish scars: S590, S582, S612 (hard-class)
+
+## Fire 38 — S590 residual-good closed
+
+- [PROOF_S590_fire38.md](PROOF_S590_fire38.md) — H880 linear chain
+- `verify_fire38.py`
+- Remaining: S582, S612 (polish)

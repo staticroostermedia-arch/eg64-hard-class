@@ -63,3 +63,6 @@ H614 opened into H780 (C7) + H790/791 (og≥9). Campaign full EG claim H800 with
 
 ## Fire 37
 S614-A/B **closed**. Non-bipartite H614 architecturally complete. Next: S590 residual-good audit.
+
+## Fire 38
+**S590 CLOSED** via H880. Residual good is linear. Micro-scar S590-μ optional.
