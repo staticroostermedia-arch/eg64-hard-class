@@ -389,3 +389,13 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H579:** residual bad ⇒ C₁₆
 - **H580:** hard-class EG (bipartite cubic C₄/C₈-free) — campaign claim
 - [PROOF_B1dead_fire33.md](PROOF_B1dead_fire33.md) · [PROOF_hard_class_status.md](PROOF_hard_class_status.md)
+
+
+---
+
+## Fire 34 — Master theorem H590 + connectivity patch H581/H582
+
+- Linear proof: [PROOF_MASTER_hard_class.md](PROOF_MASTER_hard_class.md)
+- H581: cubic κ=λ; H582: hard class 3-connected or already C16
+- Full EG#64 still open (double-cover projection scar)
+- `verify_fire34.py` chains 30/32/33 + connectivity

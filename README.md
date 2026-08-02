@@ -4,7 +4,7 @@
 
 **Method:** computational census (Foster CAT, genbg n≤24) + structural H-theorems, with continuity stored in [Engram](https://github.com/staticroostermedia-arch/engram) (`.leg` cryptographic memory / MCP session handoff).
 
-**Status (Fire 33):** Hard EG for **n < 62** (H31). **★ Hard-class EG (H580):** Arm A/B1/B2 all dead; double-stretch empty; residual bad ⇒ C₁₆. Bipartite cubic C₄/C₈-free.
+**Status (Fire 34):** Hard EG for **n < 62** (H31). **★ Hard-class EG (H580):** Arm A/B1/B2 all dead; double-stretch empty; residual bad ⇒ C₁₆. Bipartite cubic C₄/C₈-free.
 
 ---
 
