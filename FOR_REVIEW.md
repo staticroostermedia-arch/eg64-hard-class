@@ -1,21 +1,17 @@
-# Status for reviewers
+# For reviewers — honest status
 
-## Theorem 4.5 (free-port engine)
+**Global Theorem A is false.** High-girth cubic bipartite graphs (girth ≥ 18) are counterexamples.
 
-**Proof:** [PROOF_THEOREM_45_FINAL.md](PROOF_THEOREM_45_FINAL.md)
+Do not treat this repository as a proof of the Erdős–Gyárfás conjecture or of “every cubic bipartite \(C_4/C_8\)-free graph has a \(C_{16}\).”
 
-Structure:
-1. Dichotomy on shortest A*–B* path length ℓ in H = G − V(P*)
-2. ℓ = 1,3: PROOF_FREEPORT_CLOSED Parts I–II (finite tables)
-3. ℓ ≥ 5: direct path-9 when attachments fit; free-edge landing lemma; pure-new balloon handshaking (e_out=0 impossible); induction on ℓ via C6 flips
-4. ℓ = ∞: distance-4 in K_A; free edge of p3 → path 9
+## What to read if you care about salvage
 
-Seeds: `verify_freeport.py`, `verify_ell5_path9.py` (all 9 pairs at ℓ=5)
+1. [STATUS_REFUTATION.md](STATUS_REFUTATION.md) — why Theorem A fails  
+2. Local free-port notes under residual-good (\(C_6\) present) — **conditional** only  
+3. Seed scripts — example checks, not universal proofs  
 
-## Theorem A (hard class)
+## What not to cite as proved
 
-Paper I chain: residual good/bad → free-port 4.5 → C16. Census oracles green.
-
-## Not claimed without referee
-
-Full journal acceptance of EG#64; independent check of Lemma 2.7 (balloon) and Lemma 2.5 (a1 tables for all pairs) recommended.
+- Theorem A / Theorem B / “EG#64 solved”  
+- Paper II triangle ⇒ \(C_8\)  
+- Any claim that long cycles always reduce to \(C_{16}\)

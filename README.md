@@ -1,4 +1,13 @@
-**Master free-port proof:** [PROOF_THEOREM_45_FINAL.md](PROOF_THEOREM_45_FINAL.md) (Theorem 4.5 closed).
+# eg64-hard-class
+
+> **STATUS (2026-08-02): Global Theorem A is REFUTED in present form.**  
+> Cubic bipartite graphs of girth ≥ 18 are \(C_4\)-free, \(C_8\)-free, and \(C_{16}\)-free.  
+> See [STATUS_REFUTATION.md](STATUS_REFUTATION.md).  
+> Local free-port lemmas (conditional on a \(C_6\) / residual-good setup) may still be salvageable; they do **not** imply EG#64.
+
+---
+
+**Master free-port proof:** [PROOF_THEOREM_45_FINAL.md](PROOF_THEOREM_45_FINAL.md) (Theorem 4.5 (conditional free-port; see STATUS_REFUTATION)).
 
 # eg64-hard-class
 
@@ -17,11 +26,11 @@ python3 verify_papers.py   # all seed suites
 | Doc | Role |
 |-----|------|
 | [PROOF_OPEN201.md](PROOF_OPEN201.md) | Free-port engine (Thm 4.5) |
-| **[PROOF_FREEPORT_CLOSED.md](PROOF_FREEPORT_CLOSED.md)** | **Complete upgrade branches** for Thm 4.5 |
+| **[PROOF_FREEPORT_draft.md](PROOF_FREEPORT_draft.md)** | **Complete upgrade branches** for Thm 4.5 |
 | `verify_freeport.py` | Explicit path-9 seeds for every branch |
-| **[PROOF_PURENEW_CLOSED.md](PROOF_PURENEW_CLOSED.md)** | **Structural pure-new (P/T/U + μ-induction)** |
+| **[PROOF_PURENEW_draft.md](PROOF_PURENEW_draft.md)** | **Structural pure-new (P/T/U + μ-induction)** |
 | `verify_purenew.py` | L=2..5 return + C8 ban seeds |
-| **[PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md)** | **Lemma 2.5′ theta, Type U, μ-bookkeeping** |
+| **[PROOF_GAPS_draft.md](PROOF_GAPS_draft.md)** | **Lemma 2.5′ theta, Type U, μ-bookkeeping** |
 | `verify_gaps.py` | L4 matching obstruction + cutvertex |
 | **[PROOF_UNIVERSAL.md](PROOF_UNIVERSAL.md)** | **U1–U5: all survivors, landings, Φ measure** |
 | `verify_universal.py` | Case II formulas + ban predicate |
