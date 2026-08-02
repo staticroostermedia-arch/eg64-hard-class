@@ -328,3 +328,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - H404: τ↛σ; τ↛w-L₅; τ↛y′-L₅
 - H424: **private L₆ completion is C₄/C₈-free** — kill needs cascade/C₁₆
 - [PROOF_L6bridge_fire28.md](PROOF_L6bridge_fire28.md) · [verify_fire28.py](verify_fire28.py)
+
+
+---
+
+## Fire 29 — PF4 pure-f; H390 cascade cover exists (honest)
+
+- H430: free L₆ cover under H413 **exists** (no cascade kill)
+- H435–H439: residual length-10 chords forbidden
+- **PF4**: pure f k=4 with N(e′)={T₂,p_a,u_g}
+- H453–H455: PF4 forbids x−c₁ (C₄), y−c₂ (C₈), y−c₁+w−c₂ (C₈)
+- [PROOF_PF4_fire29.md](PROOF_PF4_fire29.md) · [verify_fire29.py](verify_fire29.py)
