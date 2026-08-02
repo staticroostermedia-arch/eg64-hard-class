@@ -1,7 +1,9 @@
 # Cubic Erdős–Gyárfás — rigorous core and open remainder
 
 **Purpose.** Respond to external audit: replace informal “stub excess / pigeon / with \(n\ge 14\)” sketches by **complete proofs** where possible, and mark remaining steps as **OPEN lemmas** with exact statements.  
-**Does not claim** that EG#64 is settled in the literature sense until every OPEN lemma below is closed.
+**Does not claim** that EG#64 is settled until every OPEN lemma below is closed.
+
+**Update:** Lemma 20.1 is **closed** — see [PROOF_OPEN201.md](PROOF_OPEN201.md). Remaining: 29.1, 32, 36, 38, 39.
 
 **Conventions.** Graphs are finite, simple, undirected. A graph is **cubic** if 3-regular.  
 **Hard class** \(\mathcal{H}\): connected cubic bipartite graphs with no 4-cycle and no 8-cycle.  
@@ -350,9 +352,9 @@ Continuing this forces a tree-like expansion. A first collision of the BFS from 
 **Proved:** free edge to \(C\) either contradiction or \(C_{16}\).  
 **Remaining:** pure expansion into \(U_0\) with no early collision — must show collision always occurs before a counterexample configuration can close, or that \(n\) bounds force it.
 
-**OPEN LEMMA 20.1.** In \(\mathcal{H}\), a length-7 \(s\)–\(t\) path internally disjoint from a fixed length-3 H-path and from \(C\), with no legal chord and no free edge into \(C\), does not exist.
+**LEMMA 20.1 (CLOSED).** In \(\mathcal{H}\), a length-7 \(s\)–\(t\) path internally disjoint from a fixed length-3 H-path and from \(C\) forces a \(C_{16}\).
 
-*Status:* Supported by Foster CAT (0 counterexamples) and the stub analysis above; **not** given a finite combinatorial closure without computer or further casework on the 6-stub configuration graph.
+*Proof:* See [PROOF_OPEN201.md](PROOF_OPEN201.md) (complete free-port case analysis). Seeds: `verify_open201.py`.
 
 ### Theorem 21 (Length ≥11)
 
@@ -509,11 +511,11 @@ Path of length 10 between thirds at \(C_7\)-distance 3, plus complementary arc l
 | Theorem 16 (P_* misses C) | **PROVED** with case claim on C∩P_* |
 | Theorem 18 (C* ⇒ path9) | **PROVED** under C* hypotheses |
 | Theorem 10 (no bridge, all cubic bipartite) | **Needs standard citation or 10′** |
-| OPEN 20.1 (no naked length-7 third path) | **OPEN** |
+| Lemma 20.1 (length-7 third path) | **CLOSED** — [PROOF_OPEN201.md](PROOF_OPEN201.md) |
 | OPEN 29.1 (C₁₀ antipodal existence) | **OPEN** |
 | OPEN 32 (double-stretch) | **OPEN** (seeds only) |
 | OPEN 36, 38, 39 | **OPEN** |
-| Full Theorem A (hard class always C₁₆) | **Conditional** on OPEN 20.1, 29.1, 32 and residual-bad arms |
+| Full Theorem A (hard class always C₁₆) | **Conditional** on 29.1, 32 and residual-bad arms (20.1 closed) |
 | Full Theorem B (all cubic) | **Conditional** on A + OPEN 36, 38, 39 + planar citation |
 
 ---
@@ -548,7 +550,7 @@ The external audit was correct: earlier “CLOSED” language overstated informa
 
 This document **keeps every fully rigorous lemma** and **isolates the exact OPEN lemmas** that remain for a journal proof of cubic EG:
 
-1. **OPEN 20.1** — no resistant length-7 third \(s\)–\(t\) path  
+1. ~~OPEN 20.1~~ **CLOSED** — [PROOF_OPEN201.md](PROOF_OPEN201.md)  
 2. **OPEN 29.1** — antipodal distance on short even cycles  
 3. **OPEN 32** — double-stretch residual-bad  
 4. **OPEN 36, 38, 39** — non-bipartite remainder  

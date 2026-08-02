@@ -14,7 +14,7 @@
 Theorems 1–8, 11–14, 17, 19.1, 22–24, 26–27, 30–31, 33–35, 37, 40 in `PROOF_RIGOROUS.md` (exclusive C₁₆, path-9, residual-good form, chord tables, triangle L=4,5, C₇ construction when path exists, …).
 
 ### What remains OPEN (blocks full cubic EG)
-1. **OPEN 20.1** — no resistant length-7 third s–t path  
+1. ~~OPEN 20.1~~ **CLOSED** ([PROOF_OPEN201.md](PROOF_OPEN201.md))  
 2. **OPEN 29.1** — antipodal distance existence on C₁₀/₁₂/₁₄  
 3. **OPEN 32** — double-stretch residual-bad  
 4. **OPEN 36, 38, 39** — triangle/og5/C₇ remainder  
