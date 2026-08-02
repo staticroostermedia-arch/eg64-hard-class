@@ -167,9 +167,9 @@ Positions of the length-3 arc relative to a survivor \((\ell_1,\ell_2,\ell_3)\),
 | Spans branch \(b'\): symmetric | e.g. \(a_2\) and \(d_5\) on \((3,3,7)\) | Same length arithmetic reflected through \(b'\): new triple \(\{3,7,9\}\) again; free of middles \(\to\) A.4 / \(C_8\) / Case 7 | same |
 | On a short arm of length 3 | both free bases on short arm | Short arm has only 2 interiors; dist 3 between free bases on arm of length 3 means the two interiors and the path goes through \(b\) or \(b'\) — dist along arm between the two interiors is 1, not 3. **Impossible** for \(\delta=3\) entirely on a length-3 arm | N/A |
 
-**Generic rule for L3-δ3:** after replacement, list the three new \(b\)–\(b'\) path lengths \((\ell_1',\ell_2',\ell_3')\). If any pair sums to 8 → ban. If all pair-sums avoid 4 and 8 → the new triple is a survivor with **strictly more edges used on free stubs** (the \(L=3\) return consumed 2 free stubs of \(\Theta\) and added a \(C_6\)); free edge of \(m\) must still land: landing on \(\Theta\) gives return length ≤2 (inductive base A.4); landing into \(K\) is Case 7 below with smaller active set. **No stable L3-δ3 configuration avoids A.4 and \(C_8\).**
+**Generic rule for L3-δ3:** Lemma U1 (all survivors) + Lemma U2 (landing of free edge of \(m\)) + Lemma U3 (measure \(\Phi=(F_{\mathrm{open}},|W_{\mathrm{active}}|,\sum L)\), first coordinate drops by 2 when ear consumes free stubs of \(f,f'\)). **No informal “more edges used”.**
 
-*(Referee note: the “spans branch \(b\)” row above is fully expanded on the survivor \((3,3,7)\); other survivors use the same length arithmetic.)*
+*(Universal formulas for all survivors: [PROOF_UNIVERSAL.md](PROOF_UNIVERSAL.md) Lemma U1 Case II — lengths \(\beta=r+3+(\ell_j-s)\), \(\gamma=s+3+(\ell_i-r)\); ban iff \(\ell_k+\ell_j=6\) for \((r,s)=(1,2)\).)*
 
 **General \(L\ge 4\):**  
 Middle vertices of the return path each have a free edge off the return path.
@@ -389,6 +389,6 @@ Lemma 2.4 types P/T/U     Theorem B.4 (k≥2)
 
 Universal quantifiers in A.5 and C.4 are **proof obligations**, not seed obligations.
 
-**Third-pass status (external audit):** Case 7, L3-δ3, survivor coverage, and A.0 are closed. Pure-new / arbitrary-\(W\) soft spot resolved for practical purposes.
+**Status (honest):** Finite cases and Case 7 measure closed (third-pass audit). **Universal quantifiers** (all survivors, exhaustive landings, well-founded Φ) are formalized in [PROOF_UNIVERSAL.md](PROOF_UNIVERSAL.md) Lemmas U1–U3 / Theorems U4–U5 — not “resolved for practical purposes” alone. EG#64 as a journal theorem is **not** claimed from these commits without referee check of U1–U3.
 
 **Second-pass fixes:** Case 7 measure is lex \((|V(K)|, L)\) with primary \(|V|\); L3-δ3 table explicit; A.1 survivors all under A.5; A.0 disjoint cycles → second join or markers.

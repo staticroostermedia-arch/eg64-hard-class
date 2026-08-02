@@ -21,6 +21,8 @@ python3 verify_papers.py   # all seed suites
 | `verify_purenew.py` | L=2..5 return + C8 ban seeds |
 | **[PROOF_GAPS_CLOSED.md](PROOF_GAPS_CLOSED.md)** | **Lemma 2.5′ theta, Type U, μ-bookkeeping** |
 | `verify_gaps.py` | L4 matching obstruction + cutvertex |
+| **[PROOF_UNIVERSAL.md](PROOF_UNIVERSAL.md)** | **U1–U5: all survivors, landings, Φ measure** |
+| `verify_universal.py` | Case II formulas + ban predicate |
 | [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) | Antipodal, residual-bad, non-bip |
 | [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md) | Elementary core + ledger |
 | [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet / census |

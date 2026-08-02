@@ -1,3 +1,7 @@
+# Status for reviewers
+
+Finite free-port/pure-new cases closed under multi-pass audit. Universal coverage: PROOF_UNIVERSAL.md (U1–U5). **Not claimed:** complete EG#64 without referee review of U1–U3.
+
 > **Audit update:** See [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md). Full EG is **not** claimed. Proved lemmas are listed there; OPEN 20.1, 29.1, 32, 36, 38, 39 remain.
 
 # Erdős–Gyárfás for cubic graphs — campaign write-up for review
