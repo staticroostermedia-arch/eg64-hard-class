@@ -254,3 +254,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H140:** b₂ refuses {e′,g₁,g₂} stubs
 - **H149:** e′-third ≠ s,a\*
 - [PROOF_endgame_fire21.md](PROOF_endgame_fire21.md)
+
+
+---
+
+## Fire 22 — handshake / dual kill
+
+- **H178:** L₃ ⊆ neighbors in L₂∪L₄ only
+- **H154–H156:** 6 critical stubs → L₃\*, |L₃\*|≥3
+- **H183–H189:** dual |L₃\*|=3 skeleton (r₁,u_g,z)/(q,y,w)
+- **H202:** dual |L₃\*|=3 ⇒ explicit C₈ family — **DEAD**
+- [PROOF_handshake_fire22.md](PROOF_handshake_fire22.md)
