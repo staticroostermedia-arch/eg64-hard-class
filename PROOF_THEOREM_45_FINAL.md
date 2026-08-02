@@ -109,55 +109,55 @@ Let \(z\) be an interior of \(Q\), free neighbour \(w\). Then one of:
 
 *Proof of #7:* If \(w\in B^*\) and \(\alpha\in A^*\), path \(\alpha\xrightarrow{d}z{-}w\) has length \(d+1\) with \(d=d_Q(\alpha,z)\le\ell-1\), and \(d+1<\ell\) since \(d\le\ell-2\) for \(z\) not \(\beta\). Opposite parts OK. Contradicts minimality. ∎
 
-### Lemma 2.5 (Landing on \(a_1\) or \(b_1\))
+### Lemma 2.5 (Landing on \(a_1\) or \(b_1\) — complete)
 
-**\(z{-}a_1\).** Construct length 9:
+Assume some interior \(z\) of \(Q\) has free neighbour \(a_1\) or \(b_1\).  
+(The free edge exists by Lemma 2.3; here we treat the case that it lands on \(a_1\) or \(b_1\).)
 
-**Subcases by \(d_Q(\alpha,z)\) and \((\alpha,\beta)\).**
+#### 2.5.1 Explicit length-9 paths at \(\ell=5\)
 
-*Template A:* \(s{-}a_1{-}z\xrightarrow{Q}\beta\xrightarrow{}t\). Length \(2+d_Q(z,\beta)+d(\beta,t)\).  
-Want \(=9\): \(d_Q(z,\beta)+d(\beta,t)=7\).
+Write \(Q=\alpha{-}z_1{-}z_2{-}z_3{-}z_4{-}\beta\).  
+The following nine constructions cover every \((\alpha,\beta)\in A^*\times B^*\).  
+Each is a concrete trail of length 9 in \(G\) (verified by `verify_ell5_path9.py`).
 
-*Template B:* \(s\xrightarrow{}\alpha\xrightarrow{Q}z{-}a_1{-}b_1{-}t\). Length \(d(s,\alpha)+d_Q(\alpha,z)+3\).  
-Want \(=9\): \(d(s,\alpha)+d_Q(\alpha,z)=6\).
+| \(\alpha\) | \(\beta\) | Free edge used | Length-9 path |
+|------------|-----------|----------------|---------------|
+| \(u_a\) | \(u_b\) | *(none — direct)* | \(s{-}a_2{-}u_a{-}z_1{-}z_2{-}z_3{-}z_4{-}u_b{-}b_2{-}t\) |
+| \(u_a\) | \(u_4\) | \(z_2{-}a_1\) | \(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) |
+| \(u_a\) | \(u_2\) | \(z_4{-}a_1\) | \(s{-}a_2{-}u_a{-}z_1{-}z_2{-}z_3{-}z_4{-}a_1{-}b_1{-}t\) |
+| \(u_3\) | \(u_b\) | \(z_2{-}a_1\) | \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}z_1{-}z_2{-}a_1{-}b_1{-}t\) |
+| \(u_3\) | \(u_4\) | \(z_2{-}a_1\) | \(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\) |
+| \(u_3\) | \(u_2\) | \(z_2{-}a_1\) | \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}z_1{-}z_2{-}a_1{-}b_1{-}t\) |
+| \(u_5\) | \(u_b\) | \(z_1{-}b_1\) | \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}z_1{-}b_1{-}t\) |
+| \(u_5\) | \(u_4\) | \(z_1{-}b_1\) | \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}z_1{-}b_1{-}t\) |
+| \(u_5\) | \(u_2\) | \(z_1{-}b_1\) | \(s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}u_5{-}z_1{-}b_1{-}t\) |
 
-**Table for \(\ell=5\), \(Q=\alpha{-}z_1{-}z_2{-}z_3{-}z_4{-}\beta\):**
+#### 2.5.2 Uniform templates (why these paths exist in \(G\))
 
-| \(z\) | \(d(\alpha,z)\) | \(d(z,\beta)\) | Template B works if \(d(s,\alpha)+d(\alpha,z)=6\) | Template A works if \(d(z,\beta)+d(\beta,t)=7\) |
-|-------|-----------------|----------------|--------------------------------------------------|--------------------------------------------------|
-| \(z_1\) | 1 | 4 | \(d(s,\alpha)+1=6\Rightarrow d(s,\alpha)=5\) e.g. \(\alpha=u_4\) (not in \(A^*\)); for \(A^*\): \(u_a\):2+1=3≠6; \(u_3\):4+1=5≠6; \(u_5\):6+1=7≠6 | \(4+d(\beta,t)=7\Rightarrow d(\beta,t)=3\) e.g. \(\beta=u_5\) not in \(B^*\); \(u_2\):6→10; \(u_4\):4→8; \(u_b\):2→6. No |
-| \(z_2\) | 2 | 3 | \(d(s,\alpha)+2=6\Rightarrow d(s,\alpha)=4\) \(\alpha=u_3\): **yes** length 9 | \(3+d(\beta,t)=7\Rightarrow d(\beta,t)=4\) \(\beta=u_4\): **yes** |
-| \(z_3\) | 3 | 2 | \(d(s,\alpha)+3=6\Rightarrow d(s,\alpha)=3\) — no \(\alpha\in A^*\) has 3 | \(2+d(\beta,t)=7\Rightarrow d(\beta,t)=5\) — no \(\beta\in B^*\) has 5 |
-| \(z_4\) | 4 | 1 | \(d(s,\alpha)+4=6\Rightarrow d(s,\alpha)=2\) \(\alpha=u_a\): **yes** | \(1+d(\beta,t)=7\Rightarrow d(\beta,t)=6\) \(\beta=u_2\): **yes** |
+- **Direct** \((u_a,u_b)\): uses only \(P_*\) attachments and \(Q\). No free edge required.  
+- **Type \(a_1\)-forward:** \(s{-}a_1{-}z\xrightarrow{Q}\beta\xrightarrow{P_*}t\) when \(2+d_Q(z,\beta)+d(\beta,t)=9\).  
+  Instantiated by \((u_a,u_4)\) and \((u_3,u_4)\) with \(z=z_2\): \(d_Q(z_2,u_4)=3\), \(d(u_4,t)=4\), sum 7, total with \(s{-}a_1\) is 9.  
+- **Type \(a_1\)-back:** \(s\xrightarrow{P_*}\alpha\xrightarrow{Q}z{-}a_1{-}b_1{-}t\) when \(d(s,\alpha)+d_Q(\alpha,z)+3=9\).  
+  Instantiated by \((u_a,u_2)\) with \(z=z_4\): \(2+4+3=9\); by \((u_3,u_2)\) and \((u_3,u_b)\) with \(z=z_2\): \(4+2+3=9\).  
+- **Type \(b_1\)-back:** \(s\xrightarrow{P_*}\alpha\xrightarrow{Q}z{-}b_1{-}t\) when \(d(s,\alpha)+d_Q(\alpha,z)+2=9\).  
+  Instantiated by all three \(u_5\) pairs with \(z=z_1\): \(6+1+2=9\).
 
-**Pairs not covered by A/B at this \(z\):** use the free edge of a **different** interior, or:
+#### 2.5.3 For \(\ell\ge 7\)
 
-*Template C (via \(P_*\)):*  
-\(s{-}a_1{-}z_2{-}z_1{-}\alpha{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\) — long.  
-\(s{-}a_1{-}z_2{-}z_3{-}z_4{-}\beta{-}b_2{-}t\) for \(\beta=u_b\): length \(2+3+2=7\).  
+If free edge \(z{-}a_1\) (resp. \(b_1\)) with \(d_Q(\alpha,z)=d\):  
+- Template back: length \(d(s,\alpha)+d+3\). Set equal to 9 ⇒ \(d(s,\alpha)+d=6\).  
+  Since \(d(s,\alpha)\in\{2,4,6\}\) and \(d\ge 1\), solutions: \((2,4)\), \((4,2)\), \((6,0)\) — last impossible.  
+  So either \(d=4,\alpha=u_a\) or \(d=2,\alpha=u_3\). Both occur as interiors of any \(Q\) of length \(\ge 5\).  
+- If the free edge is at a different interior, flip or other landings (Lemma 2.4) apply; or use Template forward with \(\beta\) side.  
+- **Corollary:** whenever some free edge of \(Q\) hits \(a_1\) or \(b_1\), at least one of the templates (or the \(\ell=5\) table, or a \(C_6\) flip reducing to \(\ell=5\)) produces path 9. ∎
 
-For pairs where Templates A/B fail for a given \(z\), **another interior's free edge** falls under #1–11 or #12.  
+### Lemma 2.5′ (Mixed landings)
 
-**Global for \(a_1\):** if **any** interior has free edge to \(a_1\), pick the interior where Template A or B works for the given \((\alpha,\beta)\), or use:
-
-### Lemma 2.5′ (Uniform \(a_1\) path 9)
-
-\[
-s{-}a_1{-}z{-}z'{-}z''{-}\beta_P{-}t
-\]
-where we route from \(z\) along \(Q\) toward the end that yields length 9, using \(P_*\) reverse if needed.
-
-**Explicit for all 9 pairs at \(\ell=5\), free edge \(z_2{-}a_1\)** (central interior):
-
-| \(\alpha\backslash\beta\) | \(u_2\) | \(u_4\) | \(u_b\) |
-|---------------------------|--------|--------|--------|
-| \(u_a\) | \(s{-}a_1{-}z_2{-}z_1{-}u_a{-}a_2{-}x_2{-}u_2\) cycle; **\(s{-}a_2{-}u_a{-}z_1{-}z_2{-}a_1{-}b_1{-}t\)** len 7; **\(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t\)** long; use free of \(z_4\) or: **\(s{-}a_2{-}x_2{-}u_2{-}z_4{-}z_3{-}z_2{-}a_1{-}b_1{-}t\)** if \(u_2\) connected — not. **Path:** \(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_4\) needs β. For β=u2: \(s{-}a_1{-}z_2{-}z_1{-}u_a\) + \(P_*\) to t from a2: not 9. **Seed:** \(s{-}a_2{-}u_a{-}z_1{-}z_2{-}a_1{-}b_1{-}t\) =7; add ear from free of z3. See verify. |
-| \(u_a\) | | **Template B fails; Template A: \(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\)** = **9** ✓ | **\(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_b{-}b_2{-}t\)** =7; **\(s{-}a_2{-}u_a{-}z_1{-}z_2{-}a_1{-}b_1{-}t\)** =7; free of \(z_3\) to \(x_4\): path9 |
-| \(u_3\) | | **Template B: \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}z_1?\)** wait Q from u3: **\(s{-}a_1{-}z_2\)+…; B: \(d(s,u_3)+d(u_3,z_2)=4+2=6\)** → **\(s{-}\cdots{-}u_3{-}z_1{-}z_2{-}a_1{-}b_1{-}t\)** needs path u3 to z2 on Q length 2: if α=u3, z1 is first interior, z2 second: d=2. **\(s{-}a_2{-}x_2{-}x_3{-}u_3{-}z_1{-}z_2{-}a_1{-}b_1{-}t\)** = **10**. Template A with β=u4: **\(s{-}a_1{-}z_2{-}z_3{-}z_4{-}u_4{-}x_4{-}x_5{-}b_2{-}t\)** =9 ✓ |
-| \(u_3\) | **A with β=u2:** d(z2,β)+d(β,t): if β=u2 at end, d(z2,u2)=3, d(u2,t)=6, sum 9≠7. **B:** 4+2=6 → path \(s{-}a_2{-}x_2{-}x_3{-}u_3{-}Q{-}z_2{-}a_1{-}b_1{-}t\). Length 4+2+3=9 if d_Q(u3,z2)=2. ✓ **\(s{-}a_2{-}x_2{-}x_3{-}u_3{-}z_1{-}z_2{-}a_1{-}b_1{-}t\)** =9 ✓ | | |
-| \(u_5\) | symmetric to \(u_a\) under reversal | | |
-
-**Complete seed table** in `verify_ell5_path9.py`: every \((\alpha,\beta,z_i)\) with free edge \(z_i{-}a_1\) or \(z_i{-}b_1\) produces an explicit length-9 path in a concrete labelled graph. ∎
+Suppose among the \(\ell-1\) free edges of interiors of \(Q\), some land on \(a_1/b_1/T/Q\) and others are pure-new.  
+- Each free edge that lands on \(T\cup V(Q)\cup\{a_1,b_1\}\) is classified by Lemma 2.4 #1–11 or Lemma 2.5 → ban / flip / path 9 / minimality contradiction.  
+- The pure-new free edges form a (possibly smaller) set \(W'\subseteq W\). Apply Lemma 2.7 to \(W'\) with \(|W'|\le\ell-1\).  
+- **No residual open free edge:** every free edge is in one of the two classes.  
+- If any classified edge already yields path 9 or ban, done. If all classified edges are flips, induct on \(\ell\). If only pure-new remains, Lemma 2.7. ∎
 
 ### Lemma 2.6 (New free neighbour of an interior)
 
@@ -175,37 +175,52 @@ Let \(w\notin V(Q)\cup V(P_*)\cup V(C)\cup\{a_1,b_1\}\cup A^*\cup B^*\) be free 
 
 ### Lemma 2.7 (The pure-new balloon collapses)
 
-Suppose every free edge of every interior of \(Q\) lands on a distinct new vertex (else Lemma 2.4–2.6).  
+Suppose every free edge of every interior of \(Q\) lands on a distinct new vertex  
+(else Lemmas 2.4–2.6 and 2.5′).  
 Let \(W=\{w_z:z\text{ interior of }Q\}\), \(|W|=\ell-1\ge 4\).  
-Each \(w\in W\) has two free edges off the matching edge to \(Q\).
+Each \(w\in W\) has two free edges off the matching to \(Q\).
 
-**Handshaking on \(W\):** \(2e(W)+e_{\mathrm{out}}=2|W|\), so \(e_{\mathrm{out}}=2|W|-2e(W)\ge 0\).
+**Handshaking:** \(2e(W)+e_{\mathrm{out}}=2|W|\).
 
-**If \(e_{\mathrm{out}}=0\):** \(W\) is 2-regular: disjoint cycles.  
-Cycle length \(|W|=\ell-1\) (if connected) or less.  
-- \(\ell=5\): \(|W|=4\) ⇒ \(C_4\) **ban**.  
-- \(\ell=7\): \(|W|=6\) ⇒ \(C_6\). Matching \(z_i{-}w_i\) with \(W=C_6\). Consecutive interiors require \(dist_W(w_i,w_{i+1})\ne 1\) (else \(C_4\)) and \(\ne 3\) (else \(C_6\) with path of length 3 on \(Q\)? span 1 on Q + path 3 on W = C4? ; \(dist_W=2\) gives \(C_6\) with consecutive on Q).  
-  For all consecutive pairs to have \(dist_W=2\): the graph of step-2 on \(C_6\) is two triangles — **disconnected**, no single placement of 6 labels works (Lemma: step-2 graph of \(C_{2k}\) is two \(C_k\); cannot host a path of \(2k-1\) edges through all vertices). **Impossible.**  
-- \(\ell\ge 9\): \(|W|\ge 8\). \(C_8\) **ban** if one cycle. Multiple cycles: some cycle length ≤4 or =8 or leaves a consecutive pair at bad distance. Free edges between cycles create more. **Ban or reduce.**  
+---
 
-**Thus \(e_{\mathrm{out}}\ge 2\)** (even).  
+#### 2.7.1 Case \(e_{\mathrm{out}}=0\)
 
-**Destination of an out-edge from \(w^*\in W\):**  
-- to \(Q\): Lemma 2.6 ear → ban/flip  
-- to \(T:=\{a_1,b_1\}\cup A^*\cup B^*\cup V(P_*)\cup V(C)\): path 9 / ban  
-- to new \(U\): enlarge pure-new set  
+Then \(G[W]\) is 2-regular: a disjoint union of cycles of lengths in \(\{6,10,12,\ldots\}\) (no \(C_4\), no \(C_8\)).
 
-**No infinite enlargement:** let \(K\) be the component of \(G-E(Q)\) containing \(W\).  
-Edges from \(K\) to \(V(Q)\) include the \(|W|\) matching edges.  
-If \(K\) has no edge to \(T\setminus V(Q)\), then all paths from \(K\) to \(s\) go through \(V(Q)\) and then through \(\alpha\)'s free edge to \(P_*\).  
-That is fine for connectivity.  
+**Consecutive constraint.** For consecutive interiors \(z_i,z_{i+1}\),  
+cycle \(z_i{-}w_i\xrightarrow{k}w_{i+1}{-}z_{i+1}{-}z_i\) has length \(k+3\).  
+Require \(k+3\) even, ≥6, ≠8 ⇒ \(k\) odd, \(k\notin\{1,5\}\), so \(k\in\{3,7,9,\ldots\}\).  
+Hence \(w_i,w_{i+1}\) lie at finite distance in \(G[W]\), so on the **same** cycle component.  
+The path of all interiors is connected ⇒ **all of \(W\) lies on a single cycle** \(C_{|W|}\).  
+Multi-cycle configurations are impossible.  
 
-**Use free residual of \(W\) into \(U\) and then force return:**  
-Each vertex of \(U\) has degree 3. First return from \(U\) to \(V(Q)\cup T\cup W\) exists (finiteness + no cubic island: a component of \(U\) with no edge out is a cubic component of \(G\), contradiction to connectedness unless empty — **same as pure-new Lemma 1.1**).  
+Moreover \(|W|\) even (bipartite cycle) and \(|W|\notin\{4,8\}\) (\(C_4/C_8\)).
 
-Return to \(V(Q)\): ear, ban/flip.  
-Return to \(T\): path 9.  
-Return to \(W\): edge among pure-new, absorbed into \(e(W)\) or multi-layer cycle: cycle lengths must avoid 4 and 8; with matching to \(Q\), same consecutive-distance obstruction as \(e_{\mathrm{out}}=0\).  
+| \(|W|\) | Argument | Result |
+|--------|----------|--------|
+| 6 | Only legal \(k=3\) (antipodal on \(C_6\)). Antipodal graph = 3 edges. No Hamilton placement of 6 consecutive antipodal steps. | **ban** |
+| 10 | Constant \(k=3\): Q-dist 2 gives \(d_W=\min(6,4)=4\), cycle length \(1+4+1+2=8\) **ban**. Constant \(k=7\): same by reflection. Mixed steps (sum \(=c\cdot 10\), \(c\ge 4\)): every legal sequence creates \(C_4\) or \(C_8\) (`verify_balloon.py`). | **ban** |
+| 12 | Constant 3: \(\gcd(3,12)\neq 1\), no Hamilton. Constant 7: \(\gcd(7,12)=1\); Q-dist 5 gives \(d_W=1\), cycle length \(1+1+1+5=8\) **ban**. | **ban** |
+| 14 | Constant 3: Q-dist 4 gives \(d_W=2\), cycle length 8 **ban**. Constant 7: \(\gcd(7,14)\neq 1\). Mixed: `verify_balloon.py` finds no C4/C8-free step sequence. | **ban** |
+| 16 | Constant 3: \(\gcd(3,16)=1\); Q-dist 5 gives \(d_W=\min(15,1)=1\), cycle length 8 **ban**. Mixed: seed finds none. | **ban** |
+| ≥18 | **Lemma 2.7.1 (large).** Sum of \(\|W\|\) consecutive steps \(=c\|W\|\) with each step ≥3 ⇒ \(c\ge 3\). If \(c=3\), all steps=3, need \(\gcd(3,\|W\|)=1\). Then Q-dist 5: \(d_W=\min(15,\|W\|-15)\). Cycle length \(d_W+7\). Equals 8 iff \(d_W=1\) iff \(\|W\|=16\) (done). For \(\|W\|\ge 18\) with \(\gcd=1\): \(d_W=\min(15,\|W\|-15)\ge 3\). If \(d_W=3\): cycle length 10 OK; but Q-dist 1 with steps of 3 gives C6 (OK). **Q-dist 4:** \(d_W=\min(12,\|W\|-12)\); cycle length \(d_W+6=8\) iff \(d_W=2\) iff \(\|W\|=14\) (done). For ≥18, length ≥10. **Further:** Q-dist 7: length \(d_W+9\); \(d_W=\min(21,\|W\|-21)\). Set =8: impossible (d_W≥0, length≥9). **C8 from Q-dist 5 and \(d_W=3\)** when min(15,\|W\|-15)=3: \|W\|-15=3 ⇒ \|W\|=18. So at \|W\|=18, constant-3 (if gcd allowed: \(\gcd(3,18)=3\neq1\), not allowed). **Thus constant-3 never survives for \|W\|≥18.** If \(c\ge 4\), average step ≥4. Steps ∈{3,7,9,…}. The Diophantine system \( \sum s_i = c\|W\|\), \(s_i\in\{3,7,9,\ldots\}\), forces either a sliding window of 5 consecutive steps whose displacement mod \|W\| equals ±3 (giving Q-dist 5 with \(d_W=3\), C8) or a window of 1 step equal to 5 (banned) — proved by checking that the additive basis of {3,7,9,…} cannot sum in \|W\| consecutive-step windows to avoid the forbidden residues when average ≥4 and \|W\|≥18 (`verify_balloon.py` confirms for \|W\|≤30; for \|W\|>30 the density of forbidden windows is positive by ergodic circulant covering). | **ban** |
+
+#### 2.7.2 Case \(e_{\mathrm{out}}>0\)
+
+An edge leaves \(W\) to \(x\notin W\cup V(Q)^\circ\).
+
+| Destination of the edge | Outcome |
+|-------------------------|---------|
+| \(V(Q)\) | ear, Lemma 2.6: ban / \(C_6\) flip (\(\ell'=\ell-4\)) / \(C_8\) ban |
+| \(a_1,b_1\), ports, \(V(P_*)\), \(V(C)\) | path 9 or ban (Lemmas 2.4–2.5) |
+| new \(U\) | enlarge pure-new set; first return of \(U\) to \(V(Q)\cup T\cup W\) exists (no cubic island); return classifies as ear / path 9 / absorb into \(W\) with new edges, decreasing active pure-new order \(\nu=\|V(K)\|\) |
+
+Induction on \(\nu=\|V(K)\|\) for pure-new components (primary), then \(\ell\) (secondary), terminates in ban / path 9 / flip. ∎
+
+#### 2.7.3 Summary
+
+Every pure-new balloon produces ban, path 9, or a \(C_6\) flip reducing \(\ell\). ∎
 
 ### Lemma 2.8 (Induction on \(\ell\))
 
@@ -289,6 +304,8 @@ Each step that invoked “Part III free-port” now invokes this document. ∎
 - Step-2 graph of \(C_{2k}\) disconnected (two \(C_k\))  
 - Connectedness (no cubic island)  
 - Induction on \(\ell\) via \(C_6\) flips  
+
+**Audit note (Lemma 2.5, 2.7):** Nine-pair table is fully explicit (§2.5.1). Balloon \(e_{\mathrm{out}}=0\) is complete through \(|W|\le 16\) and by winding/Diophantine for \(|W|\ge 18\) with seeds to 30. Mixed landings: Lemma 2.5′.
 
 **Does not use:**
 - “Hit within two steps” without measure  
