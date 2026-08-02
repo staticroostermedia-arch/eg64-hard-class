@@ -1,3 +1,5 @@
+> **Audit update:** See [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md). Full EG is **not** claimed. Proved lemmas are listed there; OPEN 20.1, 29.1, 32, 36, 38, 39 remain.
+
 # Erdős–Gyárfás for cubic graphs — campaign write-up for review
 
 **Repository:** [staticroostermedia-arch/eg64-hard-class](https://github.com/staticroostermedia-arch/eg64-hard-class)  

@@ -4,6 +4,7 @@ import networkx as nx
 import random
 import subprocess
 import sys
+from pathlib import Path
 
 def test_H9_H13():
     G = nx.Graph()
@@ -121,6 +122,7 @@ def test_og5_L4():
     print("C14 og5 L=4 C8 PASS")
 
 def test_regression():
+    root = Path(__file__).resolve().parent
     for s in [
         "verify_fire30.py",
         "verify_fire33.py",
@@ -130,7 +132,7 @@ def test_regression():
         "verify_fire39.py",
     ]:
         r = subprocess.run(
-            [sys.executable, f"/workspace/engram-math-campaign/{s}"],
+            [sys.executable, str(root / s)],
             capture_output=True,
             text=True,
         )

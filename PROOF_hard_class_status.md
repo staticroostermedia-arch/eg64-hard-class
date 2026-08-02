@@ -76,3 +76,8 @@ S614-A/B **closed**. Non-bipartite H614 architecturally complete. Next: S590 res
 All Phase A/B gaps filled in [PROOF_CLOSED.md](PROOF_CLOSED.md).
 Theorems A (hard class) and B (full cubic EG).
 `verify_closed.py` PASS.
+
+
+## Audit correction
+[PROOF_RIGOROUS.md](PROOF_RIGOROUS.md) supersedes "all closed" language.
+OPEN 20.1 is the highest-leverage remaining lemma for bipartite hard class.
