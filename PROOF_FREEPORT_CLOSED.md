@@ -343,7 +343,11 @@ s{-}a_2{-}x_2{-}u_2{-}q{-}p{-}u_5{-}x_5{-}b_2{-}t\quad(\text{len }9).\quad\check
 
 ---
 
-# Part III — \(\ell\ge 5\) and pure-new BFS
+# Part III — \(\ell\ge 5\) and separate components
+
+> **Superseded by** [PROOF_THEOREM_45_FINAL.md](PROOF_THEOREM_45_FINAL.md) (Join/Separate on \(H=G-V(P_*)\), induction on \(\ell\), pure-new balloon handshaking). The text below is retained as historical draft; the formal proof is PROOF_THEOREM_45_FINAL.
+
+# Part III (historical draft) — \(\ell\ge 5\) and pure-new BFS
 
 ## III.1 First free edge off a shortest \(A^*\)–\(B^*\) path \(Q\) of length \(\ge 5\)
 
@@ -394,7 +398,7 @@ If \(f\) new: free edges of \(f\) hit \(\{x_4,b_2,b_1,x_2,\ldots\}\) within 1–
 
 ## Theorem 4.5′ (free-port engine, complete)
 
-Pure-new cases: Theorem 7.1 of PROOF_PURENEW_CLOSED (structural rewrite).
+Join \(\ell\ge 5\) and Separate: [PROOF_THEOREM_45_FINAL.md](PROOF_THEOREM_45_FINAL.md). Parts I–II below remain for \(\ell=1,3\).
 
 Under the residual-good H-bridge setup, any third \(s\)–\(t\) path of length 7 forces a \(C_{16}\).
 

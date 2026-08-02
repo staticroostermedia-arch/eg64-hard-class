@@ -1,3 +1,5 @@
+**Master free-port proof:** [PROOF_THEOREM_45_FINAL.md](PROOF_THEOREM_45_FINAL.md) (Theorem 4.5 closed).
+
 # eg64-hard-class
 
 ## Papers (start here)

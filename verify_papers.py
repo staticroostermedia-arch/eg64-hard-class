@@ -8,6 +8,7 @@ root = Path(__file__).resolve().parent
 scripts = [
     "verify_gaps.py",
     "verify_universal.py",
+    "verify_ell5_path9.py",
     "verify_purenew.py",
     "verify_freeport.py",
     "verify_open201.py",
