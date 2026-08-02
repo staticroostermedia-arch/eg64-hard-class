@@ -308,3 +308,13 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H368:** pure f cannot set N(e′)⊇{p_a,p_b} (C₄)
 - Core-graph cycle search as property test
 - [PROOF_H247dead_fire26.md](PROOF_H247dead_fire26.md)
+
+
+---
+
+## Fire 27 — U2b forbids; pure-f C₈
+
+- H371/H375/H384/H387/H391 U2b constraints
+- H399 pure f forbids s−c₁
+- H390 main pattern c₁−y + c₂−s survives (boxed)
+- [PROOF_U2b_fire27.md](PROOF_U2b_fire27.md) · [verify_fire27.py](verify_fire27.py)
