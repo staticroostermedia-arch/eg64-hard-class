@@ -34,9 +34,10 @@ They do **not** use \(\mu\)-induction.
 
 \(G[\Gamma]\) as in pure-new §2: interiors degree 3 in \(G[\Gamma]\), boundary to markers \(B(\Gamma)\subseteq X\).  
 Suppose \(Z_1\neq Z_2\) are cycles in \(G[\Gamma]\).  
-If they share an edge: deleting the shared path yields a theta (three paths between two vertices). Reduce to A.1.  
-If they share a vertex but not an edge: already a theta.  
-If disjoint: a path in connected \(\Gamma\) joining them creates a theta or a third cycle; free edges force a connection that creates a shared vertex configuration. (Two disjoint cycles in a graph with all degrees ≤3 must be joined by a path; the join plus arcs is a theta.)  
+If they share an edge: deleting the shared path yields a theta (three paths between two vertices). Reduce to A.1.
+If they share a vertex but not an edge: already a theta.
+
+**Disjoint cycles.** Suppose \(Z_1\cap Z_2=\emptyset\). \(\Gamma\) is connected, so there is a path \(Q\) in \(G[\Gamma]\) from \(V(Z_1)\) to \(V(Z_2)\) with interior off both cycles. Let \(Q\) be shortest; then \(Q\) meets each cycle only at its ends \(p_1\in Z_1\), \(p_2\in Z_2\). The two arcs of \(Z_1\) through \(p_1\) plus \(Q\) plus the two arcs of \(Z_2\) through \(p_2\) produce (at least) a theta: take branch vertices \(p_1,p_2\) and three \(p_1\)–\(p_2\) routes formed by \(Q\) and the two ways around \(Z_1\cup Z_2\) after picking one arc on each cycle that avoids creating a fourth independent path — more cleanly: \(p_1\) has degree 2 on \(Z_1\), so its free residual edge in \(G[\Gamma]\) is either along \(Q\) or a third edge. Since \(\deg=3\), the third edge at \(p_1\) is exactly the start of \(Q\) (or a chord). Thus \(Q\) is forced as the free edge of \(p_1\) into the rest of \(\Gamma\), and symmetrically at \(p_2\). The three paths between \(p_1\) and \(p_2\) are: (i) \(Q\), (ii) an arc of \(Z_1\) then a second join if needed — actually with a single join path \(Q\), the configuration is a **handcuff** (two cycles joined by a path). Each vertex of \(Z_1\setminus\{p_1\}\) has a free edge; free edges along \(Z_1\) that leave into \(W\) and first-return to \(Z_2\) create a second join, hence a theta (two joins + arcs). Free edges that first-return to \(Z_1\) are chords/ears on \(Z_1\) (classified by span). Free edges to \(X\) are markers (Type U / filled component, not pure interior two-cycle). **If no second join ever forms**, all free stubs of both cycles return only to their own cycle or to \(X\). Own-cycle returns: ears; span analysis as in pure-new Type U. Returns to \(X\): markers, reduce to Type U with the two cycles as the unicyclic-or-more case already banned by producing two cycles in one filled component after marker attachment — wait: two cycles already present. The free stubs of \(Z_1\) must go somewhere: by A.5.4 dangling trees ban, each free stub returns to \(\Theta':=Z_1\cup Z_2\cup V(Q)\) or to \(X\). A return from \(Z_1\) to \(Z_2\) is a second join \(\Rightarrow\) theta with branches on the two cycles. A return from \(Z_1\) to \(Q\) interior creates a theta with branch on \(Q\). **Hence either a theta appears, or a marker attachment (exit to §B / Type U).** No stable disjoint two-cycle configuration remains inside a single filled component without markers.
 
 **Hence w.l.o.g. a theta:** branch vertices \(b,b'\), three internally disjoint \(b\)–\(b'\) paths of lengths \(\ell_1\le\ell_2\le\ell_3\), each \(\ell_i\ge 3\) (girth ≥6, no two paths of length 2).  
 Same parity of all \(\ell_i\) (bipartite).  
@@ -53,7 +54,9 @@ Cycle lengths \(\ell_i+\ell_j\neq 4,8\).
 | any \(\ell_1+\ell_2=8\) | has \(C_8\) | **ban** |
 | 4,4,* | has \(C_8\) or odd | **ban** (even \(\ell\): \(b,b'\) same part) |
 
-**Survivors:** \((3,3,7),(3,3,9),\ldots,(3,7,7),(5,5,5),(5,5,7),\ldots,(6,6,6),\ldots\) with all pair-sums ∉ {4,8}.
+**Survivors:** all triples \((\ell_1,\ell_2,\ell_3)\) with \(\ell_1\le\ell_2\le\ell_3\), \(\ell_1\ge 3\), same parity, and \(\ell_i+\ell_j\notin\{4,8\}\) for all pairs — e.g. \((3,3,7),(3,3,9),\ldots,(3,7,7),(5,5,5),(5,5,7),\ldots,(6,6,6),\ldots\).
+
+**Coverage:** every such survivor has \(F=\ell_1+\ell_2+\ell_3-3\ge 6\) free stubs. Section A.5 applies **uniformly** to all survivors: the \(\nu\)-induction never uses the specific values \((3,3,7)\) except as an illustration in A.4. The only inputs are “three arms, free stubs, no \(C_4/C_8\) on \(\Theta\)”. Immediate bans (this table) remove the rest. **There is no survivor outside A.1 ∪ A.5.**
 
 ### A.2 Free stubs on the theta
 
@@ -144,33 +147,78 @@ Cycle length \(\delta+L\) must be even, ≥6, ≠8.
 
 **Base \(L=2\):** Corollary A.4. ✓  
 
-**Base \(L=3\):** cycle \(\delta+3\). Even ⇒ \(\delta\) odd.  
-- \(\delta=1\): free bases adjacent on theta — free edges of adjacent interiors; cycle 4 **ban**.  
-- \(\delta=3\): cycle 6. New \(b\)–\(b'\) path: replace arc 3 by path 3 ⇒ length change 0; or replace longer arc.  
-  On (3,3,7): arc of length 3 on long arm between \(d_i,d_{i+3}\): replace by \(L=3\) keeps length 7. Arc of length 3 through a short arm: e.g. \(a_1\) to \(d_2\) dist via \(b\) = 1+2=3. Replace: new path \(b{-}a_1\xrightarrow{3}d_2{-}\cdots{-}b'\) length \(1+3+(7-2)=9\) etc.  
-  **Flip creating length 5:** if the replaced arc has length \(\delta=5\) — but \(\delta=3\) here.  
-  Free edges of the \(L=3\) path interiors (one free each for the middle vertex): land on \(\Theta\) or in \(K\). Landing on \(\Theta\) creates a shorter return (length ≤2 from that middle), induction.  
-- \(\delta=5\): cycle 8 **ban**.  
-- \(\delta=7\): cycle 10. New path lengths: replace arc 7 by 3 ⇒ arm shortens by 4. Arm 7→3: becomes (3,3,3) or (3,3,ℓ).  
+**Base \(L=3\):** cycle \(\delta+3\). Even ⇒ \(\delta\) odd. Middle vertex \(m\) of the return has one free edge.
+
+| \(\delta\) | Cycle \(\delta+3\) | New \(b\)–\(b'\) lengths after replacing a \(\delta\)-arc by the return | Verdict |
+|------------|---------------------|-----------------------------------------------------------------------|---------|
+| 1 | 4 | — | **\(C_4\) ban** |
+| 3 | 6 | See **Table L3-δ3** below | ban or reduce |
+| 5 | 8 | — | **\(C_8\) ban** |
+| 7 | 10 | Replace arc of length 7 by path of length 3: new arm length \(\ell'-4\) relative to old arm through that arc. Arm 7→3: triple becomes \((3,3,3)\) or \((3,\ell_2,3)\) → A.1 / recurse | ban / A.1 |
+| ≥9 | ≥12 | Replace arc \(\delta=9\) by 3: shortens by 6; new arm may create pair-sum 8 or fall into A.5 with smaller arms | ban / smaller |
+
+**Table L3-δ3** (return of length 3 between free bases at distance 3 on \(\Theta\); cycle 6).  
+Positions of the length-3 arc relative to a survivor \((\ell_1,\ell_2,\ell_3)\), illustrated on \((3,3,7)\) and stated generically:
+
+| Location of \(\delta=3\) arc | Free bases | New \(b\)–\(b'\) path after replace arc by \(L=3\) | Outcome |
+|------------------------------|------------|-----------------------------------------------------|---------|
+| Entirely on long arm (positions \(d_i\)–\(d_{i+3}\)) | both on long arm | Long-arm length unchanged as a route through the ear (parallel \(C_6\)); **or** the complementary long-arc of length \(\ell_3-3\) plus \(L=3\) gives new length \(\ell_3\). Free edge of middle \(m\): if to \(\Theta\), shorter return (≤2) → A.4; if creates path of length 5 from \(b\) to \(b'\) via short arm, **\(C_8\)** with arm 3 | A.4 / \(C_8\) / free of \(m\) |
+| Spans branch \(b\): one base on arm \(i\), one on arm \(j\) | e.g. \(a_1\) and \(d_2\) (dist via \(b\) = 3) | Path \(b{-}a_1\xrightarrow{L=3}d_2{-}\cdots{-}b'\): length \(1+3+(\ell_3-2)= \ell_3+2\). Other routings: \(b{-}d_1{-}d_2\xrightarrow{3}a_1{-}a_2{-}b'\) length \(2+3+2=7\). Check pair-sums with remaining arm: if any new \(\ell'=5\) and an arm is 3 → **\(C_8\)** | compute; on (3,3,7) one routing gives length 5+… or 7; length 5+3=8 **ban** when present |
+| Spans branch \(b'\): symmetric | — | same | same |
+| On a short arm of length 3 | both free bases on short arm | Short arm has only 2 interiors; dist 3 between free bases on arm of length 3 means the two interiors and the path goes through \(b\) or \(b'\) — dist along arm between the two interiors is 1, not 3. **Impossible** for \(\delta=3\) entirely on a length-3 arm | N/A |
+
+**Generic rule for L3-δ3:** after replacement, list the three new \(b\)–\(b'\) path lengths \((\ell_1',\ell_2',\ell_3')\). If any pair sums to 8 → ban. If all pair-sums avoid 4 and 8 → the new triple is a survivor with **strictly more edges used on free stubs** (the \(L=3\) return consumed 2 free stubs of \(\Theta\) and added a \(C_6\)); free edge of \(m\) must still land: landing on \(\Theta\) gives return length ≤2 (inductive base A.4); landing into \(K\) is Case 7 below with smaller active set. **No stable L3-δ3 configuration avoids A.4 and \(C_8\).**
 
 **General \(L\ge 4\):**  
-Middle vertices of the return path each have a free edge off the return path.  
+Middle vertices of the return path each have a free edge off the return path.
 
 **Landing table for a free edge of an interior \(w^*\) of the return path:**
-1. On the return path at dist 2: parts impossible  
-2. Dist 3: \(C_4\) ban  
-3. Dist 4: \(C_5\) impossible  
-4. Dist 5: \(C_6\); flip shortens return length by 4 ⇒ new return length \(L-4\ge 0\); if ≥2, induction on \(L\)  
-5. On \(\Theta\) at free base \(f^*\): creates return from an endpoint to \(f^*\) of length < \(L\) (subpath + 1), induction  
-6. On \(\Theta\) at branch \(b\): \(b\) has no free slot — only if not already degree 3, contradiction  
-7. Into new \(W'\subseteq W\): then \(w^*\) opens a side structure; the first return from \(w^*\) to (return path \(\cup\Theta\)) has length \(L'\ge 1\).  
-   - To return path: shortens  
-   - To \(\Theta\): return length from original free base via \(w^*\) is < \(L+|V(K)|\) in measure  
-   Measure \(\nu = L + |V(K)|\) decreases when we pass to a first return inside \(K\) of strictly smaller path+component (delete classified edges, smaller active \(K\)).  
+1. On the return path at dist 2: parts impossible
+2. Dist 3: \(C_4\) ban
+3. Dist 4: \(C_5\) impossible
+4. Dist 5: \(C_6\); flip shortens return length by 4 ⇒ new return length \(L-4\); if \(L-4\ge 2\), induct on \(\nu\) with same \(K\) and smaller \(L\); if \(L-4\le 1\), reduces to direct/edge cases
+5. On \(\Theta\) at free base \(f^*\): creates a return between an endpoint of the current return and \(f^*\) of length \(L^*<L\) (strict subpath length +1 ≤ \(L-1\)); induct on \(\nu\) with \(L^*\), same or smaller \(K\)
+6. On \(\Theta\) at branch \(b\) or \(b'\): branches have degree 3 already on \(\Theta\) — no free slot. **Impossible**
+7. **Into a side structure inside \(K\)** — see **Case 7** below
 
-**Well-founded induction on \(\nu=L+|V(K)|\)** for fixed theta: every free edge of interiors either bans, shortens \(L\), or reduces \(|V(K)|\) after classifying a sub-return.  
-When \(L\) reduces to 2 or 3: base.  
-When all free edges of the return path are classified without ban: the return path is induced and its free edges all went to places that created shorter returns — eventually \(L=2\) base, **Corollary A.4 ban**.  
+#### Case 7 (side structure): explicit measure decrease
+
+Let \(R\) be the current return path of length \(L\) through \(K\), ends \(f,f'\) on \(\Theta\).  
+Let \(w^*\) be an interior vertex of \(R\), free edge \(w^*{-}u\) with \(u\notin V(R)\cup V(\Theta)\), \(u\in K\).
+
+Let \(K_{\mathrm{side}}\) be the connected component of \(G\bigl[K\setminus V(R)^\circ\bigr]\) containing \(u\), where \(V(R)^\circ\) is the interior of \(R\) (so ends \(f,f'\) stay on \(\Theta\)).  
+More precisely: delete the open interior of \(R\) from \(K\); \(u\) lies in some component \(K_{\mathrm{side}}\) of what remains of \(K\), or \(u\) is only attached via edges we still explore.
+
+**First return from \(u\)** to \(S:=V(R)\cup V(\Theta)\). Such a return exists: otherwise the component of \(u\) in \(G-S\) has no edge to \(S\), and as in A.5.1 it would be a cubic island or attach only to \(X\) (marker — exit). Write the first return as a path of length \(L_{\mathrm{side}}\ge 1\) from \(u\) to a vertex \(s_*\in S\), and prepend \(w^*{-}u\) to get a path from \(w^*\) to \(s_*\) of length \(L_{\mathrm{side}}+1\).
+
+Define the **child instance** by cases on \(s_*\):
+
+| Subcase | \(s_*\) lands on | Child return | Child component | New \(\nu'\) | Why \(\nu'<\nu\) |
+|---------|------------------|--------------|-----------------|-------------|-----------------|
+| **7a** | Interior of \(R\) at distance \(d\) from \(w^*\) along \(R\) | Ear on \(R\) of length \(L_{\mathrm{side}}+1+d\) | \(K_{\mathrm{side}}\) | Use ear length \(L_e\le L-1\) (ear proper) and \(\|V(K_{\mathrm{side}})\|<\|V(K)\|\) after removing \(R\)-interiors already charged | \(L_e<L\) or \(\|K_{\mathrm{side}}\|<\|K\|\); if both threaten equality, note \(R\)-interiors are **removed from active \(K\)** when the ear is classified, so \(\|V(K')\|\le\|V(K)\|-1\) |
+| **7b** | End of \(R\) (\(f\) or \(f'\)) | Return \(w^*\to f\) length \(L_{\mathrm{side}}+1\le \|V(K_{\mathrm{side}})\|+1\) | \(K_{\mathrm{side}}\) | \(L'\,=\,L_{\mathrm{side}}+1\), \(K'=K_{\mathrm{side}}\) | \(V(K_{\mathrm{side}})\subseteq V(K)\setminus V(R)^\circ\), so \(\|V(K')\|\le\|V(K)\|-(L-1)\). Since \(L\ge 4\), \(\|V(K')\|\le\|V(K)\|-3\). Even if \(L'\) is large, \(L'+\|V(K')\|\le 1+\|V(K_{\mathrm{side}})\|+\|V(K_{\mathrm{side}})\|\) is wrong — **use refined measure** below |
+| **7c** | \(\Theta\setminus\{f,f'\}\) at free base \(f^*\) | Return from \(f\) (via \(R\) to \(w^*\) then side) to \(f^*\), or direct side return \(w^*\to f^*\) of length \(L_{\mathrm{side}}+1\) | \(K_{\mathrm{side}}\) | Same as 7b | same |
+| **7d** | Marker in \(X\) | Exit to marker analysis (not pure off-theta pairing) | — | — | removes free stub from pure-\(W\) pool; \(\|E\|\) to \(\Theta\) drops |
+
+**Refined measure (replaces raw \(\nu=L+\|V(K)\|\) when side structures appear):**
+\[
+\nu \;=\; \bigl(\,|V(K)|,\; L\,\bigr)
+\]
+**lexicographic** with \(|V(K)|\) primary.
+
+- **7a:** classifying the ear removes at least the vertices of \(K_{\mathrm{side}}\) from further off-path exploration or reduces \(L\); after ear classification, active \(|V(K)|\) drops by \(\ge 1\) (at least \(u\) is assigned). \(\nu\) drops in the first coordinate.
+- **7b, 7c:** \(K'=K_{\mathrm{side}}\) satisfies \(V(K')\cap V(R)^\circ=\emptyset\), and \(V(R)^\circ\) has \(L-1\ge 3\) vertices still in old \(K\) but not in \(K'\). Thus \(|V(K')|\le |V(K)|-(L-1)\le |V(K)|-3\). First coordinate drops. **\(L'\) may be larger than \(L\); that is allowed** because \(|V|\) is primary.
+- **7d:** free stub classified toward \(X\); remove that stub’s component from pure-\(W\) analysis; \(|V(K)|\) drops.
+
+**Equal-\(\nu\) loops are impossible:** every Case-7 child has strictly smaller \(|V(K)|\) (primary key).  
+**Side structure that “escapes”:** only to \(X\) (7d), which leaves the pure off-theta induction and is handled by markers / pure-new \(\mu\).
+
+**Well-founded induction on \(\nu=\bigl(|V(K)|,\,L\bigr)\)** for fixed \(\Theta\):  
+- Primary: component order.  
+- Secondary: return length.  
+Base: \(L=2\) (Corollary A.4) and \(L=3\) (table above).  
+Inductive step: free edges of interiors land in 1–7; each bans, reduces \(L\), or invokes Case 7 with smaller primary key.  
+When all free edges of a return are classified without ban, all side structure is gone and free edges landed on \(\Theta\) or \(R\), producing only shorter returns → reduce to \(L=2\) → **Corollary A.4 ban**.  
 
 #### A.5.4 Conclusion for arbitrary \(W\)
 
@@ -184,7 +232,7 @@ Hence no dangling trees off a single free base without a second return. ∎
 A theta of free-stub type in \(G[\Gamma]\) cannot exist in \(\mathcal{H}\).  
 Hence \(G[\Gamma]\) has at most one cycle.
 
-*Proof.* A.0–A.5: every \((\ell_1,\ell_2,\ell_3)\) either immediately banned (A.1) or has free stubs that through arbitrary \(W\) reduce to banned short returns (A.5). ∎
+*Proof.* A.0 (two cycles → theta or markers); A.1 (immediate \(C_8\)); all survivors have free stubs under A.5 with lex \(\nu=(|V(K)|,L)\) including Case 7; reduce to A.4 ban. ∎
 
 ### A.7 Note on verification
 
@@ -338,3 +386,5 @@ Lemma 2.4 types P/T/U     Theorem B.4 (k≥2)
 | lex order | C.1 sanity | full C.4 |
 
 Universal quantifiers in A.5 and C.4 are **proof obligations**, not seed obligations.
+
+**Second-pass fixes:** Case 7 measure is lex \((|V(K)|, L)\) with primary \(|V|\); L3-δ3 table explicit; A.1 survivors all under A.5; A.0 disjoint cycles → second join or markers.

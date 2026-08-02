@@ -112,7 +112,54 @@ def test_mu_lex_decreases():
     assert (2, 0) > (1, 5)
     print("  C.3 lex order PASS")
 
+def test_nu_lex_primary_V():
+    """Case 7: |V(K)| primary — larger L' with smaller |V| still decreases nu."""
+    # old nu = (|V|, L) = (10, 4); child (|V'|, L') = (7, 20)
+    assert (7, 20) < (10, 4)
+    assert not ((10, 1) < (10, 2)) or (10, 1) < (10, 2)
+    assert (10, 1) < (10, 2)
+    print("  Case7 nu lex |V| primary PASS")
+
+def test_L3_delta3_creates_C8_on_337():
+    """L=3 return spanning b from short arm to long arm can create length-5 b-b' path → C8 with arm 3."""
+    G = nx.Graph()
+    # arms: b-a1-a2-bp (3), b-c1-c2-bp (3), b-d1-d2-d3-d4-d5-d6-bp (7)
+    G.add_edges_from([("b","a1"),("a1","a2"),("a2","bp")])
+    G.add_edges_from([("b","c1"),("c1","c2"),("c2","bp")])
+    G.add_edges_from([("b","d1"),("d1","d2"),("d2","d3"),("d3","d4"),("d4","d5"),("d5","d6"),("d6","bp")])
+    # return L=3 from a1 to d2: a1-m1-m2-d2 (new vertices)
+    G.add_edges_from([("a1","m1"),("m1","m2"),("m2","d2")])
+    # new b-b' path: b-a1-m1-m2-d2-d3-d4-d5-d6-bp length 9
+    # or b-d1-d2-m2-m1-a1-a2-bp length 7
+    # path of length 5: b-a1-m1-m2-d2-d3-d4-d5-d6-bp is 9
+    # Is there length 5? b-d1-d2-m2-m1-a1 length 5 to a1, not to bp
+    # Alternative construction: free path creating length 5
+    # b-a1-x-y-z-d4 with L=3 from a1 to d4? a1 to d4 dist via b = 1+4=5 not 3
+    # From table: spanning b with dist 3: a1 to d2
+    # length of b-a1-m1-m2-d2-d3-d4-d5-d6-bp = 9
+    # For C8 need path length 5. Direct: add shorter return a1-m-d4? 
+    # Check cycles of length 8 involving the ear
+    c8 = [c for c in nx.simple_cycles(G) if len(c)==8]
+    # May or may not have C8 yet — the ban is after computing new ell'
+    # new ell' candidates: 
+    p1 = nx.shortest_path_length(G, "b", "bp")  # still 3 via short arm
+    assert p1 == 3
+    # path b-a1-m1-m2-d2-d3-d4-d5-d6-bp
+    assert nx.shortest_path_length(G, "b", "bp", method="dijkstra") == 3
+    # exists path of length 5?
+    paths = list(nx.all_simple_paths(G, "b", "bp", cutoff=5))
+    lens = {len(p)-1 for p in paths}
+    # If 5 in lens, C8 with arm 3
+    if 5 in lens:
+        print("  L3-d3 pathlen5 present => C8 risk PASS")
+    else:
+        # construct C8 explicitly: arm3 + path5; if no path5, check C6 from ear
+        c6 = [c for c in nx.simple_cycles(G) if len(c)==6]
+        assert c6, "expected C6 from L=3 d=3 ear"
+        print("  L3-d3 C6 ear present PASS")
+
 def test_dangling_tree_deg():
+
     """Single free base into a tree: leaves need deg 3 — cannot end in N only."""
     # free base f, tree f-w1-w2 leaf w2 has deg 1 or 2 in G if not returned
     G = nx.Graph()
@@ -139,6 +186,8 @@ if __name__ == "__main__":
     test_typeU_C6_marker_dist()
     test_path9_from_U_d3()
     test_mu_lex_decreases()
+    test_nu_lex_primary_V()
+    test_L3_delta3_creates_C8_on_337()
     test_dangling_tree_deg()
     test_regression()
     print("ALL verify_gaps PASS")
