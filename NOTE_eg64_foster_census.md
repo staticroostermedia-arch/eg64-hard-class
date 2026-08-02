@@ -276,3 +276,13 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H216:** dual ⇒ \|L₃\*\|≥4, disjoint stars for g and g′
 - Dual k=4 tight config + H227/H228/H240/H241/H245 forbids
 - [PROOF_c4law_fire23.md](PROOF_c4law_fire23.md)
+
+
+---
+
+## Fire 24 — a*-bridge; dual k=4 partial collapse
+
+- **H289:** a*-bridge C₈ — L₄ nbrs of u_g/p_a cannot meet c₂
+- **H261/H267:** U0a main c₁/c₂ branches dead
+- **H293/H297/H299:** L₅ exclusivity C₈s for U2
+- [PROOF_bridge_fire24.md](PROOF_bridge_fire24.md)
