@@ -219,3 +219,14 @@ G cubic bipartite C4/C8-free
 - Fire 34: this master + H581/H582 connectivity  
 
 **Publish:** https://github.com/staticroostermedia-arch/eg64-hard-class  
+
+
+---
+
+## Fire 36 addendum — full cubic EG (H800)
+
+See [PROOF_H614_fire36.md](PROOF_H614_fire36.md).
+
+Campaign claim **H800:** every cubic graph has a \(C_{2^k}\), via H590+H612+H613+H780+H791+planar.
+
+Open scars: S614-A (H* fork prose), S614-B (girth≥9 ear), S590 audit, S582 λ=2.

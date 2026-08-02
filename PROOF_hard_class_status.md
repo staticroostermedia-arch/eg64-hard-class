@@ -55,3 +55,8 @@ https://github.com/staticroostermedia-arch/eg64-hard-class
 Hard class H590 is a **lemma**, not the win condition.
 
 **Open for full cubic EG:** H614 — non-bipartite, C4/C8-free, odd girth ≥7, n≥30.
+
+
+## Fire 36
+
+H614 opened into H780 (C7) + H790/791 (og≥9). Campaign full EG claim H800 with scars S614-A/B, S590, S582.

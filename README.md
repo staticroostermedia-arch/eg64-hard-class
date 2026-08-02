@@ -107,3 +107,10 @@ CC0-1.0 (or as declared by the repo owner). Math notes are offered for verificat
 - [PROOF_nonbip_fire35.md](PROOF_nonbip_fire35.md) — H612/H613/H620
 - Remaining open bucket: **H614** (odd girth ≥7, C4/C8-free, n≥30)
 - `verify_fire35.py`
+
+
+## Fire 36 — H614 odd girth ≥7
+
+- [PROOF_H614_fire36.md](PROOF_H614_fire36.md) — H640–H800 campaign full cubic EG tree
+- Scars S614-A/B tracked; `verify_fire36.py`
+- **H800:** campaign claim every cubic has \(C_{2^k}\) (with listed scars)
