@@ -126,3 +126,9 @@ CC0-1.0 (or as declared by the repo owner). Math notes are offered for verificat
 - [PROOF_S590_fire38.md](PROOF_S590_fire38.md) — H880 linear chain
 - `verify_fire38.py`
 - Remaining: S582, S612 (polish)
+
+## Fire 39 — S582 + S612 closed
+
+- [PROOF_S582_S612_fire39.md](PROOF_S582_S612_fire39.md)
+- `verify_fire39.py`
+- **All structural scars closed** (optional S590-μ only)

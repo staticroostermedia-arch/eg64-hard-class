@@ -236,3 +236,6 @@ S614-A/B closed via H810–H845. See PROOF_scars_fire37.md. H800′.
 
 ## Fire 38 — S590
 Residual-good audit: [PROOF_S590_fire38.md](PROOF_S590_fire38.md). H880. H590 rebuilt as H881.
+
+## Fire 39
+S582/S612 closed — [PROOF_S582_S612_fire39.md](PROOF_S582_S612_fire39.md). H800′′ no open structural scars.
