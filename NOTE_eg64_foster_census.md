@@ -265,3 +265,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H183–H189:** dual |L₃\*|=3 skeleton (r₁,u_g,z)/(q,y,w)
 - **H202:** dual |L₃\*|=3 ⇒ explicit C₈ family — **DEAD**
 - [PROOF_handshake_fire22.md](PROOF_handshake_fire22.md)
+
+
+---
+
+## Fire 23 — C₄ law; H202 scar; dual rebuild
+
+- **SCAR:** H183/H202 retracted — skeleton had C₄ g−f−g′−u_g−g
+- **H215/H222:** fundamental C₄ law (no vertex meets both L₂ children of one L₁)
+- **H216:** dual ⇒ \|L₃\*\|≥4, disjoint stars for g and g′
+- Dual k=4 tight config + H227/H228/H240/H241/H245 forbids
+- [PROOF_c4law_fire23.md](PROOF_c4law_fire23.md)
