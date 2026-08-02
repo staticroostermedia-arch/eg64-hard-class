@@ -378,3 +378,14 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - **H546:** dist=7 ⇒ C₁₆; **H550:** dist=3 ⇒ C₁₆
 - **H555: B2 empty.** Only **B1** remains in double-stretch.
 - [PROOF_B2dead_fire32.md](PROOF_B2dead_fire32.md) · [verify_fire32.py](verify_fire32.py)
+
+
+---
+
+## Fire 33 — ★★ B1 DEAD; double-stretch empty; hard-class EG (H580)
+
+- **H577:** B1 empty (Menger free-gates; H566/H571/H572)
+- **H578:** double-stretch empty (A+B2+B1)
+- **H579:** residual bad ⇒ C₁₆
+- **H580:** hard-class EG (bipartite cubic C₄/C₈-free) — campaign claim
+- [PROOF_B1dead_fire33.md](PROOF_B1dead_fire33.md) · [PROOF_hard_class_status.md](PROOF_hard_class_status.md)
