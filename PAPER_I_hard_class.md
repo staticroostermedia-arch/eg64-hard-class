@@ -176,27 +176,25 @@ P_*=s{-}a_2{-}x_2{-}x_3{-}x_4{-}x_5{-}b_2{-}t
 \]
 have length 7, internals off \(C\), internally disjoint from \(P_H\).
 
-**Step 0.** A legal chord of \(P_*\) has path-span 5 (only odd span not creating \(C_4/C_8\)), yields a \(C_6\), and flips to an \(s\)–\(t\) path of length 3 ⇒ Proposition 4.4.
+**Step 0–2 (ports).** As before: chordless (else flip to length 3); six distinct free ports
+\(A^*=\{u_a,u_3,u_5\}\subset B\), \(B^*=\{u_2,u_4,u_b\}\subset A\); at most two of the three
+allowed port edges \(e_1=u_au_4\), \(e_2=u_3u_b\), \(e_3=u_5u_2\).
 
-**Step 1.** Each of \(a_2,x_2,x_3,x_4,x_5,b_2\) has one free edge off \(P_*\).  
-No free edge into \(V(C)\) or \(\{a_1,b_1\}\) (each creates \(C_4\), \(C_8\), or an \(s\)–\(t\) path of length 5).  
-The six free neighbours (**ports**) are pairwise distinct (shared ports create \(C_4\), \(C_8\), or length-5 \(s\)–\(t\) paths).
+**Step 3–4 (complete case analysis).** Let \(Q\) be a shortest \(A^*\)–\(B^*\) path in \(G-V(P_*)\), length \(\ell\).  
+Every branch is closed by an **explicit** length-9 \(s\)–\(t\) path in
+[PROOF\_FREEPORT\_CLOSED.md](PROOF_FREEPORT_CLOSED.md):
 
-Write \(A^*=\{u_a,u_3,u_5\}\subset B\) (ports of A-side path vertices) and \(B^*=\{u_2,u_4,u_b\}\subset A\).
+| Branch | Closure |
+|--------|---------|
+| \(\ell=1\) (\(e_1,e_2,e_3\)) | Part I: free edges of \(u_3\) (resp. symmetric) hit a finite target set; each hit gives a listed path of length 9; pure-new BFS reduces to those hits |
+| \(\ell=3\), three clean pairs | Part II.1: immediate path 9 |
+| \(\ell=3\), \((u_a,u_b)\) | Part II.2: free edge of \(x_3\) lands on \(p\), \(n{-}q\), \(n{-}u_a\), or \(n{-}b_1\) — each path 9 |
+| \(\ell=3\), five length-11 pairs | Part II.3: landing tables for free edges of \(u_3,u_4,u_5,u_a,u_2,u_b\) — every legal landing is path 9; bipartite parity forbids several false landings |
+| \(\ell\ge 5\) | Part III.1: free edge of \(z_2\) on \(Q\) creates \(C_4/C_6\)/shorter \(A^*\)–\(B^*\) path only |
+| Separate components | Part III.2: \(\mathrm{dist}_{K_A}(u_a,u_3)=4\); free edge of \(p_3\) to \(x_4\) or \(b_1\) gives path 9 |
 
-**Step 2.** Edges among ports: only three candidates are \(C_4/C_8\)-legal (\(u_au_4\), \(u_3u_b\), \(u_5u_2\)); all three together create a \(C_8\). So at most two exist. Each is a length-1 \(A^*\)–\(B^*\) path in \(G-V(P_*)\).
-
-**Step 3.** Let \(Q\) be a shortest \(A^*\)–\(B^*\) path in \(G-V(P_*)\), from \(\alpha\in A^*\) to \(\beta\in B^*\), length \(\ell\) odd.
-
-| \(\ell\) | Outcome |
-|----------|---------|
-| 1 | Allowed port edge; remaining free edges of its ends give a length-9 \(s\)–\(t\) path, or reduce to \(\ell=3\) |
-| 3 | Explicit length-9 \(s\)–\(t\) path for each of the nine \((\alpha,\beta)\) pairs (three give length 9 immediately; length 7 upgrades via free edge at \(x_3\); length 11 reduces by legal ear to length 9) |
-| ≥5 | First free-edge collision on \(Q\) shortens to \(\ell=3\) (Moore/girth ≥6) |
-
-**Step 4.** If \(A^*\) and \(B^*\) lie in different components of \(G-V(P_*)\), distances in the \(A^*\)-component among \(\{u_a,u_3,u_5\}\) cannot be 2 or 6 (else \(C_4/C_8\) with \(P_*\)). Legal distance 4 produces a length-11 \(s\)–\(t\) path that upgrades to length 9 via a free edge to \(P_*\). Distances ≥8 force a radius-2/3 ball collision reducing to distance 4 (forbidding distance 6 as \(C_8\)).
-
-**Conclusion.** Every branch yields a length-9 \(s\)–\(t\) path off \(C\), hence a \(C_{16}\) by Lemma 2.3. ∎
+**Conclusion.** Length-9 \(s\)–\(t\) path off \(C\) ⇒ Lemma 2.3 ⇒ \(C_{16}\).  
+Seeds: `verify_freeport.py` (all explicit constructions). ∎
 
 #### Theorem 4.6 (Residual good)
 
