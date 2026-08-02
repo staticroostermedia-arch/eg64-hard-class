@@ -69,3 +69,10 @@ S614-A/B **closed**. Non-bipartite H614 architecturally complete. Next: S590 res
 
 ## Fire 39
 **S582 CLOSED** (H910). **S612 CLOSED** (H928). Scar board clear except optional S590-μ.
+
+
+## CLOSED
+
+All Phase A/B gaps filled in [PROOF_CLOSED.md](PROOF_CLOSED.md).
+Theorems A (hard class) and B (full cubic EG).
+`verify_closed.py` PASS.

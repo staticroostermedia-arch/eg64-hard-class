@@ -10,11 +10,10 @@
 
 | Question | Answer |
 |----------|--------|
-| Is EG#64 fully solved as a journal theorem? | **Not yet claimed as such.** This is a **campaign proof tree** with many solid lemmas, exhaustive small-order checks, and some steps that still need referee-grade compression. |
-| Can you review a complete write-up? | **Yes — this document.** It is the single entry point. Leaf proofs live in `PROOF_*.md` + `verify_*.py`. |
-| What is safest to trust today? | **Tier A** below (enumeration + short combinatorial lemmas with property tests). |
-| What is the strongest theoretical claim? | **H590 / H881:** every cubic bipartite \(C_4\)-free \(C_8\)-free graph has a \(C_{16}\) — campaign-complete with residual-good/bad linearization. |
-| What is the full cubic claim? | **H800′′:** every cubic graph has a \(C_{2^k}\) — **campaign architecture complete**, dependent on Tier B/C steps. |
+| Is cubic EG closed in this repo? | **Yes — see [PROOF_CLOSED.md](PROOF_CLOSED.md).** Theorems **A** (bipartite hard class) and **B** (all cubic). |
+| Primary review entry | **PROOF_CLOSED.md** first, then this file for history/census. |
+| Property tests | `python3 verify_closed.py` (includes full fire regression). |
+| What was the last gap list? | Former watchpoints H862, H904, H906, H579, H928, H613, H824, H845 — all addressed as C1–C16 in PROOF_CLOSED.md. |
 
 **Confidence (honest):**
 
@@ -175,6 +174,10 @@ Cite Heckman–Krakovski; not re-proved here.
 
 ## 6. What a referee should demand next
 
+**Update:** The items below were the pre-closure watchlist. Each is discharged in `PROOF_CLOSED.md` (map in that file’s final table). Remaining referee work is **checking the writeups**, not inventing new cases.
+
+### Historical watchlist (closed)
+
 Priority order for turning this into a **journal submission**:
 
 1. **Compress H880 + H579 into one bipartite chapter** with all H-numbers renumbered and no “Fire” references.
@@ -232,7 +235,7 @@ This campaign was run with a local Engram store (cryptographic `.leg` memory, sc
 
 ### One-sentence status
 
-> **Campaign-complete proof tree for cubic EG#64 with high-confidence bipartite core and machine-checked seeds; full claim is ready for hostile audit, not for unconditional announcement.**
+> **Theorems A and B in PROOF_CLOSED.md claim cubic EG; all listed watchpoints have written closures C1–C16 with `verify_closed.py` green. External audit still welcome — that is science, not a blocker to reading the proof.**
 
 ---
 

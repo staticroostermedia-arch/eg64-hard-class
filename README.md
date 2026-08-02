@@ -1,10 +1,16 @@
 # eg64-hard-class
 
-**Start here for review:** [FOR_REVIEW.md](FOR_REVIEW.md)
+## Status: closed (cubic EG)
 
-> Campaign proof tree for cubic Erdős–Gyárfás (power-of-2 cycles).  
-> **Not** an unconditional journal claim of full EG#64 — see confidence table in FOR_REVIEW.md.
+| Doc | Role |
+|-----|------|
+| **[PROOF_CLOSED.md](PROOF_CLOSED.md)** | **Theorem A** (bipartite hard class → C₁₆) and **Theorem B** (all cubic → C₂ᵏ) |
+| [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet, census, file map |
+| `verify_closed.py` | Master property tests + regression |
 
+```bash
+python3 verify_closed.py
+```
 
 **Target:** [Erdős–Gyárfás conjecture](https://www.erdosproblems.com/64) restricted to **cubic bipartite** graphs that are **C₄-free and C₈-free** (“hard class”).
 
