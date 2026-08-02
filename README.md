@@ -1,58 +1,28 @@
 # eg64-hard-class
 
-## Status: full chain claimed (Theorems A + B)
+## Papers (start here)
 
-| Doc | Role |
-|-----|------|
-| **[PROOF_RIGOROUS.md](PROOF_RIGOROUS.md)** | Core proved lemmas + ledger |
-| **[PROOF_OPEN201.md](PROOF_OPEN201.md)** | Lemma 20.1 (length-7 third path) |
-| **[PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md)** | Lemmas 29.1, 32, 36, 38, 39 + Theorems A/B |
-| [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet / census |
-| `verify_open201.py` / `verify_open_remaining.py` | Seeds |
+| Paper | File | Result |
+|-------|------|--------|
+| **I** | **[PAPER_I_hard_class.md](PAPER_I_hard_class.md)** | **Theorem A:** cubic bipartite \(C_4/C_8\)-free ⇒ \(C_{16}\) |
+| **II** | **[PAPER_II_full_cubic.md](PAPER_II_full_cubic.md)** | **Theorem B:** every cubic graph ⇒ some \(C_{2^k}\) |
 
 ```bash
-python3 verify_open_remaining.py   # includes open201 regression
-python3 verify_rigorous.py
-python3 verify_closed.py
+python3 verify_papers.py   # all seed suites
 ```
 
-### Theorems
-- **A:** Every cubic bipartite \(C_4/C_8\)-free graph has a \(C_{16}\)
-- **B:** Every finite cubic graph has a cycle of length \(2^k\)
+### Supporting proofs
+| Doc | Role |
+|-----|------|
+| [PROOF_OPEN201.md](PROOF_OPEN201.md) | Free-port engine (Thm 4.5) |
+| [PROOF_OPEN_REMAINING.md](PROOF_OPEN_REMAINING.md) | Antipodal, residual-bad, non-bip |
+| [PROOF_RIGOROUS.md](PROOF_RIGOROUS.md) | Elementary core + ledger |
+| [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet / census |
 
 ### Engine
-Free-port / depth-1 dichotomy (PROOF_OPEN201) reused for residual-bad, antipodal, and non-bip cases.
+Free-port / depth-1 dichotomy on third paths of residual cycles.
 
 ---
-
-# eg64-hard-class
-
-## Honest status (post external audit)
-
-| Doc | Role |
-|-----|------|
-| **[PROOF_RIGOROUS.md](PROOF_RIGOROUS.md)** | **Authoritative.** Self-contained proved theorems + exact OPEN lemmas |
-| [PROOF_CLOSED.md](PROOF_CLOSED.md) | Earlier campaign closure (overstated informal steps — superseded for claims) |
-| [FOR_REVIEW.md](FOR_REVIEW.md) | Review packet, census, history |
-| `verify_rigorous.py` | Seeds for proved theorems only |
-| `verify_closed.py` | Portable regression (relative paths) |
-
-### What is actually proved
-Theorems 1–8, 11–14, 17, 19.1, 22–24, 26–27, 30–31, 33–35, 37, 40 in `PROOF_RIGOROUS.md` (exclusive C₁₆, path-9, residual-good form, chord tables, triangle L=4,5, C₇ construction when path exists, …).
-
-### What remains OPEN (blocks full cubic EG)
-1. ~~OPEN 20.1~~ **CLOSED** ([PROOF_OPEN201.md](PROOF_OPEN201.md))  
-2. **OPEN 29.1** — antipodal distance existence on C₁₀/₁₂/₁₄  
-3. **OPEN 32** — double-stretch residual-bad  
-4. **OPEN 36, 38, 39** — triangle/og5/C₇ remainder  
-
-```bash
-python3 verify_rigorous.py
-python3 verify_closed.py
-```
-
----
-
 
 ## Fire 36 — H614 odd girth ≥7
 
