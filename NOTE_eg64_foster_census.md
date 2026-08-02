@@ -231,3 +231,13 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - Remaining: p₅∈{f,T₂} only
 - [PROOF_L3L4_fire19.md](PROOF_L3L4_fire19.md)
 - **GitHub:** https://github.com/staticroostermedia-arch/eg64-hard-class
+
+
+---
+
+## Fire 20 — u_g C₈ + layer law
+
+- **H105–H109:** u_g cannot meet v0,v2,v4,T3,δ,e,t,q (explicit C₈/path₆)
+- **H115:** under DS, a\* ∈ L₆(e), c ∈ L₅, q ∈ L₄
+- **H89/H90:** s−g path₆, c−g path₄
+- [PROOF_ug_fire20.md](PROOF_ug_fire20.md)
