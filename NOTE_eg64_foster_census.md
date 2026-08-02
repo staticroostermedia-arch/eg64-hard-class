@@ -318,3 +318,13 @@ Details: [PROOF_H11b_path9_fire8.md](PROOF_H11b_path9_fire8.md)
 - H399 pure f forbids s−c₁
 - H390 main pattern c₁−y + c₂−s survives (boxed)
 - [PROOF_U2b_fire27.md](PROOF_U2b_fire27.md) · [verify_fire27.py](verify_fire27.py)
+
+
+---
+
+## Fire 28 — L₆-bridge map; H390 still open (honest)
+
+- H413: complete L₆-bridge C₈/C₄ classification under H390
+- H404: τ↛σ; τ↛w-L₅; τ↛y′-L₅
+- H424: **private L₆ completion is C₄/C₈-free** — kill needs cascade/C₁₆
+- [PROOF_L6bridge_fire28.md](PROOF_L6bridge_fire28.md) · [verify_fire28.py](verify_fire28.py)
